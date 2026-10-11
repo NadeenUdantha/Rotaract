@@ -143,7 +143,7 @@ function TimelineItem({
 function EventCard({ event, index }: { event: EventItem; index: number }) {
   const { days, hours, minutes, seconds } = useCountdown(event.targetDate);
   return (
-    <article className="overflow-hidden bg-white/[0.04] border border-white/10 group">
+    <article className="group overflow-hidden border border-gold/20 bg-gold/[0.06] backdrop-blur-md">
       {/* Image */}
       <div className="relative aspect-[16/9] overflow-hidden">
         <img
@@ -212,7 +212,9 @@ export function Events() {
       className="relative w-full overflow-hidden scroll-mt-24"
       style={{ backgroundColor: '#0c0c0c' }}
     >
-      <div className="mx-auto max-w-6xl px-4 py-24 sm:px-8 md:py-36">
+      <div className="pointer-events-none absolute -right-40 top-24 h-[32rem] w-[32rem] rounded-full bg-gold/10 blur-3xl" />
+      <div className="pointer-events-none absolute -left-52 bottom-0 h-[28rem] w-[28rem] rounded-full bg-gold/5 blur-3xl" />
+      <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 sm:px-8 md:py-36">
 
         {/* ── Section header ── */}
         <div className="mb-20 text-center">

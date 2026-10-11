@@ -80,6 +80,7 @@ export default function DriftWall({
   const lastTsRef = useRef<number | null>(null);
   const activeIdRef = useRef<string | null>(null);
   const [containerHeight, setContainerHeight] = useState(600);
+  const [containerWidth, setContainerWidth] = useState(0);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [reduced, setReduced] = useState(false);
 
@@ -89,14 +90,23 @@ export default function DriftWall({
     return cols.map((column) => (column.length ? column : items.slice(0, 1)));
   }, [items, columns]);
 
+  const wallScale = containerWidth > 0 && containerWidth < 640
+    ? Math.max(0.58, containerWidth / 640)
+    : 1;
+  const scaledTileWidth = tileWidth * wallScale;
+  const scaledTileHeight = tileHeight * wallScale;
+  const scaledGap = gap * wallScale;
+  const scaledRadius = radius * wallScale;
+
   const columnMeta = useMemo(() => {
-    const unit = tileHeight + gap;
+    const unit = scaledTileHeight + scaledGap;
     return columnItems.map((column) => {
-      const copyHeight = Math.max(unit, column.length * unit);
+      // Overlap one gap so the next repeated track enters before the current one clears.
+      const copyHeight = Math.max(unit, column.length * unit - scaledGap);
       const copies = Math.max(2, Math.ceil((containerHeight * 1.6) / copyHeight) + 1);
       return { copyHeight, copies };
     });
-  }, [columnItems, tileHeight, gap, containerHeight]);
+  }, [columnItems, scaledTileHeight, scaledGap, containerHeight]);
 
   const baseVelocities = useMemo(() => {
     const directionSign = direction === 'up' ? 1 : -1;
@@ -119,6 +129,7 @@ export default function DriftWall({
     if (!container) return undefined;
     const observer = new ResizeObserver(([entry]) => {
       setContainerHeight(entry.contentRect.height || 600);
+      setContainerWidth(entry.contentRect.width || 0);
     });
     observer.observe(container);
     return () => observer.disconnect();
@@ -214,10 +225,10 @@ export default function DriftWall({
   const cssVars = useMemo(
     () =>
       ({
-        '--dw-tile-w': `${tileWidth}px`,
-        '--dw-tile-h': `${tileHeight}px`,
-        '--dw-gap': `${gap}px`,
-        '--dw-radius': `${radius}px`,
+        '--dw-tile-w': `${scaledTileWidth}px`,
+        '--dw-tile-h': `${scaledTileHeight}px`,
+        '--dw-gap': `${scaledGap}px`,
+        '--dw-radius': `${scaledRadius}px`,
         '--dw-lift': `${lift}px`,
         '--dw-dim': dim,
         '--dw-gray': grayscale ? 1 : 0,
@@ -231,7 +242,7 @@ export default function DriftWall({
           'radial-gradient(ellipse 78% 82% at 50% 46%, #000 var(--dw-edge), transparent 100%), linear-gradient(to top, #000 var(--dw-edge), transparent 100%)',
         ...style,
       } as React.CSSProperties),
-    [tileWidth, tileHeight, gap, radius, lift, dim, grayscale, overlayColor, fade, perspective, style]
+    [scaledTileWidth, scaledTileHeight, scaledGap, scaledRadius, lift, dim, grayscale, overlayColor, fade, perspective, style]
   );
 
   const renderTile = (item: DriftWallItem, id: string, column: number) => {

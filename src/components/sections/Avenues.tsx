@@ -166,7 +166,7 @@ export function Avenues() {
     <div
       ref={containerRef}
       id="avenues"
-      className="relative z-20 h-[500vh] w-full bg-black"
+      className="grainy-cream-bg relative z-20 h-[500vh] w-full"
     >
       {/* Sticky Fullscreen Stage */}
       <section

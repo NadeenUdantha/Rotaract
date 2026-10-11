@@ -109,15 +109,6 @@ export function VideoHero() {
           </ul>
 
           {/* Minimal Hamburger Icon */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle Navigation Menu"
-            className="ml-3 flex flex-col justify-center gap-1.5 p-1 text-white hover:opacity-75"
-          >
-            <span className={`block h-[1.5px] w-6 transition-colors duration-300 ${portalOnCream ? 'bg-ink' : 'bg-white'}`} />
-            <span className={`block h-[1.5px] w-6 transition-colors duration-300 ${portalOnCream ? 'bg-ink' : 'bg-white'}`} />
-          </button>
         </nav>
 
         {/* Mobile menu trigger */}
@@ -168,7 +159,7 @@ export function VideoHero() {
       <section
         id="hero-intro"
         aria-label="Rotaract Club of UCSC Introduction"
-        className="relative z-20 flex min-h-screen w-full flex-col justify-end px-6 pb-6 sm:px-12 sm:pb-8 md:pb-10"
+        className="relative z-20 flex min-h-screen w-full flex-col justify-end px-6 pb-2 sm:px-12 sm:pb-4 md:pb-6"
       >
         <div className="max-w-4xl">
           <motion.h1
@@ -378,7 +369,7 @@ function RacUcscPortalSection({
             parallax={0}
             offsetX={-120}
             lift={64}
-            fade={0.6}
+            fade={0.25}
             dim={0.55}
             overlayColor="#060010"
             radius={0}

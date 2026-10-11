@@ -26,9 +26,9 @@ export function Gallery() {
     offset: ['start end', 'end start'],
   });
   const rowOffsets = [
-    useTransform(scrollYProgress, [0, 1], [-140, 140]),
-    useTransform(scrollYProgress, [0, 1], [140, -140]),
-    useTransform(scrollYProgress, [0, 1], [-180, 180]),
+    useTransform(scrollYProgress, [0, 1], [-80, 80]),
+    useTransform(scrollYProgress, [0, 1], [80, -80]),
+    useTransform(scrollYProgress, [0, 1], [-100, 100]),
   ];
 
   const close = () => setActive(null);
@@ -53,12 +53,12 @@ export function Gallery() {
           </Link>
         </Reveal>
 
-        <div className="space-y-5">
+        <div className="space-y-3 sm:space-y-5">
           {rowOffsets.map((offset, row) => (
             <motion.div
               key={row}
               style={{ x: offset }}
-              className={`flex w-max gap-5 will-change-transform ${row === 1 ? 'rotate-[2deg]' : '-rotate-[2deg]'}`}
+              className={`flex w-max gap-3 sm:gap-5 will-change-transform ${row === 1 ? 'rotate-[2deg]' : '-rotate-[2deg]'}`}
             >
               {[...GALLERY, ...GALLERY].map((item, i) => {
                 const galleryIndex = i % GALLERY.length;
@@ -66,7 +66,7 @@ export function Gallery() {
                   <button
                     key={`${row}-${i}`}
                     onClick={() => setActive(galleryIndex)}
-                    className="group relative block h-52 w-72 flex-none overflow-hidden border-[10px] border-white bg-white shadow-xl transition-transform duration-500 hover:z-10 hover:scale-[1.03] sm:h-64 sm:w-[22rem] lg:h-72 lg:w-[26rem]"
+                    className="group relative block h-36 w-48 flex-none overflow-hidden border-[6px] border-white bg-white shadow-xl transition-transform duration-500 hover:z-10 hover:scale-[1.03] sm:h-64 sm:w-[22rem] sm:border-[10px] lg:h-72 lg:w-[26rem]"
                   >
                     <img
                       src={item.src}

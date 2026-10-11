@@ -1,8 +1,3 @@
-
-
-
-
-
 import { STATS } from '../../lib/data';
 import { Counter } from '../ui/Counter';
 import { Reveal } from '../ui/Reveal';
@@ -16,11 +11,10 @@ export function Impact() {
   const areStatsInView = useInView(statsRef, { once: true, amount: 0.75 });
 
   return (
-    <section className="relative w-full overflow-hidden bg-black pb-20 pt-10 text-[#ECECE8] md:pb-28 md:pt-16">
+    <section className="golden-hue-wash relative w-full overflow-hidden bg-black pb-20 pt-10 text-[#ECECE8] md:pb-28 md:pt-16">
       <Blob className="-left-20 top-10 h-72 w-72 bg-white/5" />
-      <Blob className="-right-16 bottom-0 h-72 w-72 bg-gold/10" />
 
-      <div className="relative mx-auto max-w-6xl px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
         <Reveal className="mb-14 text-center">
           <p className="whitespace-nowrap font-cormorant text-4xl font-semibold leading-none md:text-5xl">
             <span className="text-[#ECECE8]">Our</span>{' '}

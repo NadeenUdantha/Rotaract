@@ -1,10 +1,8 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { PROJECTS } from '../../lib/data';
-
-/* ── Noise SVG data URI (same grain as RACUCSC canvas) ─────────────────── */
-const NOISE_SVG = `data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E`;
 
 const projectRoutes: Record<string, string> = {
   p1: 'book-of-hope',
@@ -12,135 +10,118 @@ const projectRoutes: Record<string, string> = {
   p3: 'books-beyond',
 };
 
-const statusColor: Record<string, { dot: string; label: string }> = {
-  Completed: { dot: 'bg-white/60',          label: 'text-white/60' },
-  Ongoing:   { dot: 'bg-[rgb(197,160,71)]', label: 'text-[rgb(197,160,71)]' },
-  Upcoming:  { dot: 'bg-white',             label: 'text-white' },
-};
+const wrapIndex = (index: number) => (index + PROJECTS.length) % PROJECTS.length;
 
-/* ── Single project card with individual scroll-triggered reveal ─────────── */
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: (typeof PROJECTS)[number];
-  index: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-10% 0px -10% 0px' });
-  const route = `/projects/${projectRoutes[project.id]}`;
-  const { dot, label } = statusColor[project.status] ?? statusColor.Upcoming;
-
-  return (
-    <motion.article
-      ref={ref}
-      initial={{ opacity: 0, y: 52 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
-      className="group flex flex-col overflow-hidden bg-white/0 will-change-transform"
-    >
-      {/* Image */}
-      <Link to={route} className="block overflow-hidden aspect-[16/10]">
-        <img
-          src={project.image}
-          alt={project.name}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-      </Link>
-
-      {/* Content */}
-      <div className="flex flex-1 flex-col pt-6 pb-2 px-1">
-        {/* Status + category line */}
-        <div className="flex items-center gap-3 mb-4">
-          <span className={`inline-block h-1.5 w-1.5 rounded-full ${dot} flex-shrink-0`} />
-          <span className={`font-mono text-[11px] uppercase tracking-[0.24em] ${label}`}>
-            {project.status}
-          </span>
-          <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-white/30">
-            {project.category}
-          </span>
-        </div>
-
-        {/* Title */}
-        <h3 className="font-cormorant text-2xl font-light uppercase leading-[1.08] tracking-[0.06em] text-white sm:text-3xl">
-          {project.name}
-        </h3>
-
-        {/* Description */}
-        <p className="mt-3 font-body text-sm font-light leading-relaxed text-white/60">
-          {project.description}
-        </p>
-
-        {/* Date + thin gold rule */}
-        <div className="mt-6 flex items-center gap-4">
-          <span className="h-px flex-1 bg-white/10" />
-          <span className="font-mono text-xs tracking-widest text-white/35">{project.date}</span>
-        </div>
-      </div>
-    </motion.article>
-  );
-}
-
-/* ── Section ─────────────────────────────────────────────────────────────── */
 export function Projects() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const activeProject = PROJECTS[activeIndex];
+
+  const nextProject = useCallback(() => {
+    setActiveIndex((index) => wrapIndex(index + 1));
+  }, []);
+
+  useEffect(() => {
+    if (isPaused) return undefined;
+    const timer = window.setInterval(nextProject, 5000);
+    return () => window.clearInterval(timer);
+  }, [isPaused, nextProject]);
+
+  const relativePosition = (index: number) => {
+    const difference = index - activeIndex;
+    if (difference > PROJECTS.length / 2) return difference - PROJECTS.length;
+    if (difference < -PROJECTS.length / 2) return difference + PROJECTS.length;
+    return difference;
+  };
+
   return (
     <section
       id="projects"
-      className="relative w-full overflow-hidden"
-      style={{ backgroundColor: '#ECECE8' }}
+      className="relative h-[100dvh] min-h-[620px] w-full overflow-hidden bg-black text-white"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
     >
-      {/* ── Grainy paper texture (same as RACUCSC canvas) */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 bg-repeat opacity-[0.35] mix-blend-multiply"
-        style={{ backgroundImage: `url("${NOISE_SVG}")`, backgroundSize: '140px 140px' }}
-      />
-      <svg
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-25 mix-blend-multiply"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <filter id="projects-noise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
-          <feColorMatrix type="saturate" values="0" />
-          <feComponentTransfer><feFuncA type="linear" slope="0.65" /></feComponentTransfer>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#projects-noise)" />
-      </svg>
-
-      {/* ── Dark overlay so text is readable on grainy cream ── */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-black/78" />
-
-      {/* ── Content ────────────────────────────────────────────── */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 sm:px-12 md:py-36">
-
-        {/* Header */}
-        <div className="mb-16 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <span className="font-mono text-xs uppercase tracking-[0.28em] text-[rgb(197,160,71)]">
-              ◆ &nbsp;Featured Work
-            </span>
-            <h2 className="mt-4 font-cormorant text-4xl font-light uppercase leading-[1.06] tracking-[0.07em] text-white sm:text-5xl md:text-6xl">
-              Projects that<br />
-              <span style={{ color: 'rgb(197,160,71)' }}>Made a Difference</span>
+      <div className="mx-auto grid h-full w-full max-w-7xl grid-cols-1 lg:grid-cols-[0.82fr_1.18fr]">
+        <div className="relative z-20 flex h-full flex-col justify-center px-8 py-20 sm:px-14 lg:px-16 lg:py-0">
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-gold sm:text-xs">
+            Latest projects
+          </span>
+          <motion.div
+            key={activeProject.id}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 max-w-xl"
+          >
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/45">
+              {activeProject.status} / {activeProject.category}
+            </p>
+            <h2 className="mt-5 font-cormorant text-5xl font-light uppercase leading-[0.96] tracking-[0.04em] text-white sm:text-6xl md:text-7xl">
+              {activeProject.name}
             </h2>
-          </div>
-          <p className="max-w-xs font-body text-sm font-light leading-relaxed text-white/55 lg:text-right">
-            Three flagship initiatives that represent our commitment to lasting community impact.
-          </p>
+            <p className="mt-7 max-w-md text-sm leading-7 text-white/65 sm:text-base">
+              {activeProject.description}
+            </p>
+            <div className="mt-8 flex items-center gap-5">
+              <Link
+                to={`/projects/${projectRoutes[activeProject.id]}`}
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold transition-colors hover:text-white"
+              >
+                Explore project <ArrowUpRight className="h-4 w-4" />
+              </Link>
+              <span className="font-mono text-xs tracking-widest text-white/35">{activeProject.date}</span>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Thin gold rule */}
-        <div className="mb-16 h-px w-full bg-white/10" />
+        <div className="relative flex h-full min-h-[420px] items-center justify-center px-8 pb-20 pt-4 sm:px-16 lg:pb-0 lg:pt-0">
+          <div className="relative h-[58vh] max-h-[600px] min-h-[350px] w-full max-w-[500px]">
+            {PROJECTS.map((project, index) => {
+              const position = relativePosition(index);
+              const isActive = position === 0;
+              const isBehind = Math.abs(position) > 1;
 
-        {/* Project grid — 3-column desktop, stacks on mobile */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8 lg:gap-12">
-          {PROJECTS.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
-          ))}
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={false}
+                  animate={{
+                    x: position === 0 ? 0 : position < 0 ? -68 : 68,
+                    y: position === 0 ? 0 : Math.abs(position) > 1 ? 14 : 8,
+                    scale: position === 0 ? 1 : isBehind ? 0.82 : 0.92,
+                    rotate: position === 0 ? 0 : position < 0 ? -3 : 3,
+                    opacity: isBehind ? 0.38 : position === 0 ? 1 : 0.72,
+                    zIndex: isActive ? 30 : position < 0 ? 20 : 10,
+                  }}
+                  transition={{ type: 'spring', stiffness: 180, damping: 24, mass: 0.8 }}
+                  className="absolute inset-0 h-full w-full overflow-hidden bg-ink shadow-2xl"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className={`block h-full w-full object-cover ${isActive ? '' : 'brightness-50 grayscale-[35%]'}`}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="absolute bottom-8 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 lg:bottom-16">
+            {PROJECTS.map((project, index) => (
+              <button
+                key={project.id}
+                type="button"
+                aria-label={`Show ${project.name}`}
+                onClick={() => setActiveIndex(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex ? 'w-9 bg-gold' : 'w-2 bg-white/35 hover:bg-white/70'}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
+export default Projects;

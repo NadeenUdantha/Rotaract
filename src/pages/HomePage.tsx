@@ -7,7 +7,6 @@ import { Impact } from '../components/sections/Impact';
 import { Projects } from '../components/sections/Projects';
 import { Sponsors } from '../components/sections/Sponsors';
 import { Testimonials } from '../components/sections/Testimonials';
-import { CurveDivider } from '../components/ui/Decor';
 
 export function HomePage() {
   return (
@@ -16,7 +15,6 @@ export function HomePage() {
         <Hero />
         <Impact />
         <Projects />
-        <CurveDivider flip className="text-white dark:text-ink" />
         <Events />
         <Avenues />
         <Sponsors />

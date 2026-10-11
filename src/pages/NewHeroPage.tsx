@@ -5,9 +5,7 @@ import { Projects } from '../components/sections/Projects';
 import { Events } from '../components/sections/Events';
 import { Avenues } from '../components/sections/Avenues';
 import { Sponsors } from '../components/sections/Sponsors';
-import { Blog } from '../components/sections/Blog';
 import { Testimonials } from '../components/sections/Testimonials';
-import { CurveDivider } from '../components/ui/Decor';
 
 export function NewHeroPage() {
   return (
@@ -15,11 +13,9 @@ export function NewHeroPage() {
       <VideoHero />
       <Avenues />
       <Impact />
-      <Projects />
-      <CurveDivider flip className="text-white dark:text-ink" />
       <Events />
       <Sponsors />
-      <Blog />
+      <Projects />
       <Testimonials />
     </main>
   );
