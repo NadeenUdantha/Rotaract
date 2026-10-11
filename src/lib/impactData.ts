@@ -26,7 +26,7 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
 {
   slug: 'club-service',
   title: 'Club Service',
-  description: 'We design the moments that make belonging feel effortless and every member feel seen.',
+  description: 'Drives fellowship and smooth internal operations by coordinating meetings, managing administration, and fostering an inclusive club culture.',
   tagline: 'The culture engine behind a connected club.',
   icon: UsersIcon,
   image: "/1e74bf3b-bd1e-4979-a2ae-f0d17883d4b4.jpg",
@@ -37,7 +37,7 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
 {
   slug: 'community-service',
   title: 'Community Service',
-  description: 'We work shoulder to shoulder with communities to create practical, lasting progress.',
+  description: 'Creates sustainable, long-term change in local communities through impactful environmental and socioeconomic initiatives.',
   tagline: 'Turning local care into collective action.',
   icon: HeartHandshakeIcon,
   image: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg",
@@ -47,8 +47,8 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
 },
 {
   slug: 'finance',
-  title: 'Finance',
-  description: 'We create the financial confidence and partnerships that keep every big idea moving.',
+  title: 'Finance Service',
+  description: 'Ensures financial stability and transparency through strategic budgeting, effective fundraising, and securing sponsorships to support club goals.',
   tagline: 'Sustaining purpose with smart stewardship.',
   icon: WalletIcon,
   image: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg",
@@ -59,7 +59,7 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
 {
   slug: 'international-service',
   title: 'International Service',
-  description: 'We build friendships and solutions that move beyond borders.',
+  description: 'Promotes global peace and cultural understanding by fostering cross-border collaborations, exchange programs, and international friendships.',
   tagline: 'A local club with a global point of view.',
   icon: Globe2Icon,
   image: "/67a57244-695d-4354-86ae-42f897a404b4.jpg",
@@ -70,7 +70,7 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
 {
   slug: 'professional-development',
   title: 'Professional Development',
-  description: 'We give members practical experiences, mentors and confidence for what comes next.',
+  description: 'Enhances members\' career readiness and leadership skills through targeted training, personal branding, and mentorship.',
   tagline: 'Growing capable leaders, together.',
   icon: GraduationCapIcon,
   image: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg",
@@ -80,8 +80,8 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
 },
 {
   slug: 'sports-recreation',
-  title: 'Sports & Recreation',
-  description: 'We bring joyful energy, wellness and a healthy competitive spirit into club life.',
+  title: 'Sports & Recreational Activities',
+  description: 'Boosts member well-being and teamwork through a diverse mix of competitive sports, e-sports, and relaxing recreational events.',
   tagline: 'Shared play. Stronger bonds.',
   icon: TrophyIcon,
   image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg",
@@ -92,7 +92,7 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
 {
   slug: 'public-relations',
   title: 'Public Relations',
-  description: 'We translate our club’s energy into stories people want to be part of.',
+  description: 'Elevates the club\'s visibility and credibility by translating acts of service into engaging stories through strategic communication and media.',
   tagline: 'Giving every act of service a voice.',
   icon: MegaphoneIcon,
   image: "/6cd30f0e-0ef7-4660-8a0d-f31ff0b33536.jpg",
@@ -103,7 +103,7 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
 {
   slug: 'digital-services',
   title: 'Digital Services',
-  description: 'We use design, storytelling and technology to make every initiative easier to experience.',
+  description: 'Manages the club\'s technological infrastructure, including website development and digital tools, to streamline operations and expand digital presence.',
   tagline: 'Crafting the club’s digital heartbeat.',
   icon: MonitorSmartphoneIcon,
   image: "/275ad849-1b14-4559-a11c-460d2229c27b.jpg",
