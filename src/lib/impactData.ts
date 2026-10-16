@@ -51,6 +51,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Turning local care into collective action.',
   icon: HeartHandshakeIcon,
   image: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'rose',
   completedProjects: 42,
   directors: 4
@@ -62,6 +67,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Sustaining purpose with smart stewardship.',
   icon: WalletIcon,
   image: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'amber',
   completedProjects: 15,
   directors: 2
@@ -73,6 +83,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'A local club with a global point of view.',
   icon: Globe2Icon,
   image: "/67a57244-695d-4354-86ae-42f897a404b4.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'sky',
   completedProjects: 21,
   directors: 3
@@ -84,6 +99,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Growing capable leaders, together.',
   icon: GraduationCapIcon,
   image: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'violet',
   completedProjects: 26,
   directors: 3
@@ -95,6 +115,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Shared play. Stronger bonds.',
   icon: TrophyIcon,
   image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'orange',
   completedProjects: 17,
   directors: 2
@@ -106,6 +131,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Giving every act of service a voice.',
   icon: MegaphoneIcon,
   image: "/6cd30f0e-0ef7-4660-8a0d-f31ff0b33536.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'fuchsia',
   completedProjects: 29,
   directors: 4
@@ -117,6 +147,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Crafting the club’s digital heartbeat.',
   icon: MonitorSmartphoneIcon,
   image: "/275ad849-1b14-4559-a11c-460d2229c27b.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'cyan',
   completedProjects: 24,
   directors: 3

@@ -84,6 +84,8 @@ export const PROJECTS: Project[] = [
 export interface EventItem {
   id: string;
   title: string;
+  avenue: string;
+  subtitle?: string;
   date: string;
   targetDate: string;
   location: string;
@@ -93,27 +95,33 @@ export interface EventItem {
 export const EVENTS: EventItem[] = [
 {
   id: 'e1',
-  title: 'Leadership Summit 2026',
-  date: 'August 14, 2026',
-  targetDate: '2026-08-14T09:00:00',
-  location: 'UCSC Main Auditorium',
-  image: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg"
+  title: 'Mind Matters 3.0',
+  avenue: 'Community Services',
+  subtitle: 'A Mental Health Initiative',
+  date: '26th October 2026',
+  targetDate: '2026-10-26T09:00:00',
+  location: 'UCSC Premises',
+  image: '/assets/events/mind-matters-3.jpg'
 },
 {
   id: 'e2',
-  title: 'Community Service Day',
-  date: 'September 5, 2026',
-  targetDate: '2026-09-05T08:00:00',
-  location: 'Colombo District',
-  image: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg"
+  title: 'අඬහැරය',
+  avenue: 'Finance',
+  subtitle: 'Andaharaya — A Musical Fundraising Event',
+  date: '30th October 2026',
+  targetDate: '2026-10-30T18:00:00',
+  location: 'UCSC Premises',
+  image: '/assets/events/andaharaya.jpg'
 },
 {
   id: 'e3',
-  title: 'Annual Gala Night 2026',
-  date: 'October 18, 2026',
-  targetDate: '2026-10-18T18:00:00',
-  location: 'Colombo Hilton Grand Ballroom',
-  image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg"
+  title: 'Reid Shadows 2.0',
+  avenue: 'Club Services',
+  subtitle: 'A Halloween Fellowship Event',
+  date: '23rd November 2026',
+  targetDate: '2026-11-23T17:30:00',
+  location: 'UCSC Premises',
+  image: '/assets/events/reid-shadows-2.jpg'
 }];
 
 
