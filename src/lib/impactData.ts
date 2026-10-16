@@ -17,6 +17,11 @@ export interface AvenueDetail {
   tagline: string;
   icon: LucideIcon;
   image: string;
+  photoFrame?: {
+    main: string;
+    top: string;
+    bottom: string;
+  };
   accent: string;
   completedProjects: number;
   directors: number;
@@ -29,7 +34,12 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   description: 'Drives fellowship and smooth internal operations by coordinating meetings, managing administration, and fostering an inclusive club culture.',
   tagline: 'The culture engine behind a connected club.',
   icon: UsersIcon,
-  image: "/1e74bf3b-bd1e-4979-a2ae-f0d17883d4b4.jpg",
+  image: "/assets/avenues/club-service-main.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'navy',
   completedProjects: 18,
   directors: 3
