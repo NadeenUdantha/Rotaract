@@ -128,56 +128,56 @@ export interface Avenue {
 export const AVENUES: Avenue[] = [
 {
   title: 'Club Service',
-  description: 'Building fellowship and strengthening bonds within our club family.',
+  description: 'Drives fellowship and smooth internal operations by coordinating meetings, managing administration, and fostering an inclusive club culture.',
   icon: Users,
   span: 'lg:col-span-2 lg:row-span-2',
   tint: 'from-navy-500/90 to-navy-700/90'
 },
 {
   title: 'Community Service',
-  description: 'Uplifting local communities through hands-on volunteer initiatives.',
+  description: 'Creates sustainable, long-term change in local communities through impactful environmental and socioeconomic initiatives.',
   icon: HeartHandshake,
   span: 'lg:col-span-2',
   tint: 'from-navy-400/10 to-gold/10'
 },
 {
-  title: 'Finance',
-  description: 'Sustaining our mission through smart fundraising and stewardship.',
+  title: 'Finance Service',
+  description: 'Ensures financial stability and transparency through strategic budgeting, effective fundraising, and securing sponsorships to support club goals.',
   icon: Wallet,
   span: '',
   tint: 'from-gold/10 to-navy-300/10'
 },
 {
   title: 'International Service',
-  description: 'Connecting hands across borders for global impact.',
+  description: 'Promotes global peace and cultural understanding by fostering cross-border collaborations, exchange programs, and international friendships.',
   icon: Globe2,
   span: '',
   tint: 'from-blue-400/10 to-navy-300/10'
 },
 {
   title: 'Professional Development',
-  description: 'Growing tomorrow’s leaders through mentorship and skill-building.',
+  description: 'Enhances members\' career readiness and leadership skills through targeted training, personal branding, and mentorship.',
   icon: GraduationCap,
   span: 'lg:col-span-2',
   tint: 'from-purple-400/10 to-navy-300/10'
 },
 {
-  title: 'Sports & Recreation',
-  description: 'Celebrating energy, wellness and team spirit through play.',
+  title: 'Sports & Recreational Activities',
+  description: 'Boosts member well-being and teamwork through a diverse mix of competitive sports, e-sports, and relaxing recreational events.',
   icon: Trophy,
   span: '',
   tint: 'from-gold/10 to-navy-200/10'
 },
 {
   title: 'Public Relations',
-  description: 'Amplifying our story and inspiring the next generation.',
+  description: 'Elevates the club\'s visibility and credibility by translating acts of service into engaging stories through strategic communication and media.',
   icon: Megaphone,
   span: '',
   tint: 'from-pink-400/10 to-navy-300/10'
 },
 {
   title: 'Digital Services',
-  description: 'Powering our impact with technology and creativity.',
+  description: 'Manages the club\'s technological infrastructure, including website development and digital tools, to streamline operations and expand digital presence.',
   icon: MonitorSmartphone,
   span: 'lg:col-span-2',
   tint: 'from-navy-500/90 to-navy-800/90'
