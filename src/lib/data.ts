@@ -51,33 +51,23 @@ export interface Project {
 export const PROJECTS: Project[] = [
 {
   id: 'p1',
-  name: 'Book of Hope',
-  category: 'Community Service',
-  date: 'Mar 2026',
+  name: 'Achieve Beyond 3.0',
+  category: 'Professional Development',
+  date: 'May 2026',
   description:
-  'Building and stocking a children’s library to nurture a lifelong love of reading in underserved communities.',
-  image: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg",
-  status: 'Ongoing'
-},
-{
-  id: 'p2',
-  name: 'Life Drops',
-  category: 'Community Service',
-  date: 'Feb 2026',
-  description:
-  'A campus-wide blood donation drive uniting hundreds of students to give the gift of life.',
-  image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg",
+  'A signature career readiness and leadership accelerator empowering undergraduates with practical skills and industry mentorship.',
+  image: "/assets/projects/achieve-beyond.jpg",
   status: 'Completed'
 },
 {
-  id: 'p3',
-  name: 'Books & Beyond',
-  category: 'International Service',
-  date: 'Apr 2026',
+  id: 'p2',
+  name: 'මනුදම් වියමන 2026',
+  category: 'Community Service',
+  date: 'Jun 2026',
   description:
-  'Distributing school supplies and essentials to rural schools, opening doors to brighter futures.',
-  image: "/67a57244-695d-4354-86ae-42f897a404b4.jpg",
-  status: 'Upcoming'
+  'A heartfelt community outreach project providing essential aid, nutrition packs, and sustainable support to underserved families.',
+  image: "/assets/projects/manudam-viyamana.jpg",
+  status: 'Completed'
 }];
 
 
