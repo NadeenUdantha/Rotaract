@@ -293,9 +293,12 @@ export const TESTIMONIALS: Testimonial[] = [
 
 
 export const GALLERY = [
-  { src: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg", tall: true },
-  { src: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg", tall: false },
-  { src: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg", tall: false },
-  { src: "/67a57244-695d-4354-86ae-42f897a404b4.jpg", tall: true },
-  { src: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg", tall: false },
-  { src: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg", tall: false }];
+  { src: "/assets/gallery/IMG_8170.jpg", tall: true },
+  { src: "/assets/gallery/NO_FUSION_0723_005.jpg", tall: false },
+  { src: "/assets/gallery/IMG-20250728-WA0029.jpg", tall: false },
+  { src: "/assets/gallery/IMG_8132.jpg", tall: true },
+  { src: "/assets/gallery/IMG_8444.jpg", tall: false },
+  { src: "/assets/gallery/IMG_8199.jpg", tall: false },
+  { src: "/assets/gallery/NO_FUSION_0701_003.jpg", tall: true },
+  { src: "/assets/gallery/NO_FUSION_0723_033_1.jpg", tall: false }
+];
