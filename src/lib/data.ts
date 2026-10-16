@@ -195,16 +195,42 @@ export const AVENUES: Avenue[] = [
 export interface Sponsor {
   name: string;
   detail: string;
+  logo: string;
 }
 
 export const SPONSORS: Sponsor[] = [
-{ name: 'Aurora Labs', detail: 'Technology Partner since 2021' },
-{ name: 'Lumina Bank', detail: 'Principal Financial Sponsor' },
-{ name: 'GreenLeaf Co.', detail: 'Sustainability Collaborator' },
-{ name: 'Vertex Media', detail: 'Official Media Partner' },
-{ name: 'Solace Health', detail: 'Healthcare Outreach Ally' },
-{ name: 'Nimbus Cloud', detail: 'Digital Infrastructure' },
-{ name: 'Orbit Ventures', detail: 'Startup Mentorship Circle' }];
+{
+  name: 'Rotaract Club of Matale',
+  detail: 'Rotaract Partner Club',
+  logo: '/assets/collaborators/rotaract-matale.png'
+},
+{
+  name: 'Rotaract Club of Kandy Metropolitan',
+  detail: 'Rotaract Partner Club',
+  logo: '/assets/collaborators/rotaract-kandy-metropolitan.png'
+},
+{
+  name: 'Saheli Foundation',
+  detail: 'Community Outreach Ally',
+  logo: '/assets/collaborators/saheli-foundation.png'
+},
+{
+  name: 'රේඛා',
+  detail: 'Musical & Cultural Partner',
+  logo: '/assets/collaborators/rekha.png'
+},
+{
+  name: 'Rotaract Club of University of Moratuwa',
+  detail: 'Rotaract Partner Club',
+  logo: '/assets/collaborators/rotaract-mora.png'
+},
+{
+  name: 'Rotaract Club of Uva Wellassa University - Badulla',
+  detail: 'Rotaract Partner Club',
+  logo: '/assets/collaborators/rotaract-uwu.png'
+}];
+
+export const COLLABORATORS = SPONSORS;
 
 
 export interface BlogPost {
