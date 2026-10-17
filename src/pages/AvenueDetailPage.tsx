@@ -36,8 +36,8 @@ export function AvenueDetailPage() {
   const brightnessAmount = useTransform(scrollY, [0, 550], [92, 42]);
   const imageFilter = useTransform(
     [blurAmount, brightnessAmount],
-    ([b, br]: [number, number]) =>
-      `blur(${b}px) brightness(${br}%) contrast(105%)`
+    (values: (string | number)[]) =>
+      `blur(${values[0]}px) brightness(${values[1]}%) contrast(105%)`
   );
   const overlayOpacity = useTransform(scrollY, [0, 550], [0.2, 0.82]);
 

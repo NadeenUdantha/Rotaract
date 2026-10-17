@@ -35,8 +35,8 @@ export function VideoHero() {
   const brightnessAmount = useTransform(scrollY, [0, 550], [92, 50]);
   const videoFilter = useTransform(
     [blurAmount, brightnessAmount],
-    ([b, br]: [number, number]) =>
-      `blur(${b}px) brightness(${br}%) contrast(105%) grayscale(50%)`
+    (values: (string | number)[]) =>
+      `blur(${values[0]}px) brightness(${values[1]}%) contrast(105%) grayscale(50%)`
   );
 
   const overlayOpacity = useTransform(scrollY, [0, 550], [0.18, 0.82]);
@@ -524,7 +524,7 @@ function RacUcscPortalSection({
             style={{
               fontSize: 'clamp(4.5rem, 14vw, 11.5rem)',
               letterSpacing: '-0.045em',
-              mixBlendMode: 'destination-out',
+              mixBlendMode: 'destination-out' as any,
             }}
           >
             RAC
