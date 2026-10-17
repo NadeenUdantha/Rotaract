@@ -88,7 +88,6 @@ export function VideoHero() {
         />
       </div>
 
-      {/* ── FIXED TOP NAV BAR ─────────────────────────────────────────────── */}
       <header className="fixed top-0 inset-x-0 z-40 flex w-full items-center justify-between px-6 py-4 sm:px-12 sm:py-5 pointer-events-auto">
         {/* Top-Left: Rotaract White Logo (Balanced medium size) */}
         <Link to="/" className="flex items-center gap-3 transition-transform duration-300 hover:scale-105">

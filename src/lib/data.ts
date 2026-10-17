@@ -9,7 +9,6 @@ import {
   Trophy,
   Megaphone,
   MonitorSmartphone,
-  UserPlus,
   type LucideIcon
 } from 'lucide-react';
 
@@ -69,7 +68,18 @@ export const PROJECTS: Project[] = [
       'A heartfelt community outreach project providing essential aid, nutrition packs, and sustainable support to underserved families.',
     image: "/assets/projects/manudam-viyamana.jpg",
     status: 'Completed'
-  }];
+  },
+  {
+    id: 'p3',
+    name: 'FrameLab',
+    category: 'Professional Development',
+    date: 'Jul 2026',
+    description:
+      "FrameLab is a practical workshop designed to enhance participants' video editing skills by introducing industry-standard tools, creative techniques, and storytelling principles for producing engaging digital content.",
+    image: "/assets/projects/frameLab.png",
+    status: 'Completed'
+  }
+];
 
 
 export interface EventItem {
@@ -180,13 +190,6 @@ export const AVENUES: Avenue[] = [
     icon: MonitorSmartphone,
     span: 'lg:col-span-2',
     tint: 'from-navy-500/90 to-navy-800/90'
-  },
-  {
-    title: 'Membership Development',
-    description: 'Attracts, engages, and mentors members throughout their Rotaract journey, fostering leadership retention and personal growth.',
-    icon: UserPlus,
-    span: '',
-    tint: 'from-emerald-400/10 to-navy-300/10'
   }
 ];
 
@@ -280,6 +283,7 @@ export interface Testimonial {
   role: string;
   quote: string;
   image: string;
+  subtitle?: string;
 }
 
 export const TESTIMONIALS: Testimonial[] = [
@@ -288,25 +292,33 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'President',
     quote:
       'Leadership in Rotaract is about empowering every young mind to step forward, turn vision into collective action, and create lasting impact across our community. Together, we build a future driven by service, passion, and purpose.',
-    image: '/assets/leadership/president.jpg'
+    image: '/assets/leadership/exco/president.jpg'
+  },
+  {
+    name: 'Rtr. Murshid Akram',
+    role: 'IPP',
+    quote:
+      'Every project, big or small, reminds me why we do this: to serve with purpose and uplift the people around us. It was an honor to be a part of the Rotaract Club of UCSC',
+    image: '/assets/leadership/exco/IPP.jpeg',
+    subtitle: 'IPP (Past President 2025-26) • Rotaract Club of UCSC'
   },
   {
     name: 'Rtr. Kumodi Rajapura',
     role: 'Secretary',
     quote:
       'Behind every impactful initiative lies a foundation of dedication, transparent communication, and unwavering fellowship. Serving as the heartbeat of our club means ensuring every member is valued and every milestone remembered.',
-    image: '/assets/leadership/secretary.png'
+    image: '/assets/leadership/exco/secretary.png'
   }
 ];
 
 
 export const GALLERY = [
-  { src: "/assets/gallery/IMG_8170.jpg", tall: true },
-  { src: "/assets/gallery/NO_FUSION_0723_005.jpg", tall: false },
-  { src: "/assets/gallery/IMG-20250728-WA0029.jpg", tall: false },
-  { src: "/assets/gallery/IMG_8132.jpg", tall: true },
-  { src: "/assets/gallery/IMG_8444.jpg", tall: false },
-  { src: "/assets/gallery/IMG_8199.jpg", tall: false },
-  { src: "/assets/gallery/NO_FUSION_0701_003.jpg", tall: true },
-  { src: "/assets/gallery/NO_FUSION_0723_033_1.jpg", tall: false }
+  { src: "/assets/gallery/IMG_8170.webp", tall: true },
+  { src: "/assets/gallery/NO_FUSION_0723_005.webp", tall: false },
+  { src: "/assets/gallery/1000198113.jpg.webp", tall: false },
+  { src: "/assets/gallery/IMG_8132.webp", tall: true },
+  { src: "/assets/gallery/IMG_8444.webp", tall: true },
+  { src: "/assets/gallery/IMG_8199.webp", tall: true },
+  { src: "/assets/gallery/NO_FUSION_0701_003.webp", tall: true },
+  { src: "/assets/gallery/NO_FUSION_0723_033_(1).webp", tall: false }
 ];

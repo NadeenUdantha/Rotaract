@@ -19,45 +19,233 @@ export interface LeadershipMember {
   accent: string;
 }
 
-const portraits = {
-  president: "/assets/leadership/president.jpg",
-  vice: "/18ac27f6-1048-44e9-b289-79bbf976c092.jpg",
-  secretary: "/assets/leadership/secretary.png",
-  treasurer: "/2624e831-fea9-4d4a-b67d-bd78fc7b5a12.jpg",
-  one: "/818710b8-73ed-4e43-8610-f1e348169730.jpg",
-  two: "/1a8b2e81-ab80-4068-9634-903244ac7dd9.jpg",
-  three: "/0c4eedc5-dbbd-4c4b-8680-6ceb83e9b26f.jpg",
-  four: "/275ad849-1b14-4559-a11c-460d2229c27b.jpg",
-  five: "/1b5d40fc-f357-4554-bc2e-e1067ca01441.jpg",
-  six: "/bc645315-7c32-48e0-a320-0786b75e4cf2.jpg"
-};
-
 export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
-{ name: 'Amara Fernando', role: 'President', quote: 'The future belongs to people willing to show up for one another.', bio: 'A people-first leader focused on turning bold ideas into shared momentum.', image: portraits.president, accent: 'navy' },
-{ name: 'Dinuka Perera', role: 'Vice President', quote: 'Great teams turn care into action.', bio: 'Bringing structure, optimism and a calm hand to every club ambition.', image: portraits.vice, accent: 'gold' },
-{ name: 'Sanduni Silva', role: 'Secretary', quote: 'Clarity makes room for creativity.', bio: 'The detail-led heartbeat that keeps every meaningful conversation moving.', image: portraits.secretary, accent: 'rose' },
-{ name: 'Rehan Jayasuriya', role: 'Treasurer', quote: 'Trust is built in the details.', bio: 'A thoughtful steward making every opportunity count for the club.', image: portraits.treasurer, accent: 'amber' },
-{ name: 'Nethmi Perera', role: 'Assistant Secretary', quote: 'Belonging starts with a welcome.', bio: 'Creating thoughtful connections across every member experience.', image: portraits.four, accent: 'violet' },
-{ name: 'Kavindu Silva', role: 'Assistant Treasurer', quote: 'Every plan is a promise kept.', bio: 'Balancing ambition with practical, dependable execution.', image: portraits.five, accent: 'sky' },
-{ name: 'Yasara Fernando', role: 'Club Service Chair', quote: 'The best work feels like us.', bio: 'Designing the rituals that make the club a true community.', image: portraits.six, accent: 'navy' },
-{ name: 'Shenali De Silva', role: 'Community Chair', quote: 'Listen first. Serve better.', bio: 'Connecting member energy with the needs that matter most.', image: portraits.one, accent: 'rose' },
-{ name: 'Kavishka Mendis', role: 'Public Relations Chair', quote: 'Stories move people to care.', bio: 'Giving every act of service a voice with warmth and clarity.', image: portraits.two, accent: 'fuchsia' },
-{ name: 'Tharushi Wickramasinghe', role: 'Professional Development Chair', quote: 'Leadership is learned by doing.', bio: 'Opening doors to mentors, skills and brave new beginnings.', image: portraits.three, accent: 'violet' },
-{ name: 'Ishara Fernando', role: 'Immediate Past President', quote: 'Legacy is what we make possible.', bio: 'Offering perspective, continuity and a deep belief in the team.', image: portraits.secretary, accent: 'gold' }];
-
+  {
+    name: 'Rtr. Shamil Shiraj',
+    role: 'President',
+    quote: 'The future belongs to people willing to show up for one another.',
+    bio: 'A people-first leader focused on turning bold ideas into shared momentum.',
+    image: '/assets/leadership/exco/president.jpg',
+    accent: 'navy'
+  },
+  {
+    name: 'Rtr. Roshanya Philip',
+    role: 'Vice President',
+    quote: 'Great teams turn care into collective action.',
+    bio: 'Bringing structure, optimism, and a steady hand to every club ambition.',
+    image: '/assets/leadership/exco/vicepresident1.jpeg',
+    accent: 'gold'
+  },
+  {
+    name: 'Rtr. Ganapathi Sadurshan',
+    role: 'Vice President',
+    quote: 'Strength lies in unity, shared vision, and perseverance.',
+    bio: 'Empowering avenues and fostering resilience across every signature project.',
+    image: '/assets/leadership/exco/vicepresident2.jpg',
+    accent: 'amber'
+  },
+  {
+    name: 'Rtr. Kumodi Rajapura',
+    role: 'Secretary',
+    quote: 'Clarity makes room for creativity and seamless collaboration.',
+    bio: 'The detail-led heartbeat ensuring every milestone and conversation moves forward.',
+    image: '/assets/leadership/exco/secretary.png',
+    accent: 'rose'
+  },
+  {
+    name: 'Rtr. Ponmudy Vidurshan',
+    role: 'Treasurer',
+    quote: 'Trust is built in transparency and stewardship.',
+    bio: 'A thoughtful steward making every opportunity and resource count for the club.',
+    image: '/assets/leadership/exco/treasurer.jpg',
+    accent: 'amber'
+  },
+  {
+    name: 'Rtr. Murshid Akram',
+    role: 'Immediate Past President',
+    quote: 'Legacy is what we make possible together.',
+    bio: 'Offering wisdom, continuity, and an enduring belief in youth empowerment.',
+    image: '/assets/leadership/exco/IPP.jpeg',
+    accent: 'navy'
+  },
+  {
+    name: 'Rtr. Sandini Jayawardhana',
+    role: 'Assistant Secretary',
+    quote: 'Belonging starts with a genuine and warm welcome.',
+    bio: 'Creating thoughtful connections and streamlined secretarial workflows.',
+    image: '/assets/leadership/exco/assistantsecretary1.jpeg',
+    accent: 'violet'
+  },
+  {
+    name: 'Rtr. Hasini Jayamali',
+    role: 'Assistant Secretary',
+    quote: 'Dedication turns small duties into lasting excellence.',
+    bio: 'Ensuring administrative coordination and member records flow with precision.',
+    image: '/assets/leadership/exco/assistantsecretary2.jpeg',
+    accent: 'sky'
+  },
+  {
+    name: 'Rtr. Santhosh Narayanan',
+    role: 'Sergeant-at-Arms',
+    quote: 'Order and mutual respect create room for great fellowship.',
+    bio: 'Upholding club decorum, high energy, and timeless Rotaract traditions.',
+    image: '/assets/leadership/exco/seargentatarms.jpeg',
+    accent: 'navy'
+  },
+  {
+    name: 'Rtr. Hansi Upekka Sithumin',
+    role: 'Editor',
+    quote: 'Words give wings and lasting meaning to our collective purpose.',
+    bio: 'Curating literary publications and articulating club milestones with finesse.',
+    image: '/assets/leadership/exco/editor1.jpeg',
+    accent: 'rose'
+  },
+  {
+    name: 'Rtr. Vedeshan Arulmoly',
+    role: 'Editor',
+    quote: 'Every story told with authenticity inspires others to lead.',
+    bio: 'Capturing the heart of service through insightful storytelling and journalism.',
+    image: '/assets/leadership/exco/editor2.jpeg',
+    accent: 'gold'
+  },
+  {
+    name: 'Rtr. Akila Prabhashwara',
+    role: 'Head of Media',
+    quote: 'Visual artistry turns fleeting moments into enduring movements.',
+    bio: 'Directing creative media, branding aesthetics, and multi-channel visual impact.',
+    image: '/assets/leadership/exco/headofmedia.jpeg',
+    accent: 'cyan'
+  }
+];
 
 export const DIRECTORS: LeadershipMember[] = [
-{ name: 'Nethmi Perera', role: 'Director', avenue: 'Club Service', quote: 'Every member deserves a place to belong.', bio: 'Building fellowship through experiences that stay with people.', image: portraits.four, accent: 'navy' },
-{ name: 'Shenali De Silva', role: 'Director', avenue: 'Community Service', quote: 'Impact starts close to home.', bio: 'Guiding practical action with empathy and local understanding.', image: portraits.one, accent: 'rose' },
-{ name: 'Rehan Jayasuriya', role: 'Director', avenue: 'Finance', quote: 'Transparency creates trust.', bio: 'Helping every project move forward with confidence.', image: portraits.treasurer, accent: 'amber' },
-{ name: 'Savin Fernando', role: 'Director', avenue: 'International Service', quote: 'Connection has no borders.', bio: 'Creating partnerships that broaden how we see the world.', image: portraits.vice, accent: 'sky' },
-{ name: 'Tharushi Wickramasinghe', role: 'Director', avenue: 'Professional Development', quote: 'Potential needs a platform.', bio: 'Bringing members closer to the people and skills that inspire them.', image: portraits.three, accent: 'violet' },
-{ name: 'Ruvindu Perera', role: 'Director', avenue: 'Sports & Recreation', quote: 'Joy is a team sport.', bio: 'Creating energy, wellbeing and connection through shared play.', image: portraits.five, accent: 'orange' },
-{ name: 'Kavishka Mendis', role: 'Director', avenue: 'Public Relations', quote: 'We are the stories we share.', bio: 'Turning club energy into a voice people want to join.', image: portraits.two, accent: 'fuchsia' },
-{ name: 'Yasara Fernando', role: 'Director', avenue: 'Digital Services', quote: 'Good design makes impact easier to feel.', bio: 'Building a thoughtful digital home for every initiative.', image: portraits.six, accent: 'cyan' },
-{ name: 'Minoli Perera', role: 'Director', avenue: 'Membership', quote: 'New faces are future stories.', bio: 'Making the path into Rotaract welcoming and memorable.', image: portraits.president, accent: 'navy' },
-{ name: 'Vihan Jayawardena', role: 'Director', avenue: 'Events', quote: 'Details become memories.', bio: 'Turning planning into moments that bring the club together.', image: portraits.two, accent: 'gold' },
-{ name: 'Dulani Silva', role: 'Director', avenue: 'Partnerships', quote: 'Shared purpose goes further.', bio: 'Connecting the club with people and organisations ready to help.', image: portraits.one, accent: 'rose' }];
+  {
+    name: 'Rtr. Dasuni De Silva',
+    role: 'Director',
+    avenue: 'Club Service',
+    quote: 'Every member deserves a place to truly belong.',
+    bio: 'Building fellowship through experiences that stay with people forever.',
+    image: '/assets/leadership/directors/clubservicesdirector1.jpeg',
+    accent: 'navy'
+  },
+  {
+    name: 'Rtr. Nuha Fawzer',
+    role: 'Director',
+    avenue: 'Club Service',
+    quote: 'Fellowship is the foundation that holds all our service together.',
+    bio: 'Cultivating an inviting, family-like culture across every club event.',
+    image: '/assets/leadership/directors/clubservicesdirector2.jpeg',
+    accent: 'sky'
+  },
+  {
+    name: 'Rtr. Oshani Premachandra',
+    role: 'Director',
+    avenue: 'Community Service',
+    quote: 'Impact starts with genuine compassion close to home.',
+    bio: 'Guiding grassroots action with deep empathy and sustainable solutions.',
+    image: '/assets/leadership/directors/communityservicesdirector1.jpg',
+    accent: 'rose'
+  },
+  {
+    name: 'Rtr. Nadeeka Kaduwela',
+    role: 'Director',
+    avenue: 'Community Service',
+    quote: 'Hands that serve touch lives that inspire our society.',
+    bio: 'Mobilizing volunteer power to uplift underprivileged communities across Sri Lanka.',
+    image: '/assets/leadership/directors/communityservicesdirector2.jpg',
+    accent: 'amber'
+  },
+  {
+    name: 'Rtr. Sashik Thivanka',
+    role: 'Director',
+    avenue: 'Professional Development',
+    quote: 'Leadership is discovered and refined by doing.',
+    bio: 'Opening doors to corporate mentors, essential skills, and brave new beginnings.',
+    image: '/assets/leadership/directors/professionaldevelopmentdirector1.jpg',
+    accent: 'violet'
+  },
+  {
+    name: 'Rtr. Yasuru Sandeepa',
+    role: 'Director',
+    avenue: 'Professional Development',
+    quote: 'Potential needs a platform to grow into excellence.',
+    bio: 'Empowering undergraduates with industry readiness and professional networking.',
+    image: '/assets/leadership/directors/professionaldevelopmentdirector2.jpg',
+    accent: 'gold'
+  },
+  {
+    name: 'Rtr. Ashini Dasanayaka',
+    role: 'Director',
+    avenue: 'Public Relations',
+    quote: 'We are the stories we share and the hope we kindle.',
+    bio: 'Crafting captivating public narratives that elevate the club’s voice and prestige.',
+    image: '/assets/leadership/directors/publicrelationsdirector1.jpg',
+    accent: 'fuchsia'
+  },
+  {
+    name: 'Rtr. Isum Hansana',
+    role: 'Director',
+    avenue: 'Public Relations',
+    quote: 'Stories move hearts and inspire communities to care.',
+    bio: 'Amplifying public resonance and digital branding across diverse platforms.',
+    image: '/assets/leadership/directors/publicrelationsdirector2.jpg',
+    accent: 'rose'
+  },
+  {
+    name: 'Rtr. Hansika Edirisinghe',
+    role: 'Director',
+    avenue: 'International Service',
+    quote: 'Friendship and meaningful service have no borders.',
+    bio: 'Fostering global partnerships and cross-cultural exchanges across the world.',
+    image: '/assets/leadership/directors/internationalservicesdirector.jpeg',
+    accent: 'sky'
+  },
+  {
+    name: 'Rtr. Isuru Udayanga',
+    role: 'Director',
+    avenue: 'Digital Services',
+    quote: 'Great technology and design make human impact easier to feel.',
+    bio: 'Building modern web architectures and digital tools for the club ecosystem.',
+    image: '/assets/leadership/directors/digitalservicesdirector.jpg',
+    accent: 'cyan'
+  },
+  {
+    name: 'Rtr. Oshadha Dhananjaya',
+    role: 'Director',
+    avenue: 'Sports & Recreation',
+    quote: 'Joy and sportsmanship build the strongest team bonds.',
+    bio: 'Sparking energy, athletic spirit, and mental wellness through active events.',
+    image: '/assets/leadership/directors/sportsandrecreationalactivitiesdirector1.jpeg',
+    accent: 'orange'
+  },
+  {
+    name: 'Rtr. Siyumi Vihansha',
+    role: 'Director',
+    avenue: 'Sports & Recreation',
+    quote: 'Passion on the field translates to resilience everywhere in life.',
+    bio: 'Encouraging healthy living, tournament excitement, and team bonding.',
+    image: '/assets/leadership/directors/sportsandrecreationalactivitiesdirector2.jpg',
+    accent: 'amber'
+  },
+  {
+    name: 'Rtr. Chanuki Perera',
+    role: 'Director',
+    avenue: 'Finance',
+    quote: 'Transparency and integrity create enduring confidence.',
+    bio: 'Ensuring financial accuracy, strategic fundraising, and budget stability.',
+    image: '/assets/leadership/directors/financedirector1.jpg',
+    accent: 'amber'
+  },
+  {
+    name: 'Rtr. Dulki Savindya',
+    role: 'Director',
+    avenue: 'Finance',
+    quote: 'Thoughtful stewardship turns ambitious plans into reality.',
+    bio: 'Managing financial resources with precision, foresight, and accountability.',
+    image: '/assets/leadership/directors/financedirector2.jpg',
+    accent: 'gold'
+  }
+];
 
 
 export const LEADERSHIP_VALUES: {title: string;text: string;icon: LucideIcon;}[] = [
