@@ -21,7 +21,7 @@ export function AvenuesPage() {
                 <span className="font-normal text-[#C5A047]">Service</span>
               </h1>
               <p className="mt-6 max-w-xl font-cormorant text-xl italic tracking-wide text-[#0A0606]/80 sm:text-2xl">
-                Nine distinct journeys of fellowship, purpose, and community impact.
+                Eight distinct journeys of fellowship, purpose, and community impact.
               </p>
               <p className="mt-4 max-w-xl font-body text-sm font-light leading-relaxed text-[#0A0606]/70 sm:text-base">
                 Each avenue represents a dedicated focus area within the club, led by specialists turning collective youth energy into measurable change. Select an avenue below to enter its dedicated story.
@@ -31,7 +31,7 @@ export function AvenuesPage() {
                   href="#avenues-directory"
                   className="inline-flex items-center gap-2 rounded-full bg-[#0A0606] px-6 py-3 font-cormorant text-xs uppercase tracking-[0.2em] text-white hover:bg-[#C5A047] hover:text-black transition-all"
                 >
-                  <span>Explore The 9 Avenues</span>
+                  <span>Explore The 8 Avenues</span>
                   <ArrowDown className="h-3.5 w-3.5" />
                 </a>
               </div>
@@ -49,7 +49,7 @@ export function AvenuesPage() {
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                   <div className="absolute inset-x-6 bottom-6 text-white">
                     <p className="font-mono text-xs uppercase tracking-widest text-[#C5A047]">
-                      09 Distinct Avenues
+                      08 Distinct Avenues
                     </p>
                     <p className="font-cormorant text-2xl uppercase tracking-wide">
                       Infinite Avenues of Impact
@@ -62,7 +62,7 @@ export function AvenuesPage() {
         </div>
       </section>
 
-      {/* ── 9 AVENUES DIRECTORY CARDS ──────────────────────────────────────── */}
+      {/* ── 8 AVENUES DIRECTORY CARDS ──────────────────────────────────────── */}
       <section id="avenues-directory" className="py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
           <div className="max-w-2xl">
@@ -89,7 +89,7 @@ export function AvenuesPage() {
                   <div>
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-sm font-semibold text-[#C5A047]">
-                        {avenue.number} / 09
+                        {avenue.number} / 08
                       </span>
                       <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-black/5 text-[#0A0606] transition-colors group-hover:bg-[#C5A047] group-hover:text-black">
                         <Icon className="h-5 w-5" />

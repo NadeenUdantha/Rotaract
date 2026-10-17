@@ -67,70 +67,94 @@ function TimelineItem({
     },
   };
 
-  return (
-    /* Row: each item occupies its own row in the grid */
-    <div
-      ref={ref}
-      className="relative grid grid-cols-[1fr_56px_1fr] items-start"
-    >
-      {/* ── Left slot ── */}
-      <div className={isLeft ? 'pr-6 sm:pr-10 flex justify-end' : ''}>
-        {isLeft && (
-          <motion.div
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            variants={cardVariants}
-            className="w-full max-w-md"
-          >
-            <EventCard event={event} index={index} />
-          </motion.div>
-        )}
-      </div>
+  const mobileCardVariants = {
+    hidden:  { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
 
-      {/* ── Centre axis: node ── */}
-      <div className="flex flex-col items-center pt-6">
-        {/* Node */}
+  const nodeEl = (
+    <motion.div
+      initial={{ scale: 0.6, opacity: 0 }}
+      animate={inView ? { scale: 1, opacity: 1 } : {}}
+      transition={{ duration: 0.5, delay: 0.15 }}
+      className="relative z-10 flex h-9 w-9 items-center justify-center shrink-0"
+    >
+      {inView && (
+        <motion.span
+          className="absolute inset-0 rounded-full"
+          style={{ border: '1.5px solid rgb(197,160,71)' }}
+          initial={{ scale: 1, opacity: 0.7 }}
+          animate={{ scale: 2.2, opacity: 0 }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeOut' }}
+        />
+      )}
+      <span
+        className="h-3.5 w-3.5 rounded-full ring-2 ring-[rgb(197,160,71)] ring-offset-2 ring-offset-[#0c0c0c]"
+        style={{
+          backgroundColor: 'rgb(197,160,71)',
+          boxShadow: inView
+            ? '0 0 0 2px #0c0c0c, 0 0 0 4px rgb(197,160,71), 0 0 16px 4px rgba(197,160,71,0.4)'
+            : '0 0 0 2px #0c0c0c, 0 0 0 4px rgba(197,160,71,0.4)',
+        }}
+      />
+    </motion.div>
+  );
+
+  return (
+    <div ref={ref} className="relative">
+      {/* ── Mobile layout (<md): Left axis with full-width cards ── */}
+      <div className="flex items-start gap-3 sm:gap-6 md:hidden">
+        <div className="flex flex-col items-center pt-6">
+          {nodeEl}
+        </div>
         <motion.div
-          initial={{ scale: 0.6, opacity: 0 }}
-          animate={inView ? { scale: 1, opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="relative z-10 flex h-9 w-9 items-center justify-center"
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={mobileCardVariants}
+          className="w-full flex-1 min-w-0"
         >
-          {/* Pulse ring when active */}
-          {inView && (
-            <motion.span
-              className="absolute inset-0 rounded-full"
-              style={{ border: '1.5px solid rgb(197,160,71)' }}
-              initial={{ scale: 1, opacity: 0.7 }}
-              animate={{ scale: 2.2, opacity: 0 }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeOut' }}
-            />
-          )}
-          {/* Solid circle */}
-          <span
-            className="h-3.5 w-3.5 rounded-full ring-2 ring-[rgb(197,160,71)] ring-offset-2 ring-offset-[#0c0c0c]"
-            style={{
-              backgroundColor: 'rgb(197,160,71)',
-              boxShadow: inView
-                ? '0 0 0 2px #0c0c0c, 0 0 0 4px rgb(197,160,71), 0 0 16px 4px rgba(197,160,71,0.4)'
-                : '0 0 0 2px #0c0c0c, 0 0 0 4px rgba(197,160,71,0.4)',
-            }}
-          />
+          <EventCard event={event} index={index} />
         </motion.div>
       </div>
 
-      {/* ── Right slot ── */}
-      <div className={!isLeft ? 'pl-6 sm:pl-10 flex justify-start' : ''}>
-        {!isLeft && (
-          <motion.div
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            variants={cardVariants}
-            className="w-full max-w-md"
-          >
-            <EventCard event={event} index={index} />
-          </motion.div>
-        )}
+      {/* ── Desktop layout (md+): Centered alternating timeline ── */}
+      <div className="hidden md:grid md:grid-cols-[1fr_56px_1fr] md:items-start">
+        {/* Left slot */}
+        <div className={isLeft ? 'pr-6 sm:pr-10 flex justify-end' : ''}>
+          {isLeft && (
+            <motion.div
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              variants={cardVariants}
+              className="w-full max-w-md"
+            >
+              <EventCard event={event} index={index} />
+            </motion.div>
+          )}
+        </div>
+
+        {/* Centre axis node */}
+        <div className="flex flex-col items-center pt-6">
+          {nodeEl}
+        </div>
+
+        {/* Right slot */}
+        <div className={!isLeft ? 'pl-6 sm:pl-10 flex justify-start' : ''}>
+          {!isLeft && (
+            <motion.div
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              variants={cardVariants}
+              className="w-full max-w-md"
+            >
+              <EventCard event={event} index={index} />
+            </motion.div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -223,10 +247,10 @@ export function Events() {
     >
       <div className="pointer-events-none absolute -right-40 top-24 h-[32rem] w-[32rem] rounded-full bg-gold/10 blur-3xl" />
       <div className="pointer-events-none absolute -left-52 bottom-0 h-[28rem] w-[28rem] rounded-full bg-gold/5 blur-3xl" />
-      <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 sm:px-8 md:py-36">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-8 md:py-36">
 
         {/* ── Section header ── */}
-        <div className="mb-20 text-center">
+        <div className="mb-14 sm:mb-20 text-center">
           <span className="font-mono text-xs uppercase tracking-[0.28em] text-[rgb(197,160,71)]">
             ◆ &nbsp;What's Next
           </span>
@@ -241,13 +265,13 @@ export function Events() {
 
           {/* Axis track (background) */}
           <div
-            className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-full"
+            className="absolute left-[18px] sm:left-[22px] md:left-1/2 top-0 -translate-x-1/2 w-px h-full"
             style={{ background: 'rgba(255,255,255,0.07)' }}
           />
 
           {/* Axis progress fill */}
           <motion.div
-            className="absolute left-1/2 top-0 -translate-x-1/2 w-px origin-top"
+            className="absolute left-[18px] sm:left-[22px] md:left-1/2 top-0 -translate-x-1/2 w-px origin-top"
             style={{
               background: 'linear-gradient(to bottom, rgb(197,160,71), rgba(197,160,71,0.15))',
               scaleY: lineScaleY,
@@ -256,7 +280,7 @@ export function Events() {
           />
 
           {/* Items */}
-          <div className="flex flex-col gap-16 sm:gap-20">
+          <div className="flex flex-col gap-12 sm:gap-16 md:gap-20">
             {EVENTS.map((event, i) => (
               <TimelineItem key={event.id} event={event} index={i} />
             ))}
@@ -264,7 +288,7 @@ export function Events() {
 
           {/* Bottom cap dot */}
           <div
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full"
+            className="absolute bottom-0 left-[18px] sm:left-[22px] md:left-1/2 -translate-x-1/2 h-2 w-2 rounded-full"
             style={{ backgroundColor: 'rgb(197,160,71)', opacity: 0.4 }}
           />
         </div>

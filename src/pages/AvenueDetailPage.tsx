@@ -400,7 +400,7 @@ export function AvenueDetailPage() {
           </div>
         </section>
 
-        {/* Complete 9-Avenue Switcher */}
+        {/* Complete 8-Avenue Switcher */}
         <section className="relative py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
             <div className="flex flex-col items-center justify-between gap-6 border-b border-black/10 pb-12 sm:flex-row">
@@ -409,7 +409,7 @@ export function AvenueDetailPage() {
                   Rotaract UCSC Directory
                 </p>
                 <h2 className="mt-2 font-cormorant text-3xl font-light uppercase tracking-[0.06em] text-[#0A0606] sm:text-4xl">
-                  Explore All 9 Avenues
+                  Explore All 8 Avenues
                 </h2>
               </div>
 
@@ -432,8 +432,8 @@ export function AvenueDetailPage() {
               </div>
             </div>
 
-            {/* Grid of All 9 Avenues */}
-            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {/* Grid of All 8 Avenues */}
+            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {AVENUE_DETAILS.map((item) => {
                 const ItemIcon = item.icon;
                 const isCurrent = item.slug === avenue.slug;

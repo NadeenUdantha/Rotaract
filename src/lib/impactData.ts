@@ -7,7 +7,6 @@ import {
   Trophy as TrophyIcon,
   Users as UsersIcon,
   Wallet as WalletIcon,
-  UserPlus as UserPlusIcon,
   type LucideIcon } from
 'lucide-react';
 
@@ -88,6 +87,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
     icon: HeartHandshakeIcon,
     image: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg",
     heroInkImage: "/assets/avenues/community_services.png",
+    photoFrame: {
+      main: "/assets/gallery/IMG_8449.webp",
+      top: "/assets/gallery/NO_FUSION_0701_018.webp",
+      bottom: "/assets/gallery/NO_FUSION_0701_003.webp",
+    },
     accent: 'rose',
     completedProjects: 42,
     directors: 2,
@@ -113,6 +117,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
     icon: Globe2Icon,
     image: "/67a57244-695d-4354-86ae-42f897a404b4.jpg",
     heroInkImage: "/assets/avenues/international_relations.png",
+    photoFrame: {
+      main: "/assets/gallery/IMG_8232.webp",
+      top: "/assets/gallery/NO_FUSION_0701_023.webp",
+      bottom: "/assets/gallery/NO_FUSION_0723_019.webp",
+    },
     accent: 'sky',
     completedProjects: 21,
     directors: 1,
@@ -137,6 +146,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
     icon: GraduationCapIcon,
     image: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg",
     heroInkImage: "/assets/avenues/professional_development.png",
+    photoFrame: {
+      main: "/assets/gallery/1000198160.jpg.webp",
+      top: "/assets/gallery/1000198164.jpg.webp",
+      bottom: "/assets/gallery/IMG_8143.webp",
+    },
     accent: 'violet',
     completedProjects: 26,
     directors: 2,
@@ -162,6 +176,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
     icon: MegaphoneIcon,
     image: "/6cd30f0e-0ef7-4660-8a0d-f31ff0b33536.jpg",
     heroInkImage: "/assets/avenues/public_relations.png",
+    photoFrame: {
+      main: "/assets/gallery/1000198166.jpg.webp",
+      top: "/assets/gallery/1000198165.jpg.webp",
+      bottom: "/assets/gallery/IMG_8239.webp",
+    },
     accent: 'fuchsia',
     completedProjects: 29,
     directors: 2,
@@ -187,6 +206,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
     icon: TrophyIcon,
     image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg",
     heroInkImage: "/assets/avenues/sports.png",
+    photoFrame: {
+      main: "/assets/gallery/NO_FUSION_0721_124.webp",
+      top: "/assets/gallery/NO_FUSION_0721_137.webp",
+      bottom: "/assets/gallery/IMG_8224.webp",
+    },
     accent: 'orange',
     completedProjects: 17,
     directors: 2,
@@ -212,6 +236,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
     icon: WalletIcon,
     image: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg",
     heroInkImage: "/assets/avenues/finance.png",
+    photoFrame: {
+      main: "/assets/gallery/NO_FUSION_0723_033_(1).webp",
+      top: "/assets/gallery/NO_FUSION_0723_033_(2).webp",
+      bottom: "/assets/gallery/IMG_8199.webp",
+    },
     accent: 'amber',
     completedProjects: 15,
     directors: 2,
@@ -237,6 +266,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
     icon: MonitorSmartphoneIcon,
     image: "/275ad849-1b14-4559-a11c-460d2229c27b.jpg",
     heroInkImage: "/assets/avenues/digital_services.png",
+    photoFrame: {
+      main: "/assets/gallery/IMG_8211.webp",
+      top: "/assets/gallery/1000198159.jpg.webp",
+      bottom: "/assets/gallery/IMG_8132.webp",
+    },
     accent: 'cyan',
     completedProjects: 24,
     directors: 1,
@@ -249,32 +283,6 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
     ],
     directorList: [
       { name: 'Rtr. Isuru Udayanga', role: 'Director of Digital Services', bio: 'Building modern web architectures and digital tools for the club ecosystem.', image: '/assets/leadership/directors/digitalservicesdirector.jpg' }
-    ]
-  },
-  {
-    slug: 'membership-development',
-    number: '09',
-    title: 'Membership Development',
-    description: 'Attracts, engages, and mentors members throughout their Rotaract journey, fostering leadership retention and personal growth.',
-    longDescription: 'Membership Development is the lifeblood of our club’s longevity. We guide passionate students from their very first inquiry through structured induction, skill assessments, buddy mentorship, and leadership recognition, ensuring every individual thrives.',
-    tagline: 'Inspiring journeys from newcomer to changemaker.',
-    icon: UserPlusIcon,
-    image: "/1a8b2e81-ab80-4068-9634-903244ac7dd9.jpg",
-    heroInkImage: "/assets/avenues/membership.png",
-    accent: 'emerald',
-    completedProjects: 16,
-    directors: 3,
-    volunteers: 185,
-    hours: 1040,
-    pillars: [
-      { title: 'Recruitment & Onboarding', desc: 'Welcoming enthusiastic recruits and facilitating smooth transition into active committees.' },
-      { title: 'Mentorship & Retention', desc: 'Pairing junior members with experienced senior mentors for continuous guidance.' },
-      { title: 'Leadership Recognition', desc: 'Celebrating milestone volunteer contributions and preparing future board leaders.' }
-    ],
-    directorList: [
-      { name: 'Minoli Perera', role: 'Director of Membership Development', bio: 'Champion of student empowerment who believes genuine mentorship sparks lifelong leaders.', image: "/1a8b2e81-ab80-4068-9634-903244ac7dd9.jpg" },
-      { name: 'Sanjana Abeykoon', role: 'Deputy Director', bio: 'Oversees member engagement surveys, onboarding workshops, and buddy programs.', image: "/18ac27f6-1048-44e9-b289-79bbf976c092.jpg" },
-      { name: 'Rashmi Mendis', role: 'Assistant Director', bio: 'Coordinates member records, meeting attendance, and recognition certificates.', image: "/ca2f0cc3-fe69-4170-85a4-04174d3dcf50.jpg" }
     ]
   }
 ];
@@ -327,6 +335,21 @@ export const PROJECT_CATALOG: ProjectCatalogItem[] = [
   volunteers: 84,
   photos: 52,
   likes: 198
+},
+{
+  id: 'framelab',
+  title: 'FrameLab',
+  avenue: 'Professional Development',
+  date: 'Jul 2026',
+  description: "FrameLab is a practical workshop designed to enhance participants' video editing skills by introducing industry-standard tools, creative techniques, and storytelling principles for producing engaging digital content.",
+  image: '/assets/projects/frameLab.png',
+  status: 'Completed',
+  category: 'Media & Editing',
+  year: '2026',
+  collaboration: 'UCSC Media Unit',
+  volunteers: 45,
+  photos: 34,
+  likes: 182
 },
 {
   id: 'book-of-hope',

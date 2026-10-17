@@ -9,7 +9,7 @@ const TESTIMONIAL_NOISE =
   "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.42'/%3E%3C/svg%3E";
 
 export function Testimonials() {
-  const [selectedRole, setSelectedRole] = useState<'all' | 'President' | 'Secretary'>('all');
+  const [selectedRole, setSelectedRole] = useState<'all' | 'President' | 'IPP' | 'Secretary'>('all');
 
   const filtered =
     selectedRole === 'all'
@@ -68,6 +68,17 @@ export function Testimonials() {
             </button>
             <button
               type="button"
+              onClick={() => setSelectedRole('IPP')}
+              className={`rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
+                selectedRole === 'IPP'
+                  ? 'bg-ink text-white shadow dark:bg-gold dark:text-ink'
+                  : 'text-ink/65 hover:text-ink dark:text-white/65 dark:hover:text-white'
+              }`}
+            >
+              IPP
+            </button>
+            <button
+              type="button"
               onClick={() => setSelectedRole('Secretary')}
               className={`rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
                 selectedRole === 'Secretary'
@@ -80,17 +91,21 @@ export function Testimonials() {
           </div>
         </Reveal>
 
-        {/* 2-Card Showcase */}
+        {/* Leadership Cards Showcase */}
         <div
           className={`mt-12 grid gap-8 ${
             filtered.length === 1
               ? 'mx-auto max-w-2xl grid-cols-1'
-              : 'grid-cols-1 md:grid-cols-2'
+              : filtered.length === 2
+              ? 'grid-cols-1 md:grid-cols-2'
+              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
           }`}
         >
           <AnimatePresence mode="popLayout">
             {filtered.map((member) => {
               const isPresident = member.role === 'President';
+              const isIPP = member.role === 'IPP';
+
               return (
                 <motion.div
                   key={member.role}
@@ -105,7 +120,11 @@ export function Testimonials() {
                   <div
                     aria-hidden="true"
                     className={`pointer-events-none absolute -right-14 -top-14 h-44 w-44 rounded-full blur-3xl transition-opacity duration-500 opacity-25 group-hover:opacity-45 ${
-                      isPresident ? 'bg-gold' : 'bg-rose-400'
+                      isPresident
+                        ? 'bg-gold'
+                        : isIPP
+                        ? 'bg-amber-500'
+                        : 'bg-rose-400'
                     }`}
                   />
 
@@ -136,13 +155,15 @@ export function Testimonials() {
                         className="h-16 w-16 rounded-full object-cover ring-4 ring-gold/40 shadow-md transition-transform duration-300 group-hover:scale-105"
                       />
                       <span
-                        className={`absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold shadow ${
+                        className={`absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold shadow ${
                           isPresident
                             ? 'bg-navy-600 text-white dark:bg-gold dark:text-ink'
+                            : isIPP
+                            ? 'bg-amber-600 text-white dark:bg-amber-400 dark:text-ink'
                             : 'bg-rose-600 text-white dark:bg-rose-400 dark:text-ink'
                         }`}
                       >
-                        {isPresident ? 'P' : 'S'}
+                        {isPresident ? 'P' : isIPP ? 'IPP' : 'S'}
                       </span>
                     </div>
                     <div>
@@ -150,7 +171,7 @@ export function Testimonials() {
                         {member.name}
                       </h3>
                       <p className="font-body text-sm font-medium text-ink/65 dark:text-white/60">
-                        {member.role} 2025/26 • Rotaract Club of UCSC
+                        {member.subtitle ?? `${member.role} 2025/26 • Rotaract Club of UCSC`}
                       </p>
                     </div>
                   </div>
