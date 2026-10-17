@@ -288,14 +288,14 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'President',
     quote:
       'Leadership in Rotaract is about empowering every young mind to step forward, turn vision into collective action, and create lasting impact across our community. Together, we build a future driven by service, passion, and purpose.',
-    image: '/assets/leadership/president.jpg'
+    image: '/assets/leadership/exco/president.jpg'
   },
   {
     name: 'Rtr. Kumodi Rajapura',
     role: 'Secretary',
     quote:
       'Behind every impactful initiative lies a foundation of dedication, transparent communication, and unwavering fellowship. Serving as the heartbeat of our club means ensuring every member is valued and every milestone remembered.',
-    image: '/assets/leadership/secretary.png'
+    image: '/assets/leadership/exco/secretary.png'
   }
 ];
 
