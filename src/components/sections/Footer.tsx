@@ -49,32 +49,63 @@ export function Footer() {
   }, []);
 
   const layers = [
-    { name: 'layer5', x: bottomLayerX, y: bottomLayerY, className: 'z-10' },
-    { name: 'layer3', x: layerThreeX, y: layerThreeY, className: 'z-30' },
-    { name: 'layer2', x: layerTwoX, y: layerTwoY, className: 'z-40' },
-    { name: 'mist', x: 0, y: 0, className: 'z-[45] opacity-60' },
-    { name: 'layer1', x: topLayerX, y: topLayerY, className: 'z-50' }
+    {
+      name: 'layer5',
+      x: bottomLayerX,
+      y: bottomLayerY,
+      className: 'z-10',
+      imgClass: 'scale-[1.12] sm:scale-[1.35] object-cover object-bottom'
+    },
+    {
+      name: 'layer3',
+      x: layerThreeX,
+      y: layerThreeY,
+      className: 'z-30',
+      imgClass: 'scale-[1.12] sm:scale-[1.35] object-cover object-bottom'
+    },
+    {
+      name: 'layer2',
+      x: layerTwoX,
+      y: layerTwoY,
+      className: 'z-40',
+      imgClass: 'scale-[1.12] sm:scale-[1.35] object-cover object-bottom'
+    },
+    {
+      name: 'mist',
+      x: 0,
+      y: 0,
+      className: 'z-[45] pointer-events-none opacity-45 sm:opacity-60',
+      imgClass: 'scale-[1.18] sm:scale-[1.35] object-cover object-bottom mix-blend-screen sm:mix-blend-normal filter blur-[0.3px] sm:blur-none'
+    },
+    {
+      name: 'layer1',
+      x: topLayerX,
+      y: topLayerY,
+      className: 'z-50',
+      imgClass: 'scale-[1.12] sm:scale-[1.35] object-cover object-bottom'
+    }
   ];
 
   return (
     <footer id="contact" className="relative w-full overflow-hidden bg-[#0A0606] text-white/70">
-      <div ref={landscapeRef} className="relative isolate h-[15rem] overflow-hidden bg-[#ebe5d8] sm:h-[24rem] lg:h-[30rem]">
-        <div className="absolute inset-x-0 bottom-0 z-[5] h-24 bg-[#0A0606] sm:h-32 lg:h-40" />
+      <div ref={landscapeRef} className="relative isolate h-[17rem] overflow-hidden bg-[#ebe5d8] sm:h-[24rem] lg:h-[30rem]">
+        {/* Soft gradient into footer background rather than a harsh cut */}
+        <div className="absolute inset-x-0 bottom-0 z-[5] h-20 bg-gradient-to-t from-[#0A0606] via-[#0A0606]/95 to-transparent sm:h-32 lg:h-40" />
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-0 opacity-35 mix-blend-multiply"
           style={{ backgroundImage: `url("${FOOTER_NOISE}")`, backgroundSize: '180px 180px' }}
         />
-        {layers.map(({ name, x, y, className }) =>
+        {layers.map(({ name, x, y, className, imgClass }) => (
           <motion.img
             key={name}
             src={`/assets/footer/${name}.png`}
             alt=""
             aria-hidden="true"
             style={{ x, y }}
-            className={`absolute inset-0 h-full w-full max-w-none scale-100 object-contain object-bottom will-change-transform sm:scale-[1.35] sm:object-cover ${className}`}
+            className={`absolute inset-0 h-full w-full max-w-none will-change-transform ${imgClass} ${className}`}
           />
-        )}
+        ))}
       </div>
 
       <div className="relative z-[80] mx-auto max-w-6xl px-6 py-14 md:py-20">

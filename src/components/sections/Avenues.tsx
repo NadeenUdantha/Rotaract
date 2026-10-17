@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { AVENUE_DETAILS } from '../../lib/impactData';
 
 interface AvenueCardProps {
@@ -86,32 +88,48 @@ function AvenueCard({ avenue, index, totalAvenues, scrollYProgress }: AvenueCard
                   / 0{totalAvenues}
                 </span>
               </div>
+
+              <div className="mt-6">
+                <Link
+                  to={`/avenues/${avenue.slug}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-[rgb(197,160,71)]/60 bg-[rgb(197,160,71)]/10 px-5 py-2 font-cormorant text-xs uppercase tracking-[0.2em] text-[rgb(197,160,71)] backdrop-blur-sm transition-all hover:bg-[rgb(197,160,71)] hover:text-black"
+                >
+                  <span>Explore Avenue</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
             </div>
 
             {/* Right: Rectangular Image */}
             <div className="flex items-center justify-center lg:col-span-6 lg:justify-end">
-              <div className="relative aspect-[16/10] w-full max-w-[560px] overflow-hidden border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]">
+              <Link
+                to={`/avenues/${avenue.slug}`}
+                className="group relative aspect-[16/10] w-full max-w-[560px] overflow-hidden border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
+              >
                 <img
                   src={avenue.image}
                   alt={avenue.title}
-                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              </div>
+              </Link>
             </div>
           </>
         ) : (
           <>
             {/* Left: Rectangular Image */}
             <div className="order-2 flex items-center justify-center lg:order-1 lg:col-span-6 lg:justify-start">
-              <div className="relative aspect-[16/10] w-full max-w-[560px] overflow-hidden border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]">
+              <Link
+                to={`/avenues/${avenue.slug}`}
+                className="group relative aspect-[16/10] w-full max-w-[560px] overflow-hidden border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
+              >
                 <img
                   src={avenue.image}
                   alt={avenue.title}
-                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              </div>
+              </Link>
             </div>
 
             {/* Right: Text Content */}
@@ -142,6 +160,16 @@ function AvenueCard({ avenue, index, totalAvenues, scrollYProgress }: AvenueCard
                 <span className="ml-3 font-mono text-xs font-normal tracking-widest text-white/40 sm:text-sm">
                   / 0{totalAvenues}
                 </span>
+              </div>
+
+              <div className="mt-6">
+                <Link
+                  to={`/avenues/${avenue.slug}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-[rgb(197,160,71)]/60 bg-[rgb(197,160,71)]/10 px-5 py-2 font-cormorant text-xs uppercase tracking-[0.2em] text-[rgb(197,160,71)] backdrop-blur-sm transition-all hover:bg-[rgb(197,160,71)] hover:text-black"
+                >
+                  <span>Explore Avenue</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
             </div>
           </>

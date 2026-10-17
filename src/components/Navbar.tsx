@@ -1,16 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, Moon, Search, Sun, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { NAV_LINKS } from '../lib/data';
-import { useTheme } from '../lib/theme';
+import { AVENUE_DETAILS } from '../lib/impactData';
 
 export function Navbar() {
-  const { theme, toggleTheme } = useTheme();
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [avenuesOpen, setAvenuesOpen] = useState(false);
+  const [mobileAvenuesOpen, setMobileAvenuesOpen] = useState(false);
+  const avenuesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleAvenuesMouseEnter = () => {
+    if (avenuesTimeoutRef.current) clearTimeout(avenuesTimeoutRef.current);
+    setAvenuesOpen(true);
+  };
+
+  const handleAvenuesMouseLeave = () => {
+    avenuesTimeoutRef.current = setTimeout(() => {
+      setAvenuesOpen(false);
+    }, 180);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -19,150 +31,190 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Filter out Blog from navigation to match home page
+  const heroNavLinks = NAV_LINKS.filter(
+    (link) => link.href !== '/blog' && link.label.toLowerCase() !== 'blog'
+  );
+
   return (
     <>
-      <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 1.2 }}
-        className="fixed inset-x-0 top-0 z-[100] flex justify-center px-4 pt-4">
-        
-        <nav
-          aria-label="Main navigation"
-          className={`flex w-full max-w-6xl items-center justify-between rounded-full px-4 py-2.5 transition-all duration-500 sm:px-6 ${
-          scrolled ?
-          'glass bg-white/55 shadow-soft ring-1 ring-white/25 dark:bg-ink/55 dark:ring-white/15' :
-          'bg-white/10 ring-1 ring-white/15 backdrop-blur-sm'}`
-          }>
-          
-          <Link to="/" className="flex items-center" aria-label="Rotaract Club of UCSC home">
-            <img
-              src="/Logo-White-1.png"
-              alt="Rotaract University of Colombo School of Computing"
-              className="h-12 w-auto object-contain brightness-0 dark:brightness-100 sm:h-14" />
-            
-          </Link>
+      <header className="fixed top-0 inset-x-0 z-50 flex w-full items-center justify-between px-6 py-4 sm:px-12 sm:py-5 pointer-events-auto">
+        {/* Subtle top gradient matching home page hero section */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-36 bg-gradient-to-b from-black/85 via-black/40 to-transparent"
+        />
+        {/* Top-Left: Rotaract White Logo */}
+        <Link
+          to="/"
+          className="flex items-center gap-3 transition-transform duration-300 hover:scale-105"
+        >
+          <img
+            src="/Logo-White-1.png"
+            alt="Rotaract Club of UCSC Logo"
+            className="h-12 w-auto object-contain sm:h-14 md:h-16 drop-shadow-md brightness-0 invert"
+          />
+        </Link>
 
-          <ul className="hidden items-center gap-1 lg:flex" aria-label="Site pages">
-            {NAV_LINKS.map((link) => {
-              const active = link.href === pathname || link.href === '/avenues' && pathname.startsWith('/avenues') || link.href === '/projects' && pathname.startsWith('/projects') || link.href === '/blog' && pathname.startsWith('/blog');
-              const isBlog = link.href === '/blog';
+        {/* Top-Right: Editorial Nav Bar matching Home Page */}
+        <nav className="hidden items-center gap-8 md:flex">
+          <ul className="flex items-center gap-8 font-cormorant text-base tracking-[0.2em] uppercase text-white/90">
+            {heroNavLinks.map((link) => {
+              const isAvenues = link.label.toLowerCase() === 'avenues';
+
+              if (isAvenues) {
+                return (
+                  <li
+                    key={link.href}
+                    className="relative"
+                    onMouseEnter={handleAvenuesMouseEnter}
+                    onMouseLeave={handleAvenuesMouseLeave}
+                  >
+                    <Link
+                      to={link.href}
+                      className="inline-flex items-center gap-1.5 transition-colors duration-200"
+                      style={{ transition: 'color 0.2s ease' }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = '')}
+                    >
+                      <span>{link.label}</span>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-200 ${
+                          avenuesOpen ? 'rotate-180 text-[#C5A047]' : ''
+                        }`}
+                      />
+                    </Link>
+
+                    {/* 9 Avenues Dropdown Menu on Hover */}
+                    <AnimatePresence>
+                      {avenuesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                          transition={{ duration: 0.16, ease: 'easeOut' }}
+                          className="absolute left-1/2 top-full z-50 mt-2.5 w-60 -translate-x-1/2 overflow-hidden rounded-xl border border-[#C5A047]/30 bg-black/95 p-1.5 shadow-2xl backdrop-blur-2xl"
+                        >
+                          <div className="grid gap-0.5">
+                            {AVENUE_DETAILS.map((avenue) => {
+                              const isCurrentAvenue =
+                                pathname === `/avenues/${avenue.slug}` ||
+                                (avenue.slug === 'club-service' &&
+                                  pathname === '/avenues/club-service');
+                              return (
+                                <Link
+                                  key={avenue.slug}
+                                  to={`/avenues/${avenue.slug}`}
+                                  onClick={() => setAvenuesOpen(false)}
+                                  className={`group flex items-center rounded-lg px-3 py-1.5 font-cormorant text-sm tracking-wider uppercase transition-colors ${
+                                    isCurrentAvenue
+                                      ? 'bg-white/15 text-[#C5A047]'
+                                      : 'text-white/85 hover:bg-white/10 hover:text-[#C5A047]'
+                                  }`}
+                                >
+                                  <span className="truncate">{avenue.title}</span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </li>
+                );
+              }
+
               return (
-                <li key={link.label}>
-                  <Link to={link.href} className={`block rounded-full px-3.5 py-2 text-base font-medium transition-colors ${isBlog ? 'bg-navy-500 text-white shadow-soft hover:bg-navy-600 dark:bg-gold dark:text-ink dark:hover:bg-gold-light' : active ? 'bg-navy-500/10 text-navy-500 dark:bg-gold/15 dark:text-gold' : 'text-ink/75 hover:text-navy-500 dark:text-white/75 dark:hover:text-gold'}`}>
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="transition-colors duration-200"
+                    style={{ transition: 'color 0.2s ease' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '')}
+                  >
                     {link.label}
                   </Link>
-                </li>);
-
+                </li>
+              );
             })}
           </ul>
-
-          <div className="flex items-center gap-1.5">
-            <button
-              onClick={() => setSearchOpen(true)}
-              aria-label="Search"
-              className="flex h-9 w-9 items-center justify-center rounded-full text-ink/70 transition-colors hover:bg-navy-500/10 hover:text-navy-500 dark:text-white/70 dark:hover:text-gold">
-              
-              <Search className="h-[18px] w-[18px]" />
-            </button>
-            <button
-              type="button"
-              onClick={toggleTheme}
-              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-              className="flex h-9 w-9 items-center justify-center rounded-full text-ink/70 transition-colors hover:bg-navy-500/10 hover:text-navy-500 dark:text-white/70 dark:hover:text-gold">
-              
-              {theme === 'light' ? <Moon className="h-[18px] w-[18px]" /> : <Sun className="h-[18px] w-[18px]" />}
-            </button>
-            <button
-              onClick={() => setMobileOpen(true)}
-              aria-label="Open menu"
-              className="flex h-9 w-9 items-center justify-center rounded-full text-ink dark:text-white lg:hidden">
-              
-              <Menu className="h-5 w-5" />
-            </button>
-          </div>
         </nav>
-      </motion.header>
 
-      <AnimatePresence>
-        {mobileOpen &&
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[60] lg:hidden">
-          
-            <div className="absolute inset-0 bg-ink/40 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
-            <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 26, stiffness: 240 }}
-            className="absolute right-0 top-0 flex h-full w-72 flex-col gap-2 bg-white p-6 dark:bg-ink">
-            
-              <div className="mb-4 flex items-center justify-between">
-                <span className="font-display font-bold text-ink dark:text-white">Menu</span>
-                <button
-                onClick={() => setMobileOpen(false)}
-                aria-label="Close menu"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-navy-500/10 text-navy-500">
-                
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-              {NAV_LINKS.map((link, index) =>
-            <motion.div
-              key={link.label}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.05 * index }}>
-              
-                  <Link to={link.href} onClick={() => setMobileOpen(false)} className={`block rounded-2xl px-4 py-3 text-lg font-medium transition ${link.href === '/blog' ? 'bg-navy-500 text-white shadow-soft dark:bg-gold dark:text-ink' : 'text-ink/80 hover:bg-navy-500/10 hover:text-navy-500 dark:text-white/80 dark:hover:text-gold'}`}>
+        {/* Mobile menu trigger */}
+        <button
+          type="button"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle Menu"
+          className="flex h-10 w-10 items-center justify-center md:hidden text-white"
+        >
+          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </header>
+
+      {/* Mobile Drawer */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 flex flex-col justify-center overflow-y-auto bg-black/95 px-8 py-12 md:hidden">
+          <button
+            type="button"
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close Menu"
+            className="absolute right-6 top-6 text-white"
+          >
+            <X className="h-8 w-8" />
+          </button>
+          <ul className="flex flex-col gap-5 font-cormorant text-2xl uppercase tracking-[0.2em]">
+            {heroNavLinks.map((link) => {
+              if (link.label.toLowerCase() === 'avenues') {
+                return (
+                  <li key={link.href} className="flex flex-col gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setMobileAvenuesOpen(!mobileAvenuesOpen)}
+                      className="flex items-center justify-between text-left transition-colors duration-200 text-white"
+                    >
+                      <span>Avenues</span>
+                      <ChevronDown
+                        className={`h-6 w-6 transition-transform duration-200 ${
+                          mobileAvenuesOpen ? 'rotate-180 text-[#C5A047]' : ''
+                        }`}
+                      />
+                    </button>
+                    {mobileAvenuesOpen && (
+                      <div className="flex flex-col gap-3 pl-4 pt-2 font-cormorant text-base tracking-widest text-white/80">
+                        {AVENUE_DETAILS.map((avenue) => (
+                          <Link
+                            key={avenue.slug}
+                            to={`/avenues/${avenue.slug}`}
+                            onClick={() => setMobileOpen(false)}
+                            className="block hover:text-[#C5A047] transition-colors"
+                          >
+                            <span>{avenue.title}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </li>
+                );
+              }
+
+              return (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="transition-colors duration-200"
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '')}
+                  >
                     {link.label}
                   </Link>
-                </motion.div>
-            )}
-            </motion.div>
-          </motion.div>
-        }
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {searchOpen &&
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[70] flex items-start justify-center bg-ink/50 px-4 pt-28 backdrop-blur-sm"
-          onClick={() => setSearchOpen(false)}>
-          
-            <motion.div
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
-            onClick={(event) => event.stopPropagation()}
-            className="w-full max-w-xl rounded-3xl bg-white p-2 shadow-soft dark:bg-ink">
-            
-              <div className="flex items-center gap-3 px-4">
-                <Search className="h-5 w-5 text-navy-500" />
-                <input
-                autoFocus
-                type="text"
-                placeholder="Search projects, events, avenues..."
-                className="w-full bg-transparent py-4 text-lg text-ink outline-none placeholder:text-ink/40 dark:text-white dark:placeholder:text-white/40" />
-              
-                <button
-                onClick={() => setSearchOpen(false)}
-                aria-label="Close search"
-                className="text-ink/40 transition-colors hover:text-navy-500 dark:text-white/40">
-                
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        }
-      </AnimatePresence>
-    </>);
-
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </>
+  );
 }

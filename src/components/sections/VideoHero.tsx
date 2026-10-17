@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { NAV_LINKS } from '../../lib/data';
+import { AVENUE_DETAILS } from '../../lib/impactData';
 import { GALLERY_PHOTOS } from '../../lib/galleryData';
 import DriftWall from './DriftWall';
 
@@ -11,6 +12,20 @@ export function VideoHero() {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [portalOnCream, setPortalOnCream] = useState(false);
+  const [avenuesOpen, setAvenuesOpen] = useState(false);
+  const [mobileAvenuesOpen, setMobileAvenuesOpen] = useState(false);
+  const avenuesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleAvenuesMouseEnter = () => {
+    if (avenuesTimeoutRef.current) clearTimeout(avenuesTimeoutRef.current);
+    setAvenuesOpen(true);
+  };
+
+  const handleAvenuesMouseLeave = () => {
+    avenuesTimeoutRef.current = setTimeout(() => {
+      setAvenuesOpen(false);
+    }, 180);
+  };
 
   // Track page scroll for progressive blur and darkening
   const { scrollY } = useScroll();
@@ -93,19 +108,75 @@ export function VideoHero() {
               portalOnCream ? 'text-ink/80' : 'text-white/90'
             }`}
           >
-            {heroNavLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  to={link.href}
-                  className="transition-colors duration-200"
-                  style={{ transition: 'color 0.2s ease' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '')}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {heroNavLinks.map((link) => {
+              const isAvenues = link.label.toLowerCase() === 'avenues';
+
+              if (isAvenues) {
+                return (
+                  <li
+                    key={link.href}
+                    className="relative"
+                    onMouseEnter={handleAvenuesMouseEnter}
+                    onMouseLeave={handleAvenuesMouseLeave}
+                  >
+                    <Link
+                      to={link.href}
+                      className="inline-flex items-center gap-1.5 transition-colors duration-200"
+                      style={{ transition: 'color 0.2s ease' }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = '')}
+                    >
+                      <span>{link.label}</span>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-200 ${
+                          avenuesOpen ? 'rotate-180 text-[#C5A047]' : ''
+                        }`}
+                      />
+                    </Link>
+
+                    {/* 9 Avenues Dropdown Menu on Hover */}
+                    <AnimatePresence>
+                      {avenuesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                          transition={{ duration: 0.16, ease: 'easeOut' }}
+                          className="absolute left-1/2 top-full z-50 mt-2.5 w-60 -translate-x-1/2 overflow-hidden rounded-xl border border-[#C5A047]/30 bg-black/95 p-1.5 shadow-2xl backdrop-blur-2xl"
+                        >
+                          <div className="grid gap-0.5">
+                            {AVENUE_DETAILS.map((avenue) => (
+                              <Link
+                                key={avenue.slug}
+                                to={`/avenues/${avenue.slug}`}
+                                onClick={() => setAvenuesOpen(false)}
+                                className="group flex items-center rounded-lg px-3 py-1.5 font-cormorant text-sm tracking-wider uppercase text-white/85 transition-colors hover:bg-white/10 hover:text-[#C5A047]"
+                              >
+                                <span className="truncate">{avenue.title}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="transition-colors duration-200"
+                    style={{ transition: 'color 0.2s ease' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '')}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Minimal Hamburger Icon */}
@@ -128,7 +199,7 @@ export function VideoHero() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col justify-center bg-black/95 px-8 py-12 md:hidden">
+        <div className="fixed inset-0 z-50 flex flex-col justify-center overflow-y-auto bg-black/95 px-8 py-12 md:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(false)}
@@ -137,20 +208,55 @@ export function VideoHero() {
           >
             <X className="h-8 w-8" />
           </button>
-          <ul className="flex flex-col gap-6 font-cormorant text-2xl uppercase tracking-[0.2em]">
-            {heroNavLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  to={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="transition-colors duration-200"
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '')}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+          <ul className="flex flex-col gap-5 font-cormorant text-2xl uppercase tracking-[0.2em]">
+            {heroNavLinks.map((link) => {
+              if (link.label.toLowerCase() === 'avenues') {
+                return (
+                  <li key={link.href} className="flex flex-col gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setMobileAvenuesOpen(!mobileAvenuesOpen)}
+                      className="flex items-center justify-between text-left transition-colors duration-200 text-white"
+                    >
+                      <span>Avenues</span>
+                      <ChevronDown
+                        className={`h-6 w-6 transition-transform duration-200 ${
+                          mobileAvenuesOpen ? 'rotate-180 text-[#C5A047]' : ''
+                        }`}
+                      />
+                    </button>
+                    {mobileAvenuesOpen && (
+                      <div className="flex flex-col gap-3 pl-4 pt-2 font-cormorant text-base tracking-widest text-white/80">
+                        {AVENUE_DETAILS.map((avenue) => (
+                          <Link
+                            key={avenue.slug}
+                            to={`/avenues/${avenue.slug}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block hover:text-[#C5A047] transition-colors"
+                          >
+                            <span>{avenue.title}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </li>
+                );
+              }
+
+              return (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="transition-colors duration-200"
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '')}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

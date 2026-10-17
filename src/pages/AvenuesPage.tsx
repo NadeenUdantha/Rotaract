@@ -1,87 +1,128 @@
 import React from 'react';
-import { ArrowDown as ArrowDownIcon, ArrowUpRight as ArrowUpRightIcon, Sparkles as SparklesIcon } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AVENUE_DETAILS } from '../lib/impactData';
-import { Blob } from '../components/ui/Decor';
-import { Reveal } from '../components/ui/Reveal';
-
-const accentStyles: Record<string, string> = {
-  navy: 'from-navy-700 via-navy-500 to-gold/80',
-  rose: 'from-rose-600 via-navy-500 to-orange-300',
-  amber: 'from-amber-600 via-gold to-yellow-200',
-  sky: 'from-sky-700 via-sky-500 to-cyan-300',
-  violet: 'from-violet-700 via-violet-500 to-fuchsia-300',
-  orange: 'from-orange-700 via-orange-500 to-gold',
-  fuchsia: 'from-fuchsia-700 via-fuchsia-500 to-rose-300',
-  cyan: 'from-cyan-700 via-cyan-500 to-sky-300'
-};
 
 export function AvenuesPage() {
   return (
-    <main className="overflow-hidden bg-cream text-ink dark:bg-ink dark:text-white">
-      <section className="relative isolate min-h-[680px] overflow-hidden px-6 pb-20 pt-28 md:pb-28 md:pt-40">
-        <img
-          src="/6cd30f0e-0ef7-4660-8a0d-f31ff0b33536.jpg"
-          alt="Rotaractors sharing books at a community event"
-          className="absolute inset-0 -z-20 h-full w-full object-cover" />
-        
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/80 to-ink/25" />
-        <div className="absolute inset-0 -z-10 bg-navy-900/25" />
-        <motion.div aria-hidden animate={{ y: [0, -16, 0], rotate: [0, 6, 0] }} transition={{ duration: 7, repeat: Infinity }} className="absolute right-[11%] top-36 hidden h-20 w-20 rounded-[2rem] border border-white/30 bg-white/10 backdrop-blur-md md:block" />
-        <motion.div aria-hidden animate={{ y: [0, 18, 0], x: [0, 10, 0] }} transition={{ duration: 9, repeat: Infinity }} className="absolute bottom-28 right-[24%] hidden h-12 w-12 rounded-full bg-gold/90 md:block" />
-
-        <div className="mx-auto flex max-w-6xl flex-col justify-end">
-          <Reveal className="max-w-3xl">
-            <div className="mb-6 flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-gold backdrop-blur-md">
-              <SparklesIcon className="h-3.5 w-3.5" /> The heart of our impact
+    <main className="grainy-cream-bg min-h-screen text-[#0A0606] transition-colors duration-300">
+      {/* ── HERO SECTION WITH INKBLEED ARTWORK ────────────────────────────── */}
+      <section className="relative isolate overflow-hidden border-b border-black/10 pt-32 pb-20 sm:pt-40 sm:pb-28">
+        <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <div className="flex items-center gap-2 font-cormorant text-xs uppercase tracking-[0.25em] text-[#C5A047]">
+                <Sparkles className="h-4 w-4" />
+                <span>Rotaract Club of UCSC</span>
+              </div>
+              <h1 className="mt-4 font-cormorant text-5xl font-light uppercase leading-[1.05] tracking-[0.06em] text-[#0A0606] sm:text-7xl lg:text-[5.5rem]">
+                Avenues of <br />
+                <span className="font-normal text-[#C5A047]">Service</span>
+              </h1>
+              <p className="mt-6 max-w-xl font-cormorant text-xl italic tracking-wide text-[#0A0606]/80 sm:text-2xl">
+                Nine distinct journeys of fellowship, purpose, and community impact.
+              </p>
+              <p className="mt-4 max-w-xl font-body text-sm font-light leading-relaxed text-[#0A0606]/70 sm:text-base">
+                Each avenue represents a dedicated focus area within the club, led by specialists turning collective youth energy into measurable change. Select an avenue below to enter its dedicated story.
+              </p>
+              <div className="mt-8 flex items-center gap-4">
+                <a
+                  href="#avenues-directory"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#0A0606] px-6 py-3 font-cormorant text-xs uppercase tracking-[0.2em] text-white hover:bg-[#C5A047] hover:text-black transition-all"
+                >
+                  <span>Explore The 9 Avenues</span>
+                  <ArrowDown className="h-3.5 w-3.5" />
+                </a>
+              </div>
             </div>
-            <h1 className="font-display text-5xl font-extrabold leading-[0.98] tracking-tight text-white sm:text-6xl md:text-8xl">Avenues of<br /><span className="text-gold">Service.</span></h1>
-            <p className="mt-7 max-w-xl text-base leading-8 text-white/75 md:text-lg">Eight distinct ways to show up, build connection and create a positive imprint. Find the work that moves you, then make it yours.</p>
-          </Reveal>
-          <a href="#avenue-showcase" className="mt-14 flex w-fit items-center gap-3 text-sm font-semibold text-white/80 transition-colors hover:text-gold">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 backdrop-blur-sm"><ArrowDownIcon className="h-4 w-4" /></span> Explore the avenues
-          </a>
+
+            {/* Hero Inkbleed Image */}
+            <div className="flex justify-center lg:col-span-5 lg:justify-end">
+              <div className="group relative w-full max-w-[420px] overflow-hidden rounded-3xl border border-black/15 bg-white shadow-2xl">
+                <div className="aspect-[4/5] overflow-hidden">
+                  <img
+                    src="/assets/avenues/international_relations.png"
+                    alt="Rotaract UCSC Avenues Inkbleed Art"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute inset-x-6 bottom-6 text-white">
+                    <p className="font-mono text-xs uppercase tracking-widest text-[#C5A047]">
+                      09 Distinct Avenues
+                    </p>
+                    <p className="font-cormorant text-2xl uppercase tracking-wide">
+                      Infinite Avenues of Impact
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="avenue-showcase" className="relative px-6 py-24 md:py-32">
-        <Blob className="-left-32 top-12 h-80 w-80 bg-gold/30" />
-        <Blob className="right-0 top-1/3 h-96 w-96 bg-navy-300/25" />
-        <div className="relative mx-auto max-w-6xl">
-          <Reveal className="mb-14 flex max-w-2xl flex-col gap-4">
-            <p className="font-grotesk text-sm font-bold uppercase tracking-[0.2em] text-navy-500 dark:text-gold">Choose your influence</p>
-            <h2 className="font-display text-4xl font-bold tracking-tight md:text-6xl">A shared purpose, expressed eight ways.</h2>
-            <p className="leading-7 text-ink/60 dark:text-white/60">Every team has its own rhythm. Together, they create a culture that reaches farther than any one project.</p>
-          </Reveal>
+      {/* ── 9 AVENUES DIRECTORY CARDS ──────────────────────────────────────── */}
+      <section id="avenues-directory" className="py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+          <div className="max-w-2xl">
+            <span className="font-cormorant text-xs uppercase tracking-[0.25em] text-[#C5A047]">
+              Directory
+            </span>
+            <h2 className="mt-2 font-cormorant text-4xl font-light uppercase tracking-[0.06em] text-[#0A0606] sm:text-5xl">
+              Select An Avenue
+            </h2>
+            <p className="mt-3 font-body text-xs font-light text-[#0A0606]/65 sm:text-sm">
+              Click any avenue below to visit its separate dedicated page with projects, mandates, and leadership details.
+            </p>
+          </div>
 
-          <div className="grid gap-5 md:grid-cols-12">
-            {AVENUE_DETAILS.map((avenue, index) => {
+          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {AVENUE_DETAILS.map((avenue) => {
               const Icon = avenue.icon;
-              const wide = index === 0 || index === 4 || index === 7;
               return (
-                <Reveal key={avenue.slug} delay={index * 0.05} className={wide ? 'md:col-span-7' : 'md:col-span-5'}>
-                  <Link to={`/avenues/${avenue.slug}`} className="group relative block min-h-[400px] overflow-hidden rounded-5xl bg-ink shadow-soft outline-none ring-offset-4 transition duration-500 hover:-translate-y-2 focus-visible:ring-2 focus-visible:ring-navy-500 dark:ring-offset-ink">
-                    <img loading="lazy" src={avenue.image} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-transparent" />
-                    <div className={`absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-70 bg-gradient-to-br ${accentStyles[avenue.accent]}`} />
-                    <div className="absolute inset-x-6 top-6 flex items-start justify-between">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/25 bg-white/15 text-white backdrop-blur-md"><Icon className="h-6 w-6" /></span>
-                      <span className="flex h-11 w-11 translate-y-2 items-center justify-center rounded-full bg-white text-ink opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100"><ArrowUpRightIcon className="h-5 w-5" /></span>
+                <Link
+                  key={avenue.slug}
+                  to={`/avenues/${avenue.slug}`}
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-black/10 bg-white/70 p-7 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-[#C5A047]/60 hover:bg-white hover:shadow-xl"
+                >
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-sm font-semibold text-[#C5A047]">
+                        {avenue.number} / 09
+                      </span>
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-black/5 text-[#0A0606] transition-colors group-hover:bg-[#C5A047] group-hover:text-black">
+                        <Icon className="h-5 w-5" />
+                      </span>
                     </div>
-                    <div className="absolute inset-x-6 bottom-6 text-white">
-                      <div className="mb-3 flex gap-2 text-[11px] font-bold uppercase tracking-wider text-gold"><span>{avenue.completedProjects} projects</span><span className="text-white/40">•</span><span>{avenue.directors} directors</span></div>
-                      <h3 className="font-display text-2xl font-bold md:text-3xl">{avenue.title}</h3>
-                      <p className="mt-2 max-w-lg text-sm leading-6 text-white/75">{avenue.description}</p>
-                      <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-gold">Explore avenue <ArrowUpRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></span>
-                    </div>
-                  </Link>
-                </Reveal>);
 
+                    <h3 className="mt-6 font-cormorant text-3xl font-normal uppercase leading-tight text-[#0A0606] transition-colors group-hover:text-[#C5A047]">
+                      {avenue.title}
+                    </h3>
+                    <p className="mt-2 font-cormorant text-base italic text-[#0A0606]/70">
+                      “{avenue.tagline}”
+                    </p>
+                    <p className="mt-4 line-clamp-3 font-body text-xs font-light leading-relaxed text-[#0A0606]/65">
+                      {avenue.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 flex items-center justify-between border-t border-black/10 pt-4 text-xs">
+                    <span className="font-mono text-[11px] text-black/50">
+                      {avenue.completedProjects} Projects
+                    </span>
+                    <span className="inline-flex items-center gap-1 font-cormorant text-xs font-semibold uppercase tracking-wider text-[#C5A047] transition-transform group-hover:translate-x-1">
+                      <span>View Separate Page</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </span>
+                  </div>
+                </Link>
+              );
             })}
           </div>
         </div>
       </section>
-    </main>);
-
+    </main>
+  );
 }
+export default AvenuesPage;

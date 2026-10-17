@@ -6,6 +6,7 @@ import { Navbar } from './components/Navbar';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Footer } from './components/sections/Footer';
 import { ThemeProvider } from './lib/theme';
+import { AvenueDetailPage } from './pages/AvenueDetailPage';
 import { AvenuePreviewPage } from './pages/AvenuePreviewPage';
 import { ArticlePage } from './pages/ArticlePage';
 import { AvenuesPage } from './pages/AvenuesPage';
@@ -45,8 +46,7 @@ function AppInner() {
       <Routes>
         <Route path="/" element={<NewHeroPage />} />
         <Route path="/avenues" element={<AvenuesPage />} />
-        <Route path="/avenues/club-service" element={<ClubServicePage />} />
-        <Route path="/avenues/:slug" element={<AvenuePreviewPage />} />
+        <Route path="/avenues/:slug" element={<AvenueDetailPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/:id" element={<ProjectDetailPage />} />
         <Route path="/board" element={<BoardPage />} />

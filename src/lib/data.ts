@@ -9,6 +9,7 @@ import {
   Trophy,
   Megaphone,
   MonitorSmartphone,
+  UserPlus,
   type LucideIcon } from
 'lucide-react';
 
@@ -181,6 +182,13 @@ export const AVENUES: Avenue[] = [
   icon: MonitorSmartphone,
   span: 'lg:col-span-2',
   tint: 'from-navy-500/90 to-navy-800/90'
+},
+{
+  title: 'Membership Development',
+  description: 'Attracts, engages, and mentors members throughout their Rotaract journey, fostering leadership retention and personal growth.',
+  icon: UserPlus,
+  span: '',
+  tint: 'from-emerald-400/10 to-navy-300/10'
 }];
 
 
