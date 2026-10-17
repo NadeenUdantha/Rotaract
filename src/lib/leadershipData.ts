@@ -20,9 +20,9 @@ export interface LeadershipMember {
 }
 
 const portraits = {
-  president: "/30eb46d8-e624-4d01-ac52-df469d4f0514.jpg",
+  president: "/assets/leadership/president.jpg",
   vice: "/18ac27f6-1048-44e9-b289-79bbf976c092.jpg",
-  secretary: "/ca2f0cc3-fe69-4170-85a4-04174d3dcf50.jpg",
+  secretary: "/assets/leadership/secretary.png",
   treasurer: "/2624e831-fea9-4d4a-b67d-bd78fc7b5a12.jpg",
   one: "/818710b8-73ed-4e43-8610-f1e348169730.jpg",
   two: "/1a8b2e81-ab80-4068-9634-903244ac7dd9.jpg",

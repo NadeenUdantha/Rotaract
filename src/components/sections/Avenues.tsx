@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -9,6 +9,97 @@ interface AvenueCardProps {
   index: number;
   totalAvenues: number;
   scrollYProgress: any;
+}
+
+interface ThreePhotoFrameProps {
+  photos: {
+    main: string;
+    top: string;
+    bottom: string;
+  };
+  title: string;
+  scrollYProgress: any;
+  start: number;
+  end: number;
+  isEven: boolean;
+}
+
+function AvenueThreePhotoFrame({ photos, title, scrollYProgress, start, end }: ThreePhotoFrameProps) {
+  // Parallax transforms based on scroll
+  const topY = useTransform(scrollYProgress, [start, end], [20, -25]);
+  const topRotate = useTransform(scrollYProgress, [start, end], [-1.5, 2]);
+
+  const bottomY = useTransform(scrollYProgress, [start, end], [-20, 25]);
+  const bottomRotate = useTransform(scrollYProgress, [start, end], [1.5, -2]);
+
+  const mainY = useTransform(scrollYProgress, [start, end], [8, -8]);
+  const mainScale = useTransform(scrollYProgress, [start, (start + end) / 2, end], [0.97, 1, 1.02]);
+
+  return (
+    <div className="relative flex w-full max-w-[560px] items-center justify-center py-6 sm:py-8">
+      {/* 3-Photo Layered Collage Frame */}
+      <div className="relative w-full max-w-[500px] aspect-[1.25/1] flex items-center justify-center">
+        {/* Center / Main Photo (Group with Banner) */}
+        <motion.div
+          style={{ y: mainY, scale: mainScale }}
+          className="relative z-10 w-[82%] aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden ring-1 ring-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] cursor-pointer group"
+        >
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+            className="h-full w-full"
+          >
+            <img
+              src={photos.main}
+              alt={`${title} main`}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-50 group-hover:opacity-15 transition-opacity duration-500" />
+          </motion.div>
+        </motion.div>
+
+        {/* Top-Right Floating Photo (Scroll Parallax + Ambient Motion) */}
+        <motion.div
+          style={{ y: topY, rotate: topRotate }}
+          className="absolute -top-3 -right-2 sm:-top-5 sm:-right-4 z-20 w-[52%] aspect-[2.25/1] rounded-xl sm:rounded-2xl overflow-hidden ring-1 ring-white/25 hover:ring-gold/70 shadow-[0_25px_60px_-10px_rgba(0,0,0,0.95)] hover:shadow-[0_25px_50px_rgba(197,160,71,0.3)] transition-all duration-300 cursor-pointer group"
+        >
+          <motion.div
+            animate={{ y: [0, -5, 0] }}
+            transition={{ repeat: Infinity, duration: 4.8, ease: 'easeInOut' }}
+            whileHover={{ scale: 1.05 }}
+            className="h-full w-full"
+          >
+            <img
+              src={photos.top}
+              alt={`${title} highlight top`}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity duration-500" />
+          </motion.div>
+        </motion.div>
+
+        {/* Bottom-Left Floating Photo (Scroll Parallax + Ambient Motion) */}
+        <motion.div
+          style={{ y: bottomY, rotate: bottomRotate }}
+          className="absolute -bottom-3 -left-2 sm:-bottom-5 sm:-left-4 z-20 w-[50%] aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden ring-1 ring-white/25 hover:ring-gold/70 shadow-[0_25px_60px_-10px_rgba(0,0,0,0.95)] hover:shadow-[0_25px_50px_rgba(197,160,71,0.3)] transition-all duration-300 cursor-pointer group"
+        >
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 5.4, ease: 'easeInOut', delay: 0.6 }}
+            whileHover={{ scale: 1.05 }}
+            className="h-full w-full"
+          >
+            <img
+              src={photos.bottom}
+              alt={`${title} highlight bottom`}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity duration-500" />
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
+  );
 }
 
 function AvenueCard({ avenue, index, totalAvenues, scrollYProgress }: AvenueCardProps) {
@@ -46,13 +137,41 @@ function AvenueCard({ avenue, index, totalAvenues, scrollYProgress }: AvenueCard
     [index === 0 ? 0 : 20, 0, 0, index === totalAvenues - 1 ? 0 : -20]
   );
 
+  const pointerEvents = useTransform(opacity, (val: number) => (val > 0.2 ? 'auto' : 'none'));
+
+  const renderImage = () => {
+    if (avenue.photoFrame) {
+      return (
+        <AvenueThreePhotoFrame
+          photos={avenue.photoFrame}
+          title={avenue.title}
+          scrollYProgress={scrollYProgress}
+          start={start}
+          end={end}
+          isEven={isEven}
+        />
+      );
+    }
+
+    return (
+      <div className="relative aspect-[16/10] w-full max-w-[560px] overflow-hidden border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]">
+        <img
+          src={avenue.image}
+          alt={avenue.title}
+          className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+      </div>
+    );
+  };
+
   return (
     <motion.div
       style={{
         opacity,
         scale,
         y,
-        pointerEvents: opacity.get() > 0.1 ? 'auto' : 'none',
+        pointerEvents,
       }}
       className="absolute inset-0 flex h-full w-full items-center justify-center px-6 sm:px-12 md:px-16 lg:px-24 will-change-[opacity,transform]"
     >
@@ -100,35 +219,25 @@ function AvenueCard({ avenue, index, totalAvenues, scrollYProgress }: AvenueCard
               </div>
             </div>
 
-            {/* Right: Rectangular Image */}
+            {/* Right: Image */}
             <div className="flex items-center justify-center lg:col-span-6 lg:justify-end">
               <Link
                 to={`/avenues/${avenue.slug}`}
-                className="group relative aspect-[16/10] w-full max-w-[560px] overflow-hidden border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
+                className="group block w-full max-w-[560px] cursor-pointer"
               >
-                <img
-                  src={avenue.image}
-                  alt={avenue.title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                {renderImage()}
               </Link>
             </div>
           </>
         ) : (
           <>
-            {/* Left: Rectangular Image */}
+            {/* Left: Image */}
             <div className="order-2 flex items-center justify-center lg:order-1 lg:col-span-6 lg:justify-start">
               <Link
                 to={`/avenues/${avenue.slug}`}
-                className="group relative aspect-[16/10] w-full max-w-[560px] overflow-hidden border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
+                className="group block w-full max-w-[560px] cursor-pointer"
               >
-                <img
-                  src={avenue.image}
-                  alt={avenue.title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                {renderImage()}
               </Link>
             </div>
 

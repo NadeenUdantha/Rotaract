@@ -57,7 +57,6 @@ function TimelineItem({
   const isLeft = index % 2 === 0;
   const ref    = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-15% 0px -15% 0px' });
-  const { days, hours, minutes, seconds } = useCountdown(event.targetDate);
 
   const cardVariants = {
     hidden:  { opacity: 0, x: isLeft ? -60 : 60 },
@@ -109,11 +108,9 @@ function TimelineItem({
           )}
           {/* Solid circle */}
           <span
-            className="h-3.5 w-3.5 rounded-full ring-2 ring-offset-2"
+            className="h-3.5 w-3.5 rounded-full ring-2 ring-[rgb(197,160,71)] ring-offset-2 ring-offset-[#0c0c0c]"
             style={{
               backgroundColor: 'rgb(197,160,71)',
-              ringColor: 'rgb(197,160,71)',
-              ringOffsetColor: '#0c0c0c',
               boxShadow: inView
                 ? '0 0 0 2px #0c0c0c, 0 0 0 4px rgb(197,160,71), 0 0 16px 4px rgba(197,160,71,0.4)'
                 : '0 0 0 2px #0c0c0c, 0 0 0 4px rgba(197,160,71,0.4)',
@@ -143,46 +140,58 @@ function TimelineItem({
 function EventCard({ event, index }: { event: EventItem; index: number }) {
   const { days, hours, minutes, seconds } = useCountdown(event.targetDate);
   return (
-    <article className="group overflow-hidden border border-gold/20 bg-gold/[0.06] backdrop-blur-md">
-      {/* Image */}
-      <div className="relative aspect-[16/9] overflow-hidden">
+    <article className="group overflow-hidden rounded-2xl border border-gold/20 bg-black/70 shadow-[0_12px_40px_rgba(0,0,0,0.65)] backdrop-blur-md transition-all duration-500 hover:border-gold/45 hover:shadow-[0_16px_50px_rgba(197,160,71,0.18)]">
+      {/* Poster Image (unobstructed full artwork) */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/40">
         <img
           src={event.image}
           alt={event.title}
           loading="lazy"
-          className="h-full w-full object-cover brightness-70 transition-transform duration-700 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-        {/* Index */}
-        <span
-          className="absolute left-4 top-4 font-mono text-xs uppercase tracking-[0.28em]"
-          style={{ color: 'rgb(197,160,71)' }}
-        >
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        {/* Title */}
-        <div className="absolute bottom-4 left-4 right-4">
-          <h3 className="font-cormorant text-xl font-light uppercase leading-[1.06] tracking-[0.05em] text-white sm:text-2xl">
-            {event.title}
-          </h3>
-        </div>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-30" />
       </div>
 
-      {/* Meta + countdown */}
-      <div className="px-4 pt-4 pb-5 sm:px-5 sm:pt-5">
-        {/* Date & location */}
-        <div className="flex flex-wrap gap-x-5 gap-y-1 mb-5">
-          <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">
-            <CalendarDays className="h-3 w-3 flex-shrink-0" style={{ color: 'rgb(197,160,71)' }} />
+      {/* Details & Live Countdown below poster */}
+      <div className="p-5 sm:p-6">
+        {/* Header row: Event index & Avenue pill */}
+        <div className="mb-3.5 flex items-center justify-between gap-2">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-gold/80">
+            Event {String(index + 1).padStart(2, '0')}
+          </span>
+          {event.avenue && (
+            <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
+              {event.avenue}
+            </span>
+          )}
+        </div>
+
+        {/* Title */}
+        <h3 className="font-cormorant text-2xl font-light uppercase leading-[1.1] tracking-[0.05em] text-white sm:text-3xl">
+          {event.title}
+        </h3>
+
+        {/* Subtitle */}
+        {event.subtitle && (
+          <p className="mt-1 font-body text-xs font-light tracking-wide text-white/70">
+            {event.subtitle}
+          </p>
+        )}
+
+        {/* Date & Location */}
+        <div className="my-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-y border-white/10 py-3">
+          <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white/85">
+            <CalendarDays className="h-3.5 w-3.5 flex-shrink-0" style={{ color: 'rgb(197,160,71)' }} />
             {event.date}
           </span>
-          <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">
-            <MapPin className="h-3 w-3 flex-shrink-0" style={{ color: 'rgb(197,160,71)' }} />
+          <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white/60">
+            <MapPin className="h-3.5 w-3.5 flex-shrink-0" style={{ color: 'rgb(197,160,71)' }} />
             {event.location}
           </span>
         </div>
-        {/* Countdown */}
-        <div className="grid grid-cols-4">
+
+        {/* Live Countdown */}
+        <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
           <CountdownCell value={days}    label="Days" />
           <CountdownCell value={hours}   label="Hrs"  />
           <CountdownCell value={minutes} label="Min"  />

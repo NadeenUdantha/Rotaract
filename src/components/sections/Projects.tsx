@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 import { PROJECTS } from '../../lib/data';
 
 const projectRoutes: Record<string, string> = {
-  p1: 'book-of-hope',
-  p2: 'life-drops',
-  p3: 'books-beyond',
+  p1: 'achieve-beyond',
+  p2: 'manudam-viyamana',
 };
 
 const wrapIndex = (index: number) => (index + PROJECTS.length) % PROJECTS.length;

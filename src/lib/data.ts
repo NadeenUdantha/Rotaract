@@ -10,17 +10,17 @@ import {
   Megaphone,
   MonitorSmartphone,
   UserPlus,
-  type LucideIcon } from
-'lucide-react';
+  type LucideIcon
+} from 'lucide-react';
 
 export const NAV_LINKS = [
-{ label: 'Home', href: '/' },
-{ label: 'Avenues', href: '/avenues' },
-{ label: 'Projects', href: '/projects' },
-{ label: 'Leadership', href: '/board' },
-{ label: 'Gallery', href: '/gallery' },
-{ label: 'Contact', href: '/contact' },
-{ label: 'Blog', href: '/blog' }];
+  { label: 'Home', href: '/' },
+  { label: 'Avenues', href: '/avenues' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Leadership', href: '/board' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Blog', href: '/blog' }];
 
 
 export interface Stat {
@@ -32,11 +32,11 @@ export interface Stat {
 }
 
 export const STATS: Stat[] = [
-{ label: 'Projects Completed', value: 117, suffix: '+' },
-{ label: 'Active Members', value: 58, minDigits: 3 },
-{ label: 'Volunteer Hours', value: 1005 },
-{ label: 'Funds Raised', value: 42, prefix: 'LKR ', suffix: 'M' },
-{ label: 'Lives Impacted', value: 4000, minDigits: 5 }];
+  { label: 'Projects Completed', value: 117, suffix: '+' },
+  { label: 'Active Members', value: 58, minDigits: 3 },
+  { label: 'Volunteer Hours', value: 1005 },
+  { label: 'Funds Raised', value: 42, prefix: 'LKR ', suffix: 'M' },
+  { label: 'Lives Impacted', value: 4000, minDigits: 5 }];
 
 
 export interface Project {
@@ -50,41 +50,33 @@ export interface Project {
 }
 
 export const PROJECTS: Project[] = [
-{
-  id: 'p1',
-  name: 'Book of Hope',
-  category: 'Community Service',
-  date: 'Mar 2026',
-  description:
-  'Building and stocking a children’s library to nurture a lifelong love of reading in underserved communities.',
-  image: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg",
-  status: 'Ongoing'
-},
-{
-  id: 'p2',
-  name: 'Life Drops',
-  category: 'Community Service',
-  date: 'Feb 2026',
-  description:
-  'A campus-wide blood donation drive uniting hundreds of students to give the gift of life.',
-  image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg",
-  status: 'Completed'
-},
-{
-  id: 'p3',
-  name: 'Books & Beyond',
-  category: 'International Service',
-  date: 'Apr 2026',
-  description:
-  'Distributing school supplies and essentials to rural schools, opening doors to brighter futures.',
-  image: "/67a57244-695d-4354-86ae-42f897a404b4.jpg",
-  status: 'Upcoming'
-}];
+  {
+    id: 'p1',
+    name: 'Achieve Beyond 3.0',
+    category: 'Professional Development',
+    date: 'May 2026',
+    description:
+      'A signature career readiness and leadership accelerator empowering undergraduates with practical skills and industry mentorship.',
+    image: "/assets/projects/achieve-beyond.jpg",
+    status: 'Completed'
+  },
+  {
+    id: 'p2',
+    name: 'මනුදම් වියමන 2026',
+    category: 'Community Service',
+    date: 'Jun 2026',
+    description:
+      'A heartfelt community outreach project providing essential aid, nutrition packs, and sustainable support to underserved families.',
+    image: "/assets/projects/manudam-viyamana.jpg",
+    status: 'Completed'
+  }];
 
 
 export interface EventItem {
   id: string;
   title: string;
+  avenue: string;
+  subtitle?: string;
   date: string;
   targetDate: string;
   location: string;
@@ -92,30 +84,36 @@ export interface EventItem {
 }
 
 export const EVENTS: EventItem[] = [
-{
-  id: 'e1',
-  title: 'Leadership Summit 2026',
-  date: 'August 14, 2026',
-  targetDate: '2026-08-14T09:00:00',
-  location: 'UCSC Main Auditorium',
-  image: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg"
-},
-{
-  id: 'e2',
-  title: 'Community Service Day',
-  date: 'September 5, 2026',
-  targetDate: '2026-09-05T08:00:00',
-  location: 'Colombo District',
-  image: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg"
-},
-{
-  id: 'e3',
-  title: 'Annual Gala Night 2026',
-  date: 'October 18, 2026',
-  targetDate: '2026-10-18T18:00:00',
-  location: 'Colombo Hilton Grand Ballroom',
-  image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg"
-}];
+  {
+    id: 'e1',
+    title: 'Mind Matters 3.0',
+    avenue: 'Community Services',
+    subtitle: 'A Mental Health Initiative',
+    date: '26th October 2026',
+    targetDate: '2026-10-26T09:00:00',
+    location: 'UCSC Premises',
+    image: '/assets/events/mind-matters-3.jpg'
+  },
+  {
+    id: 'e2',
+    title: 'අඬහැරය',
+    avenue: 'Finance',
+    subtitle: 'Andaharaya — A Musical Fundraising Event',
+    date: '30th October 2026',
+    targetDate: '2026-10-30T18:00:00',
+    location: 'UCSC Premises',
+    image: '/assets/events/andaharaya.jpg'
+  },
+  {
+    id: 'e3',
+    title: 'Reid Shadows 2.0',
+    avenue: 'Club Services',
+    subtitle: 'A Halloween Fellowship Event',
+    date: '23rd November 2026',
+    targetDate: '2026-11-23T17:30:00',
+    location: 'UCSC Premises',
+    image: '/assets/events/reid-shadows-2.jpg'
+  }];
 
 
 export interface Avenue {
@@ -127,84 +125,111 @@ export interface Avenue {
 }
 
 export const AVENUES: Avenue[] = [
-{
-  title: 'Club Service',
-  description: 'Drives fellowship and smooth internal operations by coordinating meetings, managing administration, and fostering an inclusive club culture.',
-  icon: Users,
-  span: 'lg:col-span-2 lg:row-span-2',
-  tint: 'from-navy-500/90 to-navy-700/90'
-},
-{
-  title: 'Community Service',
-  description: 'Creates sustainable, long-term change in local communities through impactful environmental and socioeconomic initiatives.',
-  icon: HeartHandshake,
-  span: 'lg:col-span-2',
-  tint: 'from-navy-400/10 to-gold/10'
-},
-{
-  title: 'Finance Service',
-  description: 'Ensures financial stability and transparency through strategic budgeting, effective fundraising, and securing sponsorships to support club goals.',
-  icon: Wallet,
-  span: '',
-  tint: 'from-gold/10 to-navy-300/10'
-},
-{
-  title: 'International Service',
-  description: 'Promotes global peace and cultural understanding by fostering cross-border collaborations, exchange programs, and international friendships.',
-  icon: Globe2,
-  span: '',
-  tint: 'from-blue-400/10 to-navy-300/10'
-},
-{
-  title: 'Professional Development',
-  description: 'Enhances members\' career readiness and leadership skills through targeted training, personal branding, and mentorship.',
-  icon: GraduationCap,
-  span: 'lg:col-span-2',
-  tint: 'from-purple-400/10 to-navy-300/10'
-},
-{
-  title: 'Sports & Recreational Activities',
-  description: 'Boosts member well-being and teamwork through a diverse mix of competitive sports, e-sports, and relaxing recreational events.',
-  icon: Trophy,
-  span: '',
-  tint: 'from-gold/10 to-navy-200/10'
-},
-{
-  title: 'Public Relations',
-  description: 'Elevates the club\'s visibility and credibility by translating acts of service into engaging stories through strategic communication and media.',
-  icon: Megaphone,
-  span: '',
-  tint: 'from-pink-400/10 to-navy-300/10'
-},
-{
-  title: 'Digital Services',
-  description: 'Manages the club\'s technological infrastructure, including website development and digital tools, to streamline operations and expand digital presence.',
-  icon: MonitorSmartphone,
-  span: 'lg:col-span-2',
-  tint: 'from-navy-500/90 to-navy-800/90'
-},
-{
-  title: 'Membership Development',
-  description: 'Attracts, engages, and mentors members throughout their Rotaract journey, fostering leadership retention and personal growth.',
-  icon: UserPlus,
-  span: '',
-  tint: 'from-emerald-400/10 to-navy-300/10'
-}];
+  {
+    title: 'Club Service',
+    description: 'Drives fellowship and smooth internal operations by coordinating meetings, managing administration, and fostering an inclusive club culture.',
+    icon: Users,
+    span: 'lg:col-span-2 lg:row-span-2',
+    tint: 'from-navy-500/90 to-navy-700/90'
+  },
+  {
+    title: 'Community Service',
+    description: 'Creates sustainable, long-term change in local communities through impactful environmental and socioeconomic initiatives.',
+    icon: HeartHandshake,
+    span: 'lg:col-span-2',
+    tint: 'from-navy-400/10 to-gold/10'
+  },
+  {
+    title: 'Finance Service',
+    description: 'Ensures financial stability and transparency through strategic budgeting, effective fundraising, and securing sponsorships to support club goals.',
+    icon: Wallet,
+    span: '',
+    tint: 'from-gold/10 to-navy-300/10'
+  },
+  {
+    title: 'International Service',
+    description: 'Promotes global peace and cultural understanding by fostering cross-border collaborations, exchange programs, and international friendships.',
+    icon: Globe2,
+    span: '',
+    tint: 'from-blue-400/10 to-navy-300/10'
+  },
+  {
+    title: 'Professional Development',
+    description: 'Enhances members\' career readiness and leadership skills through targeted training, personal branding, and mentorship.',
+    icon: GraduationCap,
+    span: 'lg:col-span-2',
+    tint: 'from-purple-400/10 to-navy-300/10'
+  },
+  {
+    title: 'Sports & Recreational Activities',
+    description: 'Boosts member well-being and teamwork through a diverse mix of competitive sports, e-sports, and relaxing recreational events.',
+    icon: Trophy,
+    span: '',
+    tint: 'from-gold/10 to-navy-200/10'
+  },
+  {
+    title: 'Public Relations',
+    description: 'Elevates the club\'s visibility and credibility by translating acts of service into engaging stories through strategic communication and media.',
+    icon: Megaphone,
+    span: '',
+    tint: 'from-pink-400/10 to-navy-300/10'
+  },
+  {
+    title: 'Digital Services',
+    description: 'Manages the club\'s technological infrastructure, including website development and digital tools, to streamline operations and expand digital presence.',
+    icon: MonitorSmartphone,
+    span: 'lg:col-span-2',
+    tint: 'from-navy-500/90 to-navy-800/90'
+  },
+  {
+    title: 'Membership Development',
+    description: 'Attracts, engages, and mentors members throughout their Rotaract journey, fostering leadership retention and personal growth.',
+    icon: UserPlus,
+    span: '',
+    tint: 'from-emerald-400/10 to-navy-300/10'
+  }
+];
 
 
 export interface Sponsor {
   name: string;
   detail: string;
+  logo: string;
 }
 
 export const SPONSORS: Sponsor[] = [
-{ name: 'Aurora Labs', detail: 'Technology Partner since 2021' },
-{ name: 'Lumina Bank', detail: 'Principal Financial Sponsor' },
-{ name: 'GreenLeaf Co.', detail: 'Sustainability Collaborator' },
-{ name: 'Vertex Media', detail: 'Official Media Partner' },
-{ name: 'Solace Health', detail: 'Healthcare Outreach Ally' },
-{ name: 'Nimbus Cloud', detail: 'Digital Infrastructure' },
-{ name: 'Orbit Ventures', detail: 'Startup Mentorship Circle' }];
+  {
+    name: 'Rotaract Club of Matale',
+    detail: 'Rotaract Partner Club',
+    logo: '/assets/collaborators/rotaract-matale.png'
+  },
+  {
+    name: 'Rotaract Club of Kandy Metropolitan',
+    detail: 'Rotaract Partner Club',
+    logo: '/assets/collaborators/rotaract-kandy-metropolitan.png'
+  },
+  {
+    name: 'Saheli Foundation',
+    detail: 'Community Outreach Ally',
+    logo: '/assets/collaborators/saheli-foundation.png'
+  },
+  {
+    name: 'රේඛා',
+    detail: 'Musical & Cultural Partner',
+    logo: '/assets/collaborators/rekha.png'
+  },
+  {
+    name: 'Rotaract Club of University of Moratuwa',
+    detail: 'Rotaract Partner Club',
+    logo: '/assets/collaborators/rotaract-mora.png'
+  },
+  {
+    name: 'Rotaract Club of Uva Wellassa University - Badulla',
+    detail: 'Rotaract Partner Club',
+    logo: '/assets/collaborators/rotaract-uwu.png'
+  }];
+
+export const COLLABORATORS = SPONSORS;
 
 
 export interface BlogPost {
@@ -218,36 +243,36 @@ export interface BlogPost {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
-{
-  id: 'b1',
-  title: 'How Volunteering Shaped My Leadership Journey',
-  category: 'Leadership',
-  readingTime: '5 min read',
-  excerpt:
-  'From shy first-year to project lead — a reflection on the moments that changed everything.',
-  author: 'Amara Fernando',
-  image: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg"
-},
-{
-  id: 'b2',
-  title: '5 Ways Youth Are Reshaping Community Service',
-  category: 'Community',
-  readingTime: '4 min read',
-  excerpt:
-  'A new generation is rewriting what impact looks like. Here’s what we learned this year.',
-  author: 'Dinuka Perera',
-  image: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg"
-},
-{
-  id: 'b3',
-  title: 'Inside Life Drops: Our Biggest Blood Drive Yet',
-  category: 'Projects',
-  readingTime: '6 min read',
-  excerpt:
-  'Behind the scenes of a campaign that brought together a whole campus for one cause.',
-  author: 'Sanduni Silva',
-  image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg"
-}];
+  {
+    id: 'b1',
+    title: 'How Volunteering Shaped My Leadership Journey',
+    category: 'Leadership',
+    readingTime: '5 min read',
+    excerpt:
+      'From shy first-year to project lead — a reflection on the moments that changed everything.',
+    author: 'Amara Fernando',
+    image: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg"
+  },
+  {
+    id: 'b2',
+    title: '5 Ways Youth Are Reshaping Community Service',
+    category: 'Community',
+    readingTime: '4 min read',
+    excerpt:
+      'A new generation is rewriting what impact looks like. Here’s what we learned this year.',
+    author: 'Dinuka Perera',
+    image: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg"
+  },
+  {
+    id: 'b3',
+    title: 'Inside Life Drops: Our Biggest Blood Drive Yet',
+    category: 'Projects',
+    readingTime: '6 min read',
+    excerpt:
+      'Behind the scenes of a campaign that brought together a whole campus for one cause.',
+    author: 'Sanduni Silva',
+    image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg"
+  }];
 
 
 export interface Testimonial {
@@ -258,33 +283,30 @@ export interface Testimonial {
 }
 
 export const TESTIMONIALS: Testimonial[] = [
-{
-  name: 'Amara Fernando',
-  role: 'President 2025/26',
-  quote:
-  'Rotaract gave me a family and a purpose. Every project reminded me that young people can move mountains when we move together.',
-  image: 'https://i.pravatar.cc/160?img=47'
-},
-{
-  name: 'Dinuka Perera',
-  role: 'Community Service Director',
-  quote:
-  'I joined to build my CV. I stayed because I found the most inspiring people I’ve ever met. This club changes lives — including mine.',
-  image: 'https://i.pravatar.cc/160?img=12'
-},
-{
-  name: 'Sanduni Silva',
-  role: 'Digital Services Lead',
-  quote:
-  'The energy is unreal. We dream big, ship fast, and celebrate every win together. Nothing feels impossible here.',
-  image: 'https://i.pravatar.cc/160?img=32'
-}];
+  {
+    name: 'Rtr. Shamil Shiraj',
+    role: 'President',
+    quote:
+      'Leadership in Rotaract is about empowering every young mind to step forward, turn vision into collective action, and create lasting impact across our community. Together, we build a future driven by service, passion, and purpose.',
+    image: '/assets/leadership/president.jpg'
+  },
+  {
+    name: 'Rtr. Kumodi Rajapura',
+    role: 'Secretary',
+    quote:
+      'Behind every impactful initiative lies a foundation of dedication, transparent communication, and unwavering fellowship. Serving as the heartbeat of our club means ensuring every member is valued and every milestone remembered.',
+    image: '/assets/leadership/secretary.png'
+  }
+];
 
 
 export const GALLERY = [
-{ src: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg", tall: true },
-{ src: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg", tall: false },
-{ src: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg", tall: false },
-{ src: "/67a57244-695d-4354-86ae-42f897a404b4.jpg", tall: true },
-{ src: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg", tall: false },
-{ src: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg", tall: false }];
+  { src: "/assets/gallery/IMG_8170.jpg", tall: true },
+  { src: "/assets/gallery/NO_FUSION_0723_005.jpg", tall: false },
+  { src: "/assets/gallery/IMG-20250728-WA0029.jpg", tall: false },
+  { src: "/assets/gallery/IMG_8132.jpg", tall: true },
+  { src: "/assets/gallery/IMG_8444.jpg", tall: false },
+  { src: "/assets/gallery/IMG_8199.jpg", tall: false },
+  { src: "/assets/gallery/NO_FUSION_0701_003.jpg", tall: true },
+  { src: "/assets/gallery/NO_FUSION_0723_033_1.jpg", tall: false }
+];
