@@ -56,7 +56,7 @@ export function GalleryPage() {
 
   return <main className="overflow-hidden bg-cream text-ink dark:bg-ink dark:text-white">
     <section className="relative isolate min-h-[720px] overflow-hidden px-6 pb-24 pt-28 md:min-h-[800px] md:pb-32 md:pt-44">
-      <img src="/267a9c62-f596-4ef8-8e05-aecb76584af5.jpg" alt="Rotaractors painting together at a community service event" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+      <img src="/assets/gallery/IMG_8170.jpg" alt="Rotaract Club of UCSC moments" className="absolute inset-0 -z-20 h-full w-full object-cover" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/80 to-ink/30" />
       <motion.div aria-hidden animate={{ y: [0, -16, 0], rotate: [0, 8, 0] }} transition={{ duration: 7, repeat: Infinity }} className="absolute right-[12%] top-40 hidden h-24 w-24 rounded-[2rem] border border-white/25 bg-white/10 backdrop-blur-md md:block" />
       <motion.div aria-hidden animate={{ y: [0, 20, 0] }} transition={{ duration: 8, repeat: Infinity }} className="absolute bottom-32 right-[28%] hidden h-12 w-12 rounded-full bg-gold md:block" />

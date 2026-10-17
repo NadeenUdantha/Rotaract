@@ -17,6 +17,11 @@ export interface AvenueDetail {
   tagline: string;
   icon: LucideIcon;
   image: string;
+  photoFrame?: {
+    main: string;
+    top: string;
+    bottom: string;
+  };
   accent: string;
   completedProjects: number;
   directors: number;
@@ -29,7 +34,12 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   description: 'Drives fellowship and smooth internal operations by coordinating meetings, managing administration, and fostering an inclusive club culture.',
   tagline: 'The culture engine behind a connected club.',
   icon: UsersIcon,
-  image: "/1e74bf3b-bd1e-4979-a2ae-f0d17883d4b4.jpg",
+  image: "/assets/avenues/club-service-main.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'navy',
   completedProjects: 18,
   directors: 3
@@ -41,6 +51,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Turning local care into collective action.',
   icon: HeartHandshakeIcon,
   image: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'rose',
   completedProjects: 42,
   directors: 4
@@ -52,6 +67,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Sustaining purpose with smart stewardship.',
   icon: WalletIcon,
   image: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'amber',
   completedProjects: 15,
   directors: 2
@@ -63,6 +83,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'A local club with a global point of view.',
   icon: Globe2Icon,
   image: "/67a57244-695d-4354-86ae-42f897a404b4.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'sky',
   completedProjects: 21,
   directors: 3
@@ -74,6 +99,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Growing capable leaders, together.',
   icon: GraduationCapIcon,
   image: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'violet',
   completedProjects: 26,
   directors: 3
@@ -85,6 +115,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Shared play. Stronger bonds.',
   icon: TrophyIcon,
   image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'orange',
   completedProjects: 17,
   directors: 2
@@ -96,6 +131,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Giving every act of service a voice.',
   icon: MegaphoneIcon,
   image: "/6cd30f0e-0ef7-4660-8a0d-f31ff0b33536.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'fuchsia',
   completedProjects: 29,
   directors: 4
@@ -107,6 +147,11 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
   tagline: 'Crafting the club’s digital heartbeat.',
   icon: MonitorSmartphoneIcon,
   image: "/275ad849-1b14-4559-a11c-460d2229c27b.jpg",
+  photoFrame: {
+    main: "/assets/avenues/club-service-main.jpg",
+    top: "/assets/avenues/club-service-top.jpg",
+    bottom: "/assets/avenues/club-service-bottom.jpg",
+  },
   accent: 'cyan',
   completedProjects: 24,
   directors: 3
@@ -132,6 +177,36 @@ export interface ProjectCatalogItem {
 
 export const PROJECT_CATALOG: ProjectCatalogItem[] = [
 {
+  id: 'achieve-beyond',
+  title: 'Achieve Beyond 3.0',
+  avenue: 'Professional Development',
+  date: 'May 2026',
+  description: 'A signature career readiness and leadership accelerator preparing undergraduates for the corporate world with practical skills and mentoring.',
+  image: '/assets/projects/achieve-beyond.jpg',
+  status: 'Completed',
+  category: 'Professional Skills',
+  year: '2026',
+  collaboration: 'Rotary Club of Colombo Down Town',
+  volunteers: 68,
+  photos: 46,
+  likes: 165
+},
+{
+  id: 'manudam-viyamana',
+  title: 'මනුදම් වියමන 2026',
+  avenue: 'Community Service',
+  date: 'Jun 2026',
+  description: 'A heartfelt community outreach project providing essential aid, nutrition packs, and sustainable support to underserved families.',
+  image: '/assets/projects/manudam-viyamana.jpg',
+  status: 'Completed',
+  category: 'Community Aid',
+  year: '2026',
+  collaboration: 'Rotaract Club of UCSC',
+  volunteers: 84,
+  photos: 52,
+  likes: 198
+},
+{
   id: 'book-of-hope',
   title: 'Book of Hope',
   avenue: 'Community Service',
@@ -147,21 +222,7 @@ export const PROJECT_CATALOG: ProjectCatalogItem[] = [
   likes: 128,
   progress: 68
 },
-{
-  id: 'life-drops',
-  title: 'Life Drops',
-  avenue: 'Community Service',
-  date: 'Feb 2026',
-  description: 'A campus-wide blood donation drive that brought students together for one urgent, generous purpose.',
-  image: "/9ea0281f-b406-40be-843a-2f5feee2eadb.jpg",
-  status: 'Completed',
-  category: 'Health',
-  year: '2026',
-  collaboration: 'National Blood Centre',
-  volunteers: 112,
-  photos: 86,
-  likes: 236
-},
+
 {
   id: 'books-beyond',
   title: 'Books & Beyond',
