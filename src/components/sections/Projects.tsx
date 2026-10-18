@@ -7,6 +7,7 @@ import { PROJECTS } from '../../lib/data';
 const projectRoutes: Record<string, string> = {
   p1: 'achieve-beyond',
   p2: 'manudam-viyamana',
+  p3: 'framelab',
 };
 
 const wrapIndex = (index: number) => (index + PROJECTS.length) % PROJECTS.length;
@@ -36,12 +37,12 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative h-[100dvh] min-h-[620px] w-full overflow-hidden bg-black text-white"
+      className="relative min-h-[640px] lg:h-[100dvh] w-full overflow-hidden bg-black text-white py-14 lg:py-0"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="mx-auto grid h-full w-full max-w-7xl grid-cols-1 lg:grid-cols-[0.82fr_1.18fr]">
-        <div className="relative z-20 flex h-full flex-col justify-center px-8 py-20 sm:px-14 lg:px-16 lg:py-0">
+      <div className="mx-auto grid h-full w-full max-w-7xl grid-cols-1 gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-0">
+        <div className="relative z-20 flex h-full flex-col justify-center px-6 py-4 sm:px-12 lg:px-16 lg:py-0">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-gold sm:text-xs">
             Latest projects
           </span>
@@ -50,18 +51,18 @@ export function Projects() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 max-w-xl"
+            className="mt-4 sm:mt-6 max-w-xl"
           >
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/45">
               {activeProject.status} / {activeProject.category}
             </p>
-            <h2 className="mt-5 font-cormorant text-5xl font-light uppercase leading-[0.96] tracking-[0.04em] text-white sm:text-6xl md:text-7xl">
+            <h2 className="mt-3 sm:mt-5 font-cormorant text-4xl font-light uppercase leading-[0.96] tracking-[0.04em] text-white sm:text-6xl md:text-7xl">
               {activeProject.name}
             </h2>
-            <p className="mt-7 max-w-md text-sm leading-7 text-white/65 sm:text-base">
+            <p className="mt-4 sm:mt-7 max-w-md text-xs leading-relaxed text-white/65 sm:text-base sm:leading-7">
               {activeProject.description}
             </p>
-            <div className="mt-8 flex items-center gap-5">
+            <div className="mt-6 sm:mt-8 flex items-center gap-5">
               <Link
                 to={`/projects/${projectRoutes[activeProject.id]}`}
                 className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold transition-colors hover:text-white"
@@ -73,8 +74,8 @@ export function Projects() {
           </motion.div>
         </div>
 
-        <div className="relative flex h-full min-h-[420px] items-center justify-center px-8 pb-20 pt-4 sm:px-16 lg:pb-0 lg:pt-0">
-          <div className="relative h-[58vh] max-h-[600px] min-h-[350px] w-full max-w-[500px]">
+        <div className="relative flex h-full min-h-[340px] sm:min-h-[420px] items-center justify-center px-6 pb-12 pt-2 sm:px-16 lg:pb-0 lg:pt-0">
+          <div className="relative h-[42vh] sm:h-[58vh] max-h-[600px] min-h-[280px] sm:min-h-[350px] w-full max-w-[500px]">
             {PROJECTS.map((project, index) => {
               const position = relativePosition(index);
               const isActive = position === 0;
@@ -93,7 +94,7 @@ export function Projects() {
                     zIndex: isActive ? 30 : position < 0 ? 20 : 10,
                   }}
                   transition={{ type: 'spring', stiffness: 180, damping: 24, mass: 0.8 }}
-                  className="absolute inset-0 h-full w-full overflow-hidden bg-ink shadow-2xl"
+                  className="absolute inset-0 h-full w-full overflow-hidden bg-ink shadow-2xl rounded-2xl sm:rounded-none"
                 >
                   <img
                     src={project.image}
@@ -106,7 +107,7 @@ export function Projects() {
             })}
           </div>
 
-          <div className="absolute bottom-8 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 lg:bottom-16">
+          <div className="absolute bottom-4 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 lg:bottom-16">
             {PROJECTS.map((project, index) => (
               <button
                 key={project.id}

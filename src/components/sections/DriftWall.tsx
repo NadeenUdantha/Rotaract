@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export interface DriftWallItem {
   image: string;
@@ -83,6 +83,7 @@ export default function DriftWall({
   const [containerWidth, setContainerWidth] = useState(0);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [reduced, setReduced] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const columnItems = useMemo(() => {
     const cols = Array.from({ length: columns }, () => [] as DriftWallItem[]);
@@ -124,13 +125,24 @@ export default function DriftWall({
     return () => mediaQuery.removeEventListener('change', onChange);
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const container = containerRef.current;
     if (!container) return undefined;
     const observer = new ResizeObserver(([entry]) => {
       setContainerHeight(entry.contentRect.height || 600);
       setContainerWidth(entry.contentRect.width || 0);
     });
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.01 }
+    );
     observer.observe(container);
     return () => observer.disconnect();
   }, []);
@@ -152,6 +164,8 @@ export default function DriftWall({
   );
 
   useEffect(() => {
+    if (!isVisible) return undefined;
+
     const animate = (timestamp: number) => {
       if (lastTsRef.current === null) lastTsRef.current = timestamp;
       const delta = Math.min(0.05, Math.max(0, timestamp - lastTsRef.current) / 1000);
@@ -188,7 +202,7 @@ export default function DriftWall({
       rafRef.current = null;
       lastTsRef.current = null;
     };
-  }, [applyPlaneTransform, baseVelocities, columnMeta, parallax, pauseOnHover, reduced]);
+  }, [applyPlaneTransform, baseVelocities, columnMeta, isVisible, parallax, pauseOnHover, reduced]);
 
   const activate = useCallback((id: string, column: number) => {
     activeIdRef.current = id;

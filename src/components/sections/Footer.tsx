@@ -16,6 +16,12 @@ import { NAV_LINKS } from '../../lib/data';
 const FOOTER_NOISE =
   "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.42'/%3E%3C/svg%3E";
 
+const SOCIAL_LINKS = [
+  { label: 'Instagram', href: 'https://www.instagram.com/rac_ucsc/', Icon: Instagram },
+  { label: 'Facebook', href: 'https://www.facebook.com/RotaractUCSC/', Icon: Facebook },
+  { label: 'LinkedIn', href: 'https://lk.linkedin.com/company/rotaractucsc', Icon: Linkedin },
+];
+
 export function Footer() {
   const [showTop, setShowTop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -112,24 +118,25 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {/* About */}
           <div>
-            <div className="mb-4 flex items-center gap-2.5">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#c5a047] font-display text-lg font-extrabold text-[#0A0606]">
-                R
-              </span>
-              <span className="font-display text-base font-bold text-white">
-                Rotaract UCSC
-              </span>
+            <div className="mb-4 flex items-center">
+              <img
+                src="/Logo-White-1.png"
+                alt="Rotaract Club of UCSC"
+                className="h-16 w-auto object-contain"
+              />
             </div>
             <p className="text-sm leading-relaxed">
               A youth-led movement dedicated to service, leadership, and fellowship — creating
               lasting change across our community and beyond.
             </p>
             <div className="mt-5 flex gap-3">
-              {[Instagram, Facebook, Linkedin].map((Icon, i) =>
+              {SOCIAL_LINKS.map(({ label, href, Icon }) =>
               <a
-                key={i}
-                href="#contact"
-                aria-label="Social media"
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 transition-colors hover:bg-navy-500 hover:text-white">
                 
                   <Icon className="h-4 w-4" />
@@ -166,7 +173,9 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 flex-shrink-0 text-[#c5a047]" />
-                hello@rotaractucsc.org
+                <a href="mailto:rotaractclubofucsc@gmail.com" className="transition-colors hover:text-[#c5a047]">
+                  rotaractclubofucsc@gmail.com
+                </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 flex-shrink-0 text-[#c5a047]" />

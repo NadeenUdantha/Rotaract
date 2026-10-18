@@ -25,29 +25,30 @@ export function Impact() {
           </h2>
         </Reveal>
 
-        <div ref={statsRef} className="mx-auto grid max-w-5xl grid-cols-2 gap-5 md:gap-7 lg:grid-cols-4">
-          {visibleStats.map((stat, i) =>
-          <Reveal
-            key={stat.label}
-            delay={i * 0.08}
-            className={i === 0 ? 'col-span-2 lg:col-span-1' : ''}>
-            
-              <div className="relative flex h-full min-h-[9rem] flex-col items-center justify-center overflow-hidden rounded-4xl border border-white/10 bg-[#0A0606] p-8 text-center shadow-none">
-                <p className="whitespace-nowrap font-cormorant text-4xl font-semibold leading-none text-gold md:text-5xl">
+        <div ref={statsRef} className="mx-auto grid max-w-5xl grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+          {visibleStats.map((stat, i) => (
+            <Reveal
+              key={stat.label}
+              delay={i * 0.08}
+              className="col-span-1"
+            >
+              <div className="relative flex h-full min-h-[8.5rem] flex-col items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-[#0A0606] p-5 sm:p-7 text-center shadow-none sm:rounded-4xl">
+                <p className="whitespace-nowrap font-cormorant text-3xl font-semibold leading-none text-gold sm:text-4xl md:text-5xl">
                   <Counter
                     value={stat.value}
                     prefix={stat.prefix}
                     suffix={stat.suffix}
                     minDigits={stat.minDigits}
                     startDelay={i * 180}
-                    trigger={areStatsInView} />
+                    trigger={areStatsInView}
+                  />
                 </p>
-                <p className="mt-3 font-grotesk text-base font-medium text-[#ECECE8]/60">
+                <p className="mt-2.5 font-grotesk text-xs sm:text-sm md:text-base font-medium text-[#ECECE8]/60">
                   {stat.label}
                 </p>
               </div>
             </Reveal>
-          )}
+          ))}
         </div>
       </div>
     </section>);

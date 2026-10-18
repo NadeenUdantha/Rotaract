@@ -1,16 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { NAV_LINKS } from '../lib/data';
 import { AVENUE_DETAILS } from '../lib/impactData';
+import { StaggeredMenu } from './StaggeredMenu';
 
 export function Navbar() {
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [avenuesOpen, setAvenuesOpen] = useState(false);
-  const [mobileAvenuesOpen, setMobileAvenuesOpen] = useState(false);
   const avenuesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleAvenuesMouseEnter = () => {
@@ -35,10 +34,15 @@ export function Navbar() {
   const heroNavLinks = NAV_LINKS.filter(
     (link) => link.href !== '/blog' && link.label.toLowerCase() !== 'blog'
   );
+  const mobileMenuItems = heroNavLinks.map((link) => ({
+    label: link.label,
+    ariaLabel: `Go to ${link.label}`,
+    link: link.label === 'Avenues' ? '/avenues/club-service' : link.href,
+  }));
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-50 flex w-full items-center justify-between px-6 py-4 sm:px-12 sm:py-5 pointer-events-auto">
+      <header className="fixed top-0 inset-x-0 z-50 flex w-full items-center justify-between px-6 py-4 pointer-events-auto sm:px-12 sm:py-5">
         {/* Subtle top gradient matching home page hero section */}
         <div
           aria-hidden="true"
@@ -47,7 +51,7 @@ export function Navbar() {
         {/* Top-Left: Rotaract White Logo */}
         <Link
           to="/"
-          className="flex items-center gap-3 transition-transform duration-300 hover:scale-105"
+          className="hidden items-center gap-3 transition-transform duration-300 hover:scale-105 md:flex"
         >
           <img
             src="/Logo-White-1.png"
@@ -70,9 +74,11 @@ export function Navbar() {
                     onMouseEnter={handleAvenuesMouseEnter}
                     onMouseLeave={handleAvenuesMouseLeave}
                   >
-                    <Link
-                      to={link.href}
-                      className="inline-flex items-center gap-1.5 transition-colors duration-200"
+                    <button
+                      type="button"
+                      onClick={() => setAvenuesOpen((open) => !open)}
+                      aria-expanded={avenuesOpen}
+                      className="inline-flex items-center gap-1.5 font-cormorant text-base uppercase tracking-[0.2em] text-white/90 transition-colors duration-200"
                       style={{ transition: 'color 0.2s ease' }}
                       onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
                       onMouseLeave={(e) => (e.currentTarget.style.color = '')}
@@ -83,7 +89,7 @@ export function Navbar() {
                           avenuesOpen ? 'rotate-180 text-[#C5A047]' : ''
                         }`}
                       />
-                    </Link>
+                    </button>
 
                     {/* 9 Avenues Dropdown Menu on Hover */}
                     <AnimatePresence>
@@ -141,80 +147,16 @@ export function Navbar() {
           </ul>
         </nav>
 
-        {/* Mobile menu trigger */}
-        <button
-          type="button"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle Menu"
-          className="flex h-10 w-10 items-center justify-center md:hidden text-white"
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
       </header>
-
-      {/* Mobile Drawer */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col justify-center overflow-y-auto bg-black/95 px-8 py-12 md:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileOpen(false)}
-            aria-label="Close Menu"
-            className="absolute right-6 top-6 text-white"
-          >
-            <X className="h-8 w-8" />
-          </button>
-          <ul className="flex flex-col gap-5 font-cormorant text-2xl uppercase tracking-[0.2em]">
-            {heroNavLinks.map((link) => {
-              if (link.label.toLowerCase() === 'avenues') {
-                return (
-                  <li key={link.href} className="flex flex-col gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setMobileAvenuesOpen(!mobileAvenuesOpen)}
-                      className="flex items-center justify-between text-left transition-colors duration-200 text-white"
-                    >
-                      <span>Avenues</span>
-                      <ChevronDown
-                        className={`h-6 w-6 transition-transform duration-200 ${
-                          mobileAvenuesOpen ? 'rotate-180 text-[#C5A047]' : ''
-                        }`}
-                      />
-                    </button>
-                    {mobileAvenuesOpen && (
-                      <div className="flex flex-col gap-3 pl-4 pt-2 font-cormorant text-base tracking-widest text-white/80">
-                        {AVENUE_DETAILS.map((avenue) => (
-                          <Link
-                            key={avenue.slug}
-                            to={`/avenues/${avenue.slug}`}
-                            onClick={() => setMobileOpen(false)}
-                            className="block hover:text-[#C5A047] transition-colors"
-                          >
-                            <span>{avenue.title}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </li>
-                );
-              }
-
-              return (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="transition-colors duration-200"
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '')}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+      <StaggeredMenu
+        className="md:hidden"
+        items={mobileMenuItems}
+        socialItems={[
+          { label: 'Instagram', link: 'https://www.instagram.com/rac_ucsc/' },
+          { label: 'Facebook', link: 'https://www.facebook.com/RotaractUCSC/' },
+          { label: 'LinkedIn', link: 'https://lk.linkedin.com/company/rotaractucsc' },
+        ]}
+      />
     </>
   );
 }

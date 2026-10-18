@@ -1,21 +1,30 @@
 
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect, lazy } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Loader } from './components/Loader';
 import { Navbar } from './components/Navbar';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Footer } from './components/sections/Footer';
 import { ThemeProvider } from './lib/theme';
-import { AvenueDetailPage } from './pages/AvenueDetailPage';
-import { ArticlePage } from './pages/ArticlePage';
-import { AvenuesPage } from './pages/AvenuesPage';
-import { BoardPage } from './pages/BoardPage';
-import { BlogPage } from './pages/BlogPage';
-import { ContactPage } from './pages/ContactPage';
-import { GalleryPage } from './pages/GalleryPage';
 import { NewHeroPage } from './pages/NewHeroPage';
-import { ProjectDetailPage } from './pages/ProjectDetailPage';
-import { ProjectsPage } from './pages/ProjectsPage';
+
+// Code-split secondary routes for faster initial load
+const AvenueDetailPage = lazy(() => import('./pages/AvenueDetailPage').then((m) => ({ default: m.AvenueDetailPage })));
+const ArticlePage = lazy(() => import('./pages/ArticlePage').then((m) => ({ default: m.ArticlePage })));
+const BoardPage = lazy(() => import('./pages/BoardPage').then((m) => ({ default: m.BoardPage })));
+const BlogPage = lazy(() => import('./pages/BlogPage').then((m) => ({ default: m.BlogPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
+const GalleryPage = lazy(() => import('./pages/GalleryPage').then((m) => ({ default: m.GalleryPage })));
+const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage').then((m) => ({ default: m.ProjectDetailPage })));
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then((m) => ({ default: m.ProjectsPage })));
+
+function RouteFallback() {
+  return (
+    <div className="flex min-h-[60vh] w-full items-center justify-center bg-[#0c0f17]">
+      <div className="h-8 w-8 animate-spin rounded-full border-2 border-gold/20 border-t-gold" />
+    </div>
+  );
+}
 
 /* AppInner is a child of BrowserRouter so useLocation() works here */
 function AppInner() {
@@ -41,19 +50,21 @@ function AppInner() {
       <ScrollToTop />
       <Loader />
       {!isHome && <Navbar />}
-      <Routes>
-        <Route path="/" element={<NewHeroPage />} />
-        <Route path="/avenues" element={<AvenuesPage />} />
-        <Route path="/avenues/:slug" element={<AvenueDetailPage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/projects/:id" element={<ProjectDetailPage />} />
-        <Route path="/board" element={<BoardPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:id" element={<ArticlePage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <Suspense fallback={<RouteFallback />}>
+        <Routes>
+          <Route path="/" element={<NewHeroPage />} />
+          <Route path="/avenues" element={<Navigate to="/avenues/club-service" replace />} />
+          <Route path="/avenues/:slug" element={<AvenueDetailPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:id" element={<ProjectDetailPage />} />
+          <Route path="/board" element={<BoardPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<ArticlePage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
       <Footer />
     </div>
   );

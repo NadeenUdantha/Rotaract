@@ -157,7 +157,7 @@ export function AvenueDetailPage() {
                     {avenue.completedProjects}+
                   </p>
                   <p className="mt-1 font-mono text-[11px] uppercase tracking-wider text-white/60">
-                    Projects Done
+                    Term Initiatives
                   </p>
                 </div>
                 <div>
@@ -289,31 +289,33 @@ export function AvenueDetailPage() {
                 avenue.directorList.map((director) => (
                   <div
                     key={director.name}
-                    className="group overflow-hidden rounded-3xl border border-black/10 bg-white/70 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                    className="group text-center"
                   >
-                    <div className="relative aspect-[4/4.5] w-full overflow-hidden bg-stone-200">
+                    <div className="relative mx-auto flex aspect-[4/5] max-w-[200px] items-end justify-center overflow-hidden">
+                      <div aria-hidden="true" className="absolute bottom-[10%] h-[72%] w-[72%] rounded-full bg-[#C5A047] transition-transform duration-500 group-hover:scale-105" />
                       <img
                         src={director.image}
                         alt={director.name}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="lazy"
+                        className="relative z-10 h-full w-full object-cover object-[center_18%] transition-transform duration-500 group-hover:scale-[1.03]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4 text-white">
-                        <p className="font-mono text-[10px] uppercase tracking-widest text-[#C5A047]">
-                          {director.role}
-                        </p>
-                        <h4 className="font-cormorant text-2xl font-light uppercase text-white">
-                          {director.name}
-                        </h4>
-                      </div>
                     </div>
-                    <div className="p-6">
-                      <p className="font-body text-xs font-light leading-relaxed text-[#0A0606]/70">
+                    <div className="mx-auto max-w-[280px] border-t border-black/10 pt-5">
+                      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#C5A047]">
+                        {director.role}
+                      </p>
+                      <h4 className="mt-2 font-cormorant text-2xl font-light uppercase tracking-[0.04em] text-[#0A0606]">
+                        {director.name}
+                      </h4>
+                      <p className="mt-3 font-cormorant text-lg italic leading-7 text-[#0A0606]/70">
+                        “{director.bio}”
+                      </p>
+                      <p className="mt-3 font-body text-sm font-light leading-relaxed text-[#0A0606]/60">
                         {director.bio}
                       </p>
                       <a
-                        href={`mailto:hello@rotaractucsc.org?subject=Inquiry for ${encodeURIComponent(director.name)} - ${encodeURIComponent(avenue.title)}`}
-                        className="mt-5 inline-flex items-center gap-2 font-cormorant text-xs uppercase tracking-[0.18em] text-[#C5A047] transition-colors hover:text-[#0A0606]"
+                        href={`mailto:rotaractclubofucsc@gmail.com?subject=Inquiry for ${encodeURIComponent(director.name)} - ${encodeURIComponent(avenue.title)}`}
+                        className="mt-5 inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[#0A0606]/65 transition-colors hover:border-[#C5A047] hover:bg-[#C5A047] hover:text-black"
                       >
                         <Mail className="h-3.5 w-3.5" />
                         <span>Contact Director</span>
@@ -400,7 +402,7 @@ export function AvenueDetailPage() {
           </div>
         </section>
 
-        {/* Complete 9-Avenue Switcher */}
+        {/* Complete 8-Avenue Switcher */}
         <section className="relative py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
             <div className="flex flex-col items-center justify-between gap-6 border-b border-black/10 pb-12 sm:flex-row">
@@ -409,7 +411,7 @@ export function AvenueDetailPage() {
                   Rotaract UCSC Directory
                 </p>
                 <h2 className="mt-2 font-cormorant text-3xl font-light uppercase tracking-[0.06em] text-[#0A0606] sm:text-4xl">
-                  Explore All 9 Avenues
+                  Explore All 8 Avenues
                 </h2>
               </div>
 
@@ -432,8 +434,8 @@ export function AvenueDetailPage() {
               </div>
             </div>
 
-            {/* Grid of All 9 Avenues */}
-            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {/* Grid of All 8 Avenues */}
+            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {AVENUE_DETAILS.map((item) => {
                 const ItemIcon = item.icon;
                 const isCurrent = item.slug === avenue.slug;

@@ -1,19 +1,18 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { NAV_LINKS } from '../../lib/data';
 import { AVENUE_DETAILS } from '../../lib/impactData';
 import { GALLERY_PHOTOS } from '../../lib/galleryData';
+import { StaggeredMenu } from '../StaggeredMenu';
 import DriftWall from './DriftWall';
 
 export function VideoHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [portalOnCream, setPortalOnCream] = useState(false);
   const [avenuesOpen, setAvenuesOpen] = useState(false);
-  const [mobileAvenuesOpen, setMobileAvenuesOpen] = useState(false);
   const avenuesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleAvenuesMouseEnter = () => {
@@ -45,6 +44,11 @@ export function VideoHero() {
   const heroNavLinks = NAV_LINKS.filter(
     (link) => link.href !== '/blog' && link.label.toLowerCase() !== 'blog'
   );
+  const mobileMenuItems = heroNavLinks.map((link) => ({
+    label: link.label,
+    ariaLabel: `Go to ${link.label}`,
+    link: link.label === 'Avenues' ? '/avenues/club-service' : link.href,
+  }));
 
   useEffect(() => {
     const video = videoRef.current;
@@ -88,10 +92,13 @@ export function VideoHero() {
         />
       </div>
 
-      {/* ── FIXED TOP NAV BAR ─────────────────────────────────────────────── */}
-      <header className="fixed top-0 inset-x-0 z-40 flex w-full items-center justify-between px-6 py-4 sm:px-12 sm:py-5 pointer-events-auto">
+      <header className="fixed top-0 inset-x-0 z-40 flex w-full items-center justify-between px-6 py-4 pointer-events-auto sm:px-12 sm:py-5">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-36 bg-gradient-to-b from-black/85 via-black/40 to-transparent"
+        />
         {/* Top-Left: Rotaract White Logo (Balanced medium size) */}
-        <Link to="/" className="flex items-center gap-3 transition-transform duration-300 hover:scale-105">
+        <Link to="/" className="hidden items-center gap-3 transition-transform duration-300 hover:scale-105 md:flex">
           <img
             src="/Logo-White-1.png"
             alt="Rotaract Club of UCSC Logo"
@@ -119,9 +126,11 @@ export function VideoHero() {
                     onMouseEnter={handleAvenuesMouseEnter}
                     onMouseLeave={handleAvenuesMouseLeave}
                   >
-                    <Link
-                      to={link.href}
-                      className="inline-flex items-center gap-1.5 transition-colors duration-200"
+                    <button
+                      type="button"
+                      onClick={() => setAvenuesOpen((open) => !open)}
+                      aria-expanded={avenuesOpen}
+                      className="inline-flex items-center gap-1.5 font-cormorant text-base uppercase tracking-[0.2em] text-white/90 transition-colors duration-200"
                       style={{ transition: 'color 0.2s ease' }}
                       onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
                       onMouseLeave={(e) => (e.currentTarget.style.color = '')}
@@ -132,7 +141,7 @@ export function VideoHero() {
                           avenuesOpen ? 'rotate-180 text-[#C5A047]' : ''
                         }`}
                       />
-                    </Link>
+                    </button>
 
                     {/* 9 Avenues Dropdown Menu on Hover */}
                     <AnimatePresence>
@@ -182,84 +191,16 @@ export function VideoHero() {
           {/* Minimal Hamburger Icon */}
         </nav>
 
-        {/* Mobile menu trigger */}
-        <button
-          type="button"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle Menu"
-          className="flex h-10 w-10 items-center justify-center md:hidden"
-        >
-          {mobileMenuOpen ? (
-            <X className={`h-6 w-6 ${portalOnCream ? 'text-ink' : 'text-white'}`} />
-          ) : (
-            <Menu className={`h-6 w-6 ${portalOnCream ? 'text-ink' : 'text-white'}`} />
-          )}
-        </button>
       </header>
-
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col justify-center overflow-y-auto bg-black/95 px-8 py-12 md:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(false)}
-            aria-label="Close Menu"
-            className="absolute right-6 top-6 text-white"
-          >
-            <X className="h-8 w-8" />
-          </button>
-          <ul className="flex flex-col gap-5 font-cormorant text-2xl uppercase tracking-[0.2em]">
-            {heroNavLinks.map((link) => {
-              if (link.label.toLowerCase() === 'avenues') {
-                return (
-                  <li key={link.href} className="flex flex-col gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setMobileAvenuesOpen(!mobileAvenuesOpen)}
-                      className="flex items-center justify-between text-left transition-colors duration-200 text-white"
-                    >
-                      <span>Avenues</span>
-                      <ChevronDown
-                        className={`h-6 w-6 transition-transform duration-200 ${
-                          mobileAvenuesOpen ? 'rotate-180 text-[#C5A047]' : ''
-                        }`}
-                      />
-                    </button>
-                    {mobileAvenuesOpen && (
-                      <div className="flex flex-col gap-3 pl-4 pt-2 font-cormorant text-base tracking-widest text-white/80">
-                        {AVENUE_DETAILS.map((avenue) => (
-                          <Link
-                            key={avenue.slug}
-                            to={`/avenues/${avenue.slug}`}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="block hover:text-[#C5A047] transition-colors"
-                          >
-                            <span>{avenue.title}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </li>
-                );
-              }
-
-              return (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="transition-colors duration-200"
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'rgb(197, 160, 71)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '')}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+      <StaggeredMenu
+        className="md:hidden"
+        items={mobileMenuItems}
+        socialItems={[
+          { label: 'Instagram', link: 'https://www.instagram.com/rac_ucsc/' },
+          { label: 'Facebook', link: 'https://www.facebook.com/RotaractUCSC/' },
+          { label: 'LinkedIn', link: 'https://lk.linkedin.com/company/rotaractucsc' },
+        ]}
+      />
 
       {/* ── SECTION 1: HERO VIEWPORT ──────────────────────────────────────── */}
       <section
@@ -346,7 +287,7 @@ export function VideoHero() {
   );
 }
 
-const DRIFT_WALL_ITEMS = GALLERY_PHOTOS.map((photo) => ({
+const DRIFT_WALL_ITEMS = GALLERY_PHOTOS.slice(0, 8).map((photo) => ({
   image: photo.image,
   title: photo.event,
 }));
@@ -422,10 +363,14 @@ function RacUcscPortalSection({
     }
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let cancelled = false;
+    let frame = 0;
     const run = () => {
-      if (!cancelled) measureOrigin();
+      if (!cancelled) {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(measureOrigin);
+      }
     };
     run();
     const fontsReady = document.fonts?.ready;
@@ -433,6 +378,7 @@ function RacUcscPortalSection({
     window.addEventListener('resize', run);
     return () => {
       cancelled = true;
+      cancelAnimationFrame(frame);
       window.removeEventListener('resize', run);
     };
   }, [measureOrigin]);
@@ -496,27 +442,6 @@ function RacUcscPortalSection({
               backgroundSize: '140px 140px',
             }}
           />
-
-          {/* SVG fractal noise overlay for organic paper texture depth */}
-          <svg
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-30 mix-blend-multiply"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <filter id="racucsc-paper-noise">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.75"
-                numOctaves="3"
-                stitchTiles="stitch"
-              />
-              <feColorMatrix type="saturate" values="0" />
-              <feComponentTransfer>
-                <feFuncA type="linear" slope="0.7" />
-              </feComponentTransfer>
-            </filter>
-            <rect width="100%" height="100%" filter="url(#racucsc-paper-noise)" />
-          </svg>
 
           <p
             aria-hidden

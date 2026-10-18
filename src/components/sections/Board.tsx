@@ -14,10 +14,11 @@ interface Member {
 }
 
 const BOARD: Member[] = [
-  { name: 'Rtr. Shamil Shiraj', role: 'President', image: '/assets/leadership/president.jpg' },
-  { name: 'Dinuka Perera', role: 'Vice President', image: 'https://i.pravatar.cc/240?img=12' },
-  { name: 'Rtr. Kumodi Rajapura', role: 'Secretary', image: '/assets/leadership/secretary.png' },
-  { name: 'Rehan Jayasuriya', role: 'Treasurer', image: 'https://i.pravatar.cc/240?img=68' }];
+  { name: 'Rtr. Shamil Shiraj', role: 'President', image: '/assets/leadership/exco/president.jpg' },
+  { name: 'Rtr. Roshanya Philip', role: 'Vice President', image: '/assets/leadership/exco/vicepresident1.jpeg' },
+  { name: 'Rtr. Kumodi Rajapura', role: 'Secretary', image: '/assets/leadership/exco/secretary.png' },
+  { name: 'Rtr. Ponmudy Vidurshan', role: 'Treasurer', image: '/assets/leadership/exco/treasurer.jpg' }
+];
 
 
 export function Board() {
