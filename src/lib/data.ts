@@ -292,14 +292,14 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'President',
     quote:
       'Leadership in Rotaract is about empowering every young mind to step forward, turn vision into collective action, and create lasting impact across our community. Together, we build a future driven by service, passion, and purpose.',
-    image: '/assets/leadership/exco/president.jpg'
+    image: '/assets/leadership/exco/president.png'
   },
   {
     name: 'Rtr. Murshid Akram',
     role: 'IPP',
     quote:
       'Every project, big or small, reminds me why we do this: to serve with purpose and uplift the people around us. It was an honor to be a part of the Rotaract Club of UCSC',
-    image: '/assets/leadership/exco/IPP.jpeg',
+    image: '/assets/leadership/exco/IPP.png',
     subtitle: 'IPP (Past President 2025-26) • Rotaract Club of UCSC'
   },
   {

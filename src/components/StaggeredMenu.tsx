@@ -129,7 +129,14 @@ export function StaggeredMenu({
 
       <header className="staggered-menu-header">
         <img src={logoUrl} alt="Rotaract Club of UCSC" className="staggered-menu-logo" />
-        <button type="button" ref={toggleRef} onClick={toggle} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} className="staggered-menu-toggle">
+        <button
+          type="button"
+          ref={toggleRef}
+          onClick={toggle}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          className={`staggered-menu-toggle ${open ? 'is-open' : ''}`}
+        >
           <span>{open ? 'Close' : 'Menu'}</span>
           <span className={`staggered-menu-plus ${open ? 'is-open' : ''}`} aria-hidden="true"><i /><i /></span>
         </button>
