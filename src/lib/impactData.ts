@@ -63,18 +63,18 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
       bottom: "/assets/avenues/club-service-bottom.jpg",
     },
     accent: 'navy',
-    completedProjects: 18,
-    directors: 3,
-    volunteers: 140,
-    hours: 860,
+    completedProjects: 8,
+    directors: 2,
+    volunteers: 35,
+    hours: 140,
     pillars: [
       { title: 'Fellowship & Traditions', desc: 'Crafting signature gatherings and warm social settings that build authentic camaraderie.' },
       { title: 'Internal Operations', desc: 'Managing club administration, secretarial documentation, and seamless general meetings.' },
       { title: 'Inclusivity & Culture', desc: 'Ensuring every new member finds a supportive home and an encouraging community.' }
     ],
     directorList: [
-      { name: 'Rtr. Dasuni De Silva', role: 'Director of Club Service', bio: 'Building fellowship through experiences that stay with people forever.', image: '/assets/leadership/directors/clubservicesdirector1.jpeg' },
-      { name: 'Rtr. Nuha Fawzer', role: 'Director of Club Service', bio: 'Cultivating an inviting, family-like culture across every club event.', image: '/assets/leadership/directors/clubservicesdirector2.jpeg' }
+      { name: 'Rtr. Dasuni De Silva', role: 'Director of Club Service', bio: 'Building fellowship through experiences that stay with people forever.', image: '/assets/leadership/directors/clubservicesdirector1.png' },
+      { name: 'Rtr. Nuha Fawzer', role: 'Director of Club Service', bio: 'Cultivating an inviting, family-like culture across every club event.', image: '/assets/leadership/directors/clubservicesdirector2.png' }
     ]
   },
   {
@@ -93,18 +93,18 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
       bottom: "/assets/gallery/NO_FUSION_0701_003.webp",
     },
     accent: 'rose',
-    completedProjects: 42,
+    completedProjects: 4,
     directors: 2,
-    volunteers: 320,
-    hours: 2400,
+    volunteers: 45,
+    hours: 180,
     pillars: [
       { title: 'Healthcare & Vital Aid', desc: 'Organising district blood donation drives, health screenings, and medical relief.' },
       { title: 'Rural Education Support', desc: 'Supplying libraries, textbooks, and interactive learning tools to remote schools.' },
       { title: 'Sustainable Community Care', desc: 'Developing enduring projects that empower local beneficiaries to flourish independently.' }
     ],
     directorList: [
-      { name: 'Rtr. Oshani Premachandra', role: 'Director of Community Service', bio: 'Guiding grassroots action with deep empathy and sustainable solutions.', image: '/assets/leadership/directors/communityservicesdirector1.jpg' },
-      { name: 'Rtr. Nadeeka Kaduwela', role: 'Director of Community Service', bio: 'Mobilizing volunteer power to uplift underprivileged communities across Sri Lanka.', image: '/assets/leadership/directors/communityservicesdirector2.jpg' }
+      { name: 'Rtr. Oshani Premachandra', role: 'Director of Community Service', bio: 'Guiding grassroots action with deep empathy and sustainable solutions.', image: '/assets/leadership/directors/communityservicesdirector1.png' },
+      { name: 'Rtr. Nadeeka Kaduwela', role: 'Director of Community Service', bio: 'Mobilizing volunteer power to uplift underprivileged communities across Sri Lanka.', image: '/assets/leadership/directors/communityservicesdirector2.png' }
     ]
   },
   {
@@ -123,17 +123,17 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
       bottom: "/assets/gallery/NO_FUSION_0723_019.webp",
     },
     accent: 'sky',
-    completedProjects: 21,
+    completedProjects: 5,
     directors: 1,
-    volunteers: 180,
-    hours: 1120,
+    volunteers: 25,
+    hours: 90,
     pillars: [
       { title: 'Twin Club Agreements', desc: 'Establishing formal partnerships with overseas Rotaract clubs for collaborative service.' },
       { title: 'Global Cultural Exchange', desc: 'Hosting virtual and in-person summits that celebrate diversity and mutual respect.' },
       { title: 'World Peace & Diplomacy', desc: 'Encouraging youth dialogue around international cooperation and global citizenship.' }
     ],
     directorList: [
-      { name: 'Rtr. Hansika Edirisinghe', role: 'Director of International Service', bio: 'Fostering global partnerships and cross-cultural exchanges across the world.', image: '/assets/leadership/directors/internationalservicesdirector.jpeg' }
+      { name: 'Rtr. Hansika Edirisinghe', role: 'Director of International Service', bio: 'Fostering global partnerships and cross-cultural exchanges across the world.', image: '/assets/leadership/directors/internationalservicesdirector.png' }
     ]
   },
   {
@@ -152,18 +152,18 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
       bottom: "/assets/gallery/IMG_8143.webp",
     },
     accent: 'violet',
-    completedProjects: 26,
+    completedProjects: 4,
     directors: 2,
-    volunteers: 210,
-    hours: 1450,
+    volunteers: 30,
+    hours: 120,
     pillars: [
       { title: 'Industry Readiness & Skills', desc: 'Equipping members with high-demand tech, leadership, and soft skills.' },
       { title: 'Executive Mentorship', desc: 'Connecting undergraduates 1-on-1 with senior tech executives and alumni.' },
       { title: 'Leadership Masterclasses', desc: 'Intensive workshops on public speaking, project governance, and entrepreneurship.' }
     ],
     directorList: [
-      { name: 'Rtr. Sashik Thivanka', role: 'Director of Professional Development', bio: 'Opening doors to corporate mentors, essential skills, and brave new beginnings.', image: '/assets/leadership/directors/professionaldevelopmentdirector1.jpg' },
-      { name: 'Rtr. Yasuru Sandeepa', role: 'Director of Professional Development', bio: 'Empowering undergraduates with industry readiness and professional networking.', image: '/assets/leadership/directors/professionaldevelopmentdirector2.jpg' }
+      { name: 'Rtr. Sashik Thivanka', role: 'Director of Professional Development', bio: 'Opening doors to corporate mentors, essential skills, and brave new beginnings.', image: '/assets/leadership/directors/professionaldevelopmentdirector1.png' },
+      { name: 'Rtr. Yasuru Sandeepa', role: 'Director of Professional Development', bio: 'Empowering undergraduates with industry readiness and professional networking.', image: '/assets/leadership/directors/professionaldevelopmentdirector2.png' }
     ]
   },
   {
@@ -182,18 +182,18 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
       bottom: "/assets/gallery/IMG_8239.webp",
     },
     accent: 'fuchsia',
-    completedProjects: 29,
+    completedProjects: 4,
     directors: 2,
-    volunteers: 195,
-    hours: 1300,
+    volunteers: 20,
+    hours: 80,
     pillars: [
       { title: 'Brand Stewardship', desc: 'Maintaining aesthetic elegance and consistent visual brand identity across all media.' },
       { title: 'Visual & Editorial Storytelling', desc: 'Crafting powerful narratives that turn project metrics into human emotion.' },
       { title: 'Media Relations & Press', desc: 'Securing national news publications and digital partnerships for major club initiatives.' }
     ],
     directorList: [
-      { name: 'Rtr. Ashini Dasanayaka', role: 'Director of Public Relations', bio: 'Crafting captivating public narratives that elevate the club’s voice and prestige.', image: '/assets/leadership/directors/publicrelationsdirector1.jpg' },
-      { name: 'Rtr. Isum Hansana', role: 'Director of Public Relations', bio: 'Amplifying public resonance and digital branding across diverse platforms.', image: '/assets/leadership/directors/publicrelationsdirector2.jpg' }
+      { name: 'Rtr. Ashini Dasanayaka', role: 'Director of Public Relations', bio: 'Crafting captivating public narratives that elevate the club’s voice and prestige.', image: '/assets/leadership/directors/publicrelationsdirector1.png' },
+      { name: 'Rtr. Isum Hansana', role: 'Director of Public Relations', bio: 'Amplifying public resonance and digital branding across diverse platforms.', image: '/assets/leadership/directors/publicrelationsdirector2.png' }
     ]
   },
   {
@@ -212,18 +212,18 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
       bottom: "/assets/gallery/IMG_8224.webp",
     },
     accent: 'orange',
-    completedProjects: 17,
+    completedProjects: 5,
     directors: 2,
-    volunteers: 160,
-    hours: 920,
+    volunteers: 25,
+    hours: 110,
     pillars: [
       { title: 'Inter-Batch Tournaments', desc: 'Organising annual tournaments across cricket, futsal, basketball, and badminton.' },
       { title: 'Wellness & Mindfulness', desc: 'Promoting healthy work-life balance, outdoor trekking, and mental health check-ins.' },
       { title: 'E-Sports & Virtual Gaming', desc: 'Hosting competitive collegiate gaming championships with district-wide participation.' }
     ],
     directorList: [
-      { name: 'Rtr. Oshadha Dhananjaya', role: 'Director of Sports & Recreation', bio: 'Sparking energy, athletic spirit, and mental wellness through active events.', image: '/assets/leadership/directors/sportsandrecreationalactivitiesdirector1.jpeg' },
-      { name: 'Rtr. Siyumi Vihansha', role: 'Director of Sports & Recreation', bio: 'Encouraging healthy living, tournament excitement, and team bonding.', image: '/assets/leadership/directors/sportsandrecreationalactivitiesdirector2.jpg' }
+      { name: 'Rtr. Oshadha Dhananjaya', role: 'Director of Sports & Recreation', bio: 'Sparking energy, athletic spirit, and mental wellness through active events.', image: '/assets/leadership/directors/sportsandrecreationalactivitiesdirector1.png' },
+      { name: 'Rtr. Siyumi Vihansha', role: 'Director of Sports & Recreation', bio: 'Encouraging healthy living, tournament excitement, and team bonding.', image: '/assets/leadership/directors/sportsandrecreationalactivitiesdirector2.png' }
     ]
   },
   {
@@ -242,18 +242,18 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
       bottom: "/assets/gallery/IMG_8199.webp",
     },
     accent: 'amber',
-    completedProjects: 15,
+    completedProjects: 9,
     directors: 2,
-    volunteers: 110,
-    hours: 780,
+    volunteers: 30,
+    hours: 130,
     pillars: [
       { title: 'Fiscal Transparency & Auditing', desc: 'Maintaining impeccable financial books, transparent ledgers, and formal audits.' },
       { title: 'Corporate Sponsorships', desc: 'Partnering with leading enterprises for sustainable project funding and brand alignment.' },
       { title: 'Creative Fundraising', desc: 'Designing high-yield merchandise, ticketed charity galas, and digital fundraisers.' }
     ],
     directorList: [
-      { name: 'Rtr. Chanuki Perera', role: 'Director of Finance', bio: 'Ensuring financial accuracy, strategic fundraising, and budget stability.', image: '/assets/leadership/directors/financedirector1.jpg' },
-      { name: 'Rtr. Dulki Savindya', role: 'Director of Finance', bio: 'Managing financial resources with precision, foresight, and accountability.', image: '/assets/leadership/directors/financedirector2.jpg' }
+      { name: 'Rtr. Chanuki Perera', role: 'Director of Finance', bio: 'Ensuring financial accuracy, strategic fundraising, and budget stability.', image: '/assets/leadership/directors/financedirector1.png' },
+      { name: 'Rtr. Dulki Savindya', role: 'Director of Finance', bio: 'Managing financial resources with precision, foresight, and accountability.', image: '/assets/leadership/directors/financedirector2.png' }
     ]
   },
   {
@@ -272,17 +272,17 @@ export const AVENUE_DETAILS: AvenueDetail[] = [
       bottom: "/assets/gallery/IMG_8132.webp",
     },
     accent: 'cyan',
-    completedProjects: 24,
+    completedProjects: 2,
     directors: 1,
-    volunteers: 155,
-    hours: 1250,
+    volunteers: 15,
+    hours: 60,
     pillars: [
       { title: 'Web Systems & Engineering', desc: 'Architecting fast, responsive, and secure digital platforms for club activities.' },
       { title: 'UI/UX & Experience Craft', desc: 'Crafting pixel-perfect, accessible, and delightful digital user journeys.' },
       { title: 'Tech Enablement & Automation', desc: 'Building internal tools, bots, and digital registration systems for seamless operations.' }
     ],
     directorList: [
-      { name: 'Rtr. Isuru Udayanga', role: 'Director of Digital Services', bio: 'Building modern web architectures and digital tools for the club ecosystem.', image: '/assets/leadership/directors/digitalservicesdirector.jpg' }
+      { name: 'Rtr. Isuru Udayanga', role: 'Director of Digital Services', bio: 'Building modern web architectures and digital tools for the club ecosystem.', image: '/assets/leadership/directors/digitalservicesdirector.png' }
     ]
   }
 ];
@@ -350,81 +350,6 @@ export const PROJECT_CATALOG: ProjectCatalogItem[] = [
   volunteers: 45,
   photos: 34,
   likes: 182
-},
-{
-  id: 'book-of-hope',
-  title: 'Book of Hope',
-  avenue: 'Community Service',
-  date: 'Mar 2026',
-  description: 'Building a bright, well-stocked children’s library for young readers in an underserved community.',
-  image: "/d9bd489e-919e-405e-9ba0-68bc147e9344.jpg",
-  status: 'Ongoing',
-  category: 'Education',
-  year: '2026',
-  collaboration: 'Rotaract District 3220',
-  volunteers: 76,
-  photos: 48,
-  likes: 128,
-  progress: 68
-},
-
-{
-  id: 'books-beyond',
-  title: 'Books & Beyond',
-  avenue: 'International Service',
-  date: 'Apr 2026',
-  description: 'Delivering school essentials and stories that open doors to brighter learning futures.',
-  image: "/67a57244-695d-4354-86ae-42f897a404b4.jpg",
-  status: 'Ongoing',
-  category: 'Education',
-  year: '2026',
-  volunteers: 64,
-  photos: 32,
-  likes: 91,
-  progress: 42
-},
-{
-  id: 'member-mosaic',
-  title: 'Member Mosaic',
-  avenue: 'Club Service',
-  date: 'Jan 2026',
-  description: 'A signature welcome experience that turned new-member introductions into lasting friendships.',
-  image: "/1e74bf3b-bd1e-4979-a2ae-f0d17883d4b4.jpg",
-  status: 'Completed',
-  category: 'Fellowship',
-  year: '2026',
-  volunteers: 38,
-  photos: 54,
-  likes: 174
-},
-{
-  id: 'rhythm-of-us',
-  title: 'Rhythm of Us',
-  avenue: 'Club Service',
-  date: 'Dec 2025',
-  description: 'An intimate evening of music, stories and celebration created by and for the club family.',
-  image: "/3f14fe35-b548-4965-8c3f-3b2cfbb4f675.jpg",
-  status: 'Completed',
-  category: 'Fellowship',
-  year: '2025',
-  volunteers: 29,
-  photos: 67,
-  likes: 203
-},
-{
-  id: 'future-ready',
-  title: 'Future Ready',
-  avenue: 'Professional Development',
-  date: 'Nov 2025',
-  description: 'A hands-on career lab connecting members with mentors, portfolios and practical insight.',
-  image: "/7bd60e2b-0f1c-4507-9b7b-43763cc9d0f6.jpg",
-  status: 'Completed',
-  category: 'Leadership',
-  year: '2025',
-  collaboration: 'UCSC Alumni Network',
-  volunteers: 42,
-  photos: 41,
-  likes: 159
 }];
 
 
@@ -433,18 +358,16 @@ export const CLUB_DIRECTORS = [
   name: 'Rtr. Dasuni De Silva',
   role: 'Director of Club Service',
   bio: 'A people-first organiser who believes the best club culture is built in the small, thoughtful moments.',
-  image: '/assets/leadership/directors/clubservicesdirector1.jpeg'
+  image: '/assets/leadership/directors/clubservicesdirector1.png'
 },
 {
   name: 'Rtr. Nuha Fawzer',
   role: 'Director of Club Service',
   bio: 'Cultivating an inviting, family-like culture across every club event.',
-  image: '/assets/leadership/directors/clubservicesdirector2.jpeg'
+  image: '/assets/leadership/directors/clubservicesdirector2.png'
 }];
 
 
 export const CLUB_MILESTONES = [
 { date: 'Aug 2025', title: 'The first welcome circle', text: '92 new and returning members met through a guided club-story experience.' },
-{ date: 'Oct 2025', title: 'Fellowship in motion', text: 'The first inter-batch sports night brought six teams and one unforgettable final together.' },
-{ date: 'Dec 2025', title: 'Rhythm of Us', text: 'A sold-out year-end celebration became the most photographed club event of the term.' },
-{ date: 'Mar 2026', title: 'Member Mosaic', text: 'A new member-led programme gave every committee a place to share its story.' }];
+{ date: 'Oct 2025', title: 'Fellowship in motion', text: 'The first inter-batch sports night brought six teams and one unforgettable final together.' }];

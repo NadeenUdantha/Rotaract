@@ -7,6 +7,7 @@ import { Reveal } from '../components/ui/Reveal';
 import { PROJECT_CATALOG } from '../lib/impactData';
 
 const initialFilters: ProjectFilters = { query: '', year: 'All years', avenue: 'All avenues', category: 'All categories', status: 'All status', collaboration: false, sort: 'Latest' };
+const PROJECTS_HERO_IMAGE = '/assets/avenues/professional_development.png';
 
 export function ProjectsPage() {
   const [filters, setFilters] = useState<ProjectFilters>(initialFilters);
@@ -23,7 +24,8 @@ export function ProjectsPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-cream pb-24 text-ink dark:bg-ink dark:text-white">
       <section className="relative isolate overflow-hidden px-6 pb-28 pt-20 md:pb-36 md:pt-28">
-        <div className="absolute inset-0 -z-20 bg-ink" />
+        <img src={PROJECTS_HERO_IMAGE} alt="" aria-hidden="true" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/85 to-ink/35" />
         <div aria-hidden className="absolute -right-24 top-0 -z-10 h-96 w-96 rounded-full bg-navy-500/30 blur-3xl" />
         <div aria-hidden className="absolute -bottom-32 left-1/4 -z-10 h-80 w-80 rounded-full bg-gold/20 blur-3xl" />
         <motion.div aria-hidden animate={{ rotate: 360 }} transition={{ duration: 30, repeat: Infinity, ease: 'linear' }} className="absolute right-[8%] top-16 hidden h-48 w-48 rounded-full border border-dashed border-gold/35 md:block" />
@@ -34,7 +36,7 @@ export function ProjectsPage() {
             <p className="mt-6 max-w-xl text-base leading-8 text-white/65 md:text-lg">Discover the initiatives, people and moments that turn intention into visible change.</p>
           </Reveal>
           <Reveal delay={0.18} className="mt-14 grid max-w-4xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 sm:grid-cols-4">
-            {[{ label: 'Total projects', value: '128', icon: FolderHeartIcon }, { label: 'Ongoing', value: '14', icon: SparklesIcon }, { label: 'Collaborations', value: '36', icon: HandshakeIcon }, { label: 'Volunteer hours', value: '15.4k', icon: UsersRoundIcon }].map(({ label, value, icon: Icon }) => <div key={label} className="bg-ink/50 p-5 backdrop-blur-sm"><Icon className="h-4 w-4 text-gold" /><p className="mt-5 font-display text-3xl font-bold text-white">{value}</p><p className="mt-1 text-xs font-medium text-white/50">{label}</p></div>)}
+            {[{ label: 'Total projects', value: '40', icon: FolderHeartIcon }, { label: 'Ongoing', value: '34', icon: SparklesIcon }, { label: 'Collaborations', value: '10', icon: HandshakeIcon }, { label: 'Volunteer hours', value: '450+', icon: UsersRoundIcon }].map(({ label, value, icon: Icon }) => <div key={label} className="bg-ink/50 p-5 backdrop-blur-sm"><Icon className="h-4 w-4 text-gold" /><p className="mt-5 font-display text-3xl font-bold text-white">{value}</p><p className="mt-1 text-xs font-medium text-white/50">{label}</p></div>)}
           </Reveal>
         </div>
       </section>

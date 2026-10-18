@@ -11,7 +11,6 @@ import { NewHeroPage } from './pages/NewHeroPage';
 // Code-split secondary routes for faster initial load
 const AvenueDetailPage = lazy(() => import('./pages/AvenueDetailPage').then((m) => ({ default: m.AvenueDetailPage })));
 const ArticlePage = lazy(() => import('./pages/ArticlePage').then((m) => ({ default: m.ArticlePage })));
-const AvenuesPage = lazy(() => import('./pages/AvenuesPage').then((m) => ({ default: m.AvenuesPage })));
 const BoardPage = lazy(() => import('./pages/BoardPage').then((m) => ({ default: m.BoardPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage').then((m) => ({ default: m.BlogPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
@@ -54,7 +53,7 @@ function AppInner() {
       <Suspense fallback={<RouteFallback />}>
         <Routes>
           <Route path="/" element={<NewHeroPage />} />
-          <Route path="/avenues" element={<AvenuesPage />} />
+          <Route path="/avenues" element={<Navigate to="/avenues/club-service" replace />} />
           <Route path="/avenues/:slug" element={<AvenueDetailPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:id" element={<ProjectDetailPage />} />

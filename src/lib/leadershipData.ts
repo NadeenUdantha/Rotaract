@@ -25,7 +25,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'President',
     quote: 'The future belongs to people willing to show up for one another.',
     bio: 'A people-first leader focused on turning bold ideas into shared momentum.',
-    image: '/assets/leadership/exco/president.jpg',
+    image: '/assets/leadership/exco/president.png',
     accent: 'navy'
   },
   {
@@ -33,7 +33,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'Vice President',
     quote: 'Great teams turn care into collective action.',
     bio: 'Bringing structure, optimism, and a steady hand to every club ambition.',
-    image: '/assets/leadership/exco/vicepresident1.jpeg',
+    image: '/assets/leadership/exco/vicepresident1.png',
     accent: 'gold'
   },
   {
@@ -41,7 +41,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'Vice President',
     quote: 'Strength lies in unity, shared vision, and perseverance.',
     bio: 'Empowering avenues and fostering resilience across every signature project.',
-    image: '/assets/leadership/exco/vicepresident2.jpg',
+    image: '/assets/leadership/exco/vicepresident2.png',
     accent: 'amber'
   },
   {
@@ -57,7 +57,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'Treasurer',
     quote: 'Trust is built in transparency and stewardship.',
     bio: 'A thoughtful steward making every opportunity and resource count for the club.',
-    image: '/assets/leadership/exco/treasurer.jpg',
+    image: '/assets/leadership/exco/treasurer.png',
     accent: 'amber'
   },
   {
@@ -65,7 +65,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'Immediate Past President',
     quote: 'Legacy is what we make possible together.',
     bio: 'Offering wisdom, continuity, and an enduring belief in youth empowerment.',
-    image: '/assets/leadership/exco/IPP.jpeg',
+    image: '/assets/leadership/exco/IPP.png',
     accent: 'navy'
   },
   {
@@ -73,7 +73,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'Assistant Secretary',
     quote: 'Belonging starts with a genuine and warm welcome.',
     bio: 'Creating thoughtful connections and streamlined secretarial workflows.',
-    image: '/assets/leadership/exco/assistantsecretary1.jpeg',
+    image: '/assets/leadership/exco/assistantsecretary1.png',
     accent: 'violet'
   },
   {
@@ -81,7 +81,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'Assistant Secretary',
     quote: 'Dedication turns small duties into lasting excellence.',
     bio: 'Ensuring administrative coordination and member records flow with precision.',
-    image: '/assets/leadership/exco/assistantsecretary2.jpeg',
+    image: '/assets/leadership/exco/assistantsecretary2.png',
     accent: 'sky'
   },
   {
@@ -89,7 +89,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'Sergeant-at-Arms',
     quote: 'Order and mutual respect create room for great fellowship.',
     bio: 'Upholding club decorum, high energy, and timeless Rotaract traditions.',
-    image: '/assets/leadership/exco/seargentatarms.jpeg',
+    image: '/assets/leadership/exco/seargentatarms.png',
     accent: 'navy'
   },
   {
@@ -97,7 +97,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'Editor',
     quote: 'Words give wings and lasting meaning to our collective purpose.',
     bio: 'Curating literary publications and articulating club milestones with finesse.',
-    image: '/assets/leadership/exco/editor1.jpeg',
+    image: '/assets/leadership/exco/editor1.png',
     accent: 'rose'
   },
   {
@@ -105,7 +105,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'Editor',
     quote: 'Every story told with authenticity inspires others to lead.',
     bio: 'Capturing the heart of service through insightful storytelling and journalism.',
-    image: '/assets/leadership/exco/editor2.jpeg',
+    image: '/assets/leadership/exco/editor2.png',
     accent: 'gold'
   },
   {
@@ -113,7 +113,7 @@ export const EXECUTIVE_COMMITTEE: LeadershipMember[] = [
     role: 'Head of Media',
     quote: 'Visual artistry turns fleeting moments into enduring movements.',
     bio: 'Directing creative media, branding aesthetics, and multi-channel visual impact.',
-    image: '/assets/leadership/exco/headofmedia.jpeg',
+    image: '/assets/leadership/exco/headofmedia.png',
     accent: 'cyan'
   }
 ];
@@ -125,7 +125,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Club Service',
     quote: 'Every member deserves a place to truly belong.',
     bio: 'Building fellowship through experiences that stay with people forever.',
-    image: '/assets/leadership/directors/clubservicesdirector1.jpeg',
+    image: '/assets/leadership/directors/clubservicesdirector1.png',
     accent: 'navy'
   },
   {
@@ -134,7 +134,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Club Service',
     quote: 'Fellowship is the foundation that holds all our service together.',
     bio: 'Cultivating an inviting, family-like culture across every club event.',
-    image: '/assets/leadership/directors/clubservicesdirector2.jpeg',
+    image: '/assets/leadership/directors/clubservicesdirector2.png',
     accent: 'sky'
   },
   {
@@ -143,7 +143,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Community Service',
     quote: 'Impact starts with genuine compassion close to home.',
     bio: 'Guiding grassroots action with deep empathy and sustainable solutions.',
-    image: '/assets/leadership/directors/communityservicesdirector1.jpg',
+    image: '/assets/leadership/directors/communityservicesdirector1.png',
     accent: 'rose'
   },
   {
@@ -152,7 +152,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Community Service',
     quote: 'Hands that serve touch lives that inspire our society.',
     bio: 'Mobilizing volunteer power to uplift underprivileged communities across Sri Lanka.',
-    image: '/assets/leadership/directors/communityservicesdirector2.jpg',
+    image: '/assets/leadership/directors/communityservicesdirector2.png',
     accent: 'amber'
   },
   {
@@ -161,7 +161,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Professional Development',
     quote: 'Leadership is discovered and refined by doing.',
     bio: 'Opening doors to corporate mentors, essential skills, and brave new beginnings.',
-    image: '/assets/leadership/directors/professionaldevelopmentdirector1.jpg',
+    image: '/assets/leadership/directors/professionaldevelopmentdirector1.png',
     accent: 'violet'
   },
   {
@@ -170,7 +170,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Professional Development',
     quote: 'Potential needs a platform to grow into excellence.',
     bio: 'Empowering undergraduates with industry readiness and professional networking.',
-    image: '/assets/leadership/directors/professionaldevelopmentdirector2.jpg',
+    image: '/assets/leadership/directors/professionaldevelopmentdirector2.png',
     accent: 'gold'
   },
   {
@@ -179,7 +179,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Public Relations',
     quote: 'We are the stories we share and the hope we kindle.',
     bio: 'Crafting captivating public narratives that elevate the club’s voice and prestige.',
-    image: '/assets/leadership/directors/publicrelationsdirector1.jpg',
+    image: '/assets/leadership/directors/publicrelationsdirector1.png',
     accent: 'fuchsia'
   },
   {
@@ -188,7 +188,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Public Relations',
     quote: 'Stories move hearts and inspire communities to care.',
     bio: 'Amplifying public resonance and digital branding across diverse platforms.',
-    image: '/assets/leadership/directors/publicrelationsdirector2.jpg',
+    image: '/assets/leadership/directors/publicrelationsdirector2.png',
     accent: 'rose'
   },
   {
@@ -197,7 +197,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'International Service',
     quote: 'Friendship and meaningful service have no borders.',
     bio: 'Fostering global partnerships and cross-cultural exchanges across the world.',
-    image: '/assets/leadership/directors/internationalservicesdirector.jpeg',
+    image: '/assets/leadership/directors/internationalservicesdirector.png',
     accent: 'sky'
   },
   {
@@ -206,7 +206,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Digital Services',
     quote: 'Great technology and design make human impact easier to feel.',
     bio: 'Building modern web architectures and digital tools for the club ecosystem.',
-    image: '/assets/leadership/directors/digitalservicesdirector.jpg',
+    image: '/assets/leadership/directors/digitalservicesdirector.png',
     accent: 'cyan'
   },
   {
@@ -215,7 +215,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Sports & Recreation',
     quote: 'Joy and sportsmanship build the strongest team bonds.',
     bio: 'Sparking energy, athletic spirit, and mental wellness through active events.',
-    image: '/assets/leadership/directors/sportsandrecreationalactivitiesdirector1.jpeg',
+    image: '/assets/leadership/directors/sportsandrecreationalactivitiesdirector1.png',
     accent: 'orange'
   },
   {
@@ -224,7 +224,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Sports & Recreation',
     quote: 'Passion on the field translates to resilience everywhere in life.',
     bio: 'Encouraging healthy living, tournament excitement, and team bonding.',
-    image: '/assets/leadership/directors/sportsandrecreationalactivitiesdirector2.jpg',
+    image: '/assets/leadership/directors/sportsandrecreationalactivitiesdirector2.png',
     accent: 'amber'
   },
   {
@@ -233,7 +233,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Finance',
     quote: 'Transparency and integrity create enduring confidence.',
     bio: 'Ensuring financial accuracy, strategic fundraising, and budget stability.',
-    image: '/assets/leadership/directors/financedirector1.jpg',
+    image: '/assets/leadership/directors/financedirector1.png',
     accent: 'amber'
   },
   {
@@ -242,7 +242,7 @@ export const DIRECTORS: LeadershipMember[] = [
     avenue: 'Finance',
     quote: 'Thoughtful stewardship turns ambitious plans into reality.',
     bio: 'Managing financial resources with precision, foresight, and accountability.',
-    image: '/assets/leadership/directors/financedirector2.jpg',
+    image: '/assets/leadership/directors/financedirector2.png',
     accent: 'gold'
   }
 ];

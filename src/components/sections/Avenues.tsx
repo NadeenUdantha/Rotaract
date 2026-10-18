@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { AVENUE_DETAILS } from '../../lib/impactData';
@@ -9,6 +9,7 @@ interface AvenueCardProps {
   index: number;
   totalAvenues: number;
   scrollYProgress: any;
+  shouldRenderImage: boolean;
 }
 
 interface ThreePhotoFrameProps {
@@ -52,46 +53,39 @@ function AvenueThreePhotoFrame({ photos, title, scrollYProgress, start, end }: T
             <img
               src={photos.main}
               alt={`${title} main`}
+              decoding="async"
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-50 group-hover:opacity-15 transition-opacity duration-500" />
           </motion.div>
         </motion.div>
 
-        {/* Top-Right Floating Photo (Scroll Parallax + Ambient Motion) */}
+        {/* Top-Right Floating Photo */}
         <motion.div
           style={{ y: topY, rotate: topRotate }}
           className="absolute -top-3 -right-2 sm:-top-5 sm:-right-4 z-20 w-[52%] aspect-[2.25/1] rounded-xl sm:rounded-2xl overflow-hidden ring-1 ring-white/25 hover:ring-gold/70 shadow-[0_25px_60px_-10px_rgba(0,0,0,0.95)] hover:shadow-[0_25px_50px_rgba(197,160,71,0.3)] transition-all duration-300 cursor-pointer group"
         >
-          <motion.div
-            animate={{ y: [0, -5, 0] }}
-            transition={{ repeat: Infinity, duration: 4.8, ease: 'easeInOut' }}
-            whileHover={{ scale: 1.05 }}
-            className="h-full w-full"
-          >
+          <motion.div whileHover={{ scale: 1.05 }} className="h-full w-full">
             <img
               src={photos.top}
               alt={`${title} highlight top`}
+              decoding="async"
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity duration-500" />
           </motion.div>
         </motion.div>
 
-        {/* Bottom-Left Floating Photo (Scroll Parallax + Ambient Motion) */}
+        {/* Bottom-Left Floating Photo */}
         <motion.div
           style={{ y: bottomY, rotate: bottomRotate }}
           className="absolute -bottom-3 -left-2 sm:-bottom-5 sm:-left-4 z-20 w-[50%] aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden ring-1 ring-white/25 hover:ring-gold/70 shadow-[0_25px_60px_-10px_rgba(0,0,0,0.95)] hover:shadow-[0_25px_50px_rgba(197,160,71,0.3)] transition-all duration-300 cursor-pointer group"
         >
-          <motion.div
-            animate={{ y: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 5.4, ease: 'easeInOut', delay: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            className="h-full w-full"
-          >
+          <motion.div whileHover={{ scale: 1.05 }} className="h-full w-full">
             <img
               src={photos.bottom}
               alt={`${title} highlight bottom`}
+              decoding="async"
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity duration-500" />
@@ -102,7 +96,7 @@ function AvenueThreePhotoFrame({ photos, title, scrollYProgress, start, end }: T
   );
 }
 
-function AvenueCard({ avenue, index, totalAvenues, scrollYProgress }: AvenueCardProps) {
+function AvenueCard({ avenue, index, totalAvenues, scrollYProgress, shouldRenderImage }: AvenueCardProps) {
   const isEven = index % 2 === 1;
   const avenueNumber = String(index + 1).padStart(2, '0');
   const [firstWord, ...restWords] = avenue.title.split(' ');
@@ -140,6 +134,15 @@ function AvenueCard({ avenue, index, totalAvenues, scrollYProgress }: AvenueCard
   const pointerEvents = useTransform(opacity, (val: number) => (val > 0.2 ? 'auto' : 'none'));
 
   const renderImage = () => {
+    if (!shouldRenderImage) {
+      return (
+        <div
+          className={`${avenue.photoFrame ? 'aspect-[1.25/1]' : 'aspect-[16/10]'} w-full max-w-[560px]`}
+          aria-hidden="true"
+        />
+      );
+    }
+
     if (avenue.photoFrame) {
       return (
         <AvenueThreePhotoFrame
@@ -173,7 +176,7 @@ function AvenueCard({ avenue, index, totalAvenues, scrollYProgress }: AvenueCard
         y,
         pointerEvents,
       }}
-      className="absolute inset-0 flex h-full w-full items-center justify-center px-6 sm:px-12 md:px-16 lg:px-24 will-change-[opacity,transform]"
+      className="absolute inset-0 flex h-full w-full items-center justify-center px-6 sm:px-12 md:px-16 lg:px-24"
     >
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-16">
         {!isEven ? (
@@ -290,13 +293,18 @@ function AvenueCard({ avenue, index, totalAvenues, scrollYProgress }: AvenueCard
 
 export function Avenues() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [activeAvenue, setActiveAvenue] = useState(0);
   const totalAvenues = AVENUE_DETAILS.length; // 8
 
   // Scroll track for pinned fading sequence
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
+  });
+
+  useMotionValueEvent(scrollYProgress, 'change', (progress) => {
+    const nextAvenue = Math.min(totalAvenues - 1, Math.floor(progress * totalAvenues));
+    setActiveAvenue((current) => (current === nextAvenue ? current : nextAvenue));
   });
 
   return (
@@ -310,20 +318,10 @@ export function Avenues() {
         aria-label="Eight Avenues of Service"
         className="sticky top-0 flex h-[100dvh] w-full flex-col justify-center overflow-hidden bg-black text-white select-none"
       >
-        {/* ── BACKGROUND VIDEO LAYER ─── */}
+        {/* The fixed hero video remains visible behind this section. */}
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          <video
-            ref={videoRef}
-            src="/assets/video.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="h-full w-full object-cover filter blur-[2px] brightness-[42%] contrast-[110%]"
-          />
           {/* Subtle vignette and dark scrim overlay to ensure clean contrast */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/70" />
         </div>
 
@@ -336,6 +334,7 @@ export function Avenues() {
               index={index}
               totalAvenues={totalAvenues}
               scrollYProgress={scrollYProgress}
+              shouldRenderImage={Math.abs(index - activeAvenue) <= 2}
             />
           ))}
         </div>

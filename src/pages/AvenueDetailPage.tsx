@@ -157,7 +157,7 @@ export function AvenueDetailPage() {
                     {avenue.completedProjects}+
                   </p>
                   <p className="mt-1 font-mono text-[11px] uppercase tracking-wider text-white/60">
-                    Projects Done
+                    Term Initiatives
                   </p>
                 </div>
                 <div>
@@ -289,31 +289,33 @@ export function AvenueDetailPage() {
                 avenue.directorList.map((director) => (
                   <div
                     key={director.name}
-                    className="group overflow-hidden rounded-3xl border border-black/10 bg-white/70 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                    className="group text-center"
                   >
-                    <div className="relative aspect-[4/4.5] w-full overflow-hidden bg-stone-200">
+                    <div className="relative mx-auto flex aspect-[4/5] max-w-[200px] items-end justify-center overflow-hidden">
+                      <div aria-hidden="true" className="absolute bottom-[10%] h-[72%] w-[72%] rounded-full bg-[#C5A047] transition-transform duration-500 group-hover:scale-105" />
                       <img
                         src={director.image}
                         alt={director.name}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="lazy"
+                        className="relative z-10 h-full w-full object-cover object-[center_18%] transition-transform duration-500 group-hover:scale-[1.03]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4 text-white">
-                        <p className="font-mono text-[10px] uppercase tracking-widest text-[#C5A047]">
-                          {director.role}
-                        </p>
-                        <h4 className="font-cormorant text-2xl font-light uppercase text-white">
-                          {director.name}
-                        </h4>
-                      </div>
                     </div>
-                    <div className="p-6">
-                      <p className="font-body text-xs font-light leading-relaxed text-[#0A0606]/70">
+                    <div className="mx-auto max-w-[280px] border-t border-black/10 pt-5">
+                      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#C5A047]">
+                        {director.role}
+                      </p>
+                      <h4 className="mt-2 font-cormorant text-2xl font-light uppercase tracking-[0.04em] text-[#0A0606]">
+                        {director.name}
+                      </h4>
+                      <p className="mt-3 font-cormorant text-lg italic leading-7 text-[#0A0606]/70">
+                        “{director.bio}”
+                      </p>
+                      <p className="mt-3 font-body text-sm font-light leading-relaxed text-[#0A0606]/60">
                         {director.bio}
                       </p>
                       <a
-                        href={`mailto:hello@rotaractucsc.org?subject=Inquiry for ${encodeURIComponent(director.name)} - ${encodeURIComponent(avenue.title)}`}
-                        className="mt-5 inline-flex items-center gap-2 font-cormorant text-xs uppercase tracking-[0.18em] text-[#C5A047] transition-colors hover:text-[#0A0606]"
+                        href={`mailto:rotaractclubofucsc@gmail.com?subject=Inquiry for ${encodeURIComponent(director.name)} - ${encodeURIComponent(avenue.title)}`}
+                        className="mt-5 inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[#0A0606]/65 transition-colors hover:border-[#C5A047] hover:bg-[#C5A047] hover:text-black"
                       >
                         <Mail className="h-3.5 w-3.5" />
                         <span>Contact Director</span>
